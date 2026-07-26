@@ -1,0 +1,64 @@
+{
+  "id": "X10_bagfilter_pulsejet_sequencer",
+  "title": "Bag-filter pulse-jet cleaning sequencer",
+  "difficulty": "hard",
+  "domain": "dust collection",
+  "nl_spec": "A baghouse is cleaned by pulsing compressed air through three filter rows one at a time. A cleaning cycle starts from Idle when the filter differential pressure DP reaches DP_HIGH = 300 Pa OR a ManualClean request is made. The cycle is a fixed sequence: pulse row 1 (Valve1) for PULSE_TIME = 2 s, dwell 2 s, pulse row 2 (Valve2) for 2 s, dwell 2 s, pulse row 3 (Valve3) for 2 s, dwell 2 s, then return to Idle. At most one pulse valve may be energized at any time (simultaneous pulses would collapse header pressure). Model the sequence as an internal INT State (0 = idle, 1 = pulse1, 2 = dwell1, 3 = pulse2, 4 = dwell2, 5 = pulse3, 6 = dwell3) advanced by two TON timers (one for pulses, one for dwells). EStop is normally-closed (TRUE = healthy, FALSE = activated); when activated the sequencer returns to Idle and all valves close. Write an IEC 61131-3 Structured Text PROGRAM named bag_filter with inputs DP, ManualClean, EStop and outputs Valve1, Valve2, Valve3.",
+  "interface": [
+    {"name": "DP", "type": "INT", "direction": "input", "description": "Filter differential pressure in Pa", "range": [0, 500]},
+    {"name": "ManualClean", "type": "BOOL", "direction": "input", "description": "Manual clean-cycle request"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "Valve1", "type": "BOOL", "direction": "output", "description": "Row-1 pulse solenoid"},
+    {"name": "Valve2", "type": "BOOL", "direction": "output", "description": "Row-2 pulse solenoid"},
+    {"name": "Valve3", "type": "BOOL", "direction": "output", "description": "Row-3 pulse solenoid"},
+    {"name": "State", "type": "INT", "direction": "internal", "description": "Sequencer state 0..6", "range": [0, 6]}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "On emergency stop, all pulse valves are closed.", "ltl": "G(!EStop -> (!Valve1 & !Valve2 & !Valve3))"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "At most one pulse valve is energized at any time.", "ltl": "G(!(Valve1 & Valve2) & !(Valve1 & Valve3) & !(Valve2 & Valve3))"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "A pulse valve fires only while the system is healthy.", "ltl": "G((Valve1 | Valve2 | Valve3) -> EStop)"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "Positive obligation: in the row-1 pulse state, row-1 valve is energized.", "ltl": "G(State = 1 -> Valve1)"},
+    {"id": "P5", "kind": "safety", "severity": "high", "nl": "Positive obligation: in the row-2 pulse state, row-2 valve is energized.", "ltl": "G(State = 3 -> Valve2)"},
+    {"id": "P6", "kind": "safety", "severity": "high", "nl": "Positive obligation: in the row-3 pulse state, row-3 valve is energized.", "ltl": "G(State = 5 -> Valve3)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Trigger on high DP and pulse row 1 for two scans",
+     "steps": [
+       {"inputs": {"DP": 350, "ManualClean": false, "EStop": true}, "expect": {"Valve1": true, "Valve2": false, "Valve3": false}},
+       {"inputs": {"DP": 350, "ManualClean": false, "EStop": true}, "expect": {"Valve1": true}},
+       {"inputs": {"DP": 350, "ManualClean": false, "EStop": true}, "expect": {"Valve1": false, "Valve2": false}}
+     ]},
+    {"id": "S2", "description": "Sequence advances through the dwell to pulse row 2",
+     "steps": [
+       {"inputs": {"DP": 350, "ManualClean": false, "EStop": true}, "expect": {"Valve1": true, "Valve2": false}},
+       {"inputs": {"DP": 350, "ManualClean": false, "EStop": true}, "expect": {"Valve1": true}},
+       {"inputs": {"DP": 350, "ManualClean": false, "EStop": true}, "expect": {"Valve1": false, "Valve2": false}},
+       {"inputs": {"DP": 350, "ManualClean": false, "EStop": true}, "expect": {"Valve2": false}},
+       {"inputs": {"DP": 350, "ManualClean": false, "EStop": true}, "expect": {"Valve1": false, "Valve2": true, "Valve3": false}}
+     ]},
+    {"id": "S3", "description": "Emergency stop aborts the cycle and closes all valves",
+     "steps": [
+       {"inputs": {"DP": 350, "ManualClean": false, "EStop": true}, "expect": {"Valve1": true}},
+       {"inputs": {"DP": 350, "ManualClean": false, "EStop": false}, "expect": {"Valve1": false, "Valve2": false, "Valve3": false}}
+     ]},
+    {"id": "S4", "description": "Full cleaning cycle: trigger on high DP, pulse rows 1-2-3 one at a time through all six active states, then return to Idle (DP dropped after the trigger so Idle is stable)",
+     "steps": [
+       {"inputs": {"DP": 350, "ManualClean": false, "EStop": true}, "expect": {"Valve1": true, "Valve2": false, "Valve3": false}},
+       {"inputs": {"DP": 100, "ManualClean": false, "EStop": true}, "expect": {"Valve1": true, "Valve2": false, "Valve3": false}},
+       {"inputs": {"DP": 100, "ManualClean": false, "EStop": true}, "expect": {"Valve1": false, "Valve2": false, "Valve3": false}},
+       {"inputs": {"DP": 100, "ManualClean": false, "EStop": true}, "expect": {"Valve1": false, "Valve2": false, "Valve3": false}},
+       {"inputs": {"DP": 100, "ManualClean": false, "EStop": true}, "expect": {"Valve1": false, "Valve2": true, "Valve3": false}},
+       {"inputs": {"DP": 100, "ManualClean": false, "EStop": true}, "expect": {"Valve1": false, "Valve2": true, "Valve3": false}},
+       {"inputs": {"DP": 100, "ManualClean": false, "EStop": true}, "expect": {"Valve1": false, "Valve2": false, "Valve3": false}},
+       {"inputs": {"DP": 100, "ManualClean": false, "EStop": true}, "expect": {"Valve1": false, "Valve2": false, "Valve3": false}},
+       {"inputs": {"DP": 100, "ManualClean": false, "EStop": true}, "expect": {"Valve1": false, "Valve2": false, "Valve3": true}},
+       {"inputs": {"DP": 100, "ManualClean": false, "EStop": true}, "expect": {"Valve1": false, "Valve2": false, "Valve3": true}},
+       {"inputs": {"DP": 100, "ManualClean": false, "EStop": true}, "expect": {"Valve1": false, "Valve2": false, "Valve3": false}},
+       {"inputs": {"DP": 100, "ManualClean": false, "EStop": true}, "expect": {"Valve1": false, "Valve2": false, "Valve3": false}},
+       {"inputs": {"DP": 100, "ManualClean": false, "EStop": true}, "expect": {"Valve1": false, "Valve2": false, "Valve3": false}},
+       {"inputs": {"DP": 100, "ManualClean": false, "EStop": true}, "expect": {"Valve1": false, "Valve2": false, "Valve3": false}}
+     ]}
+  ],
+  "tags": ["draft", "sequencer", "pulse-jet", "CASE", "TON", "one-hot", "positive-obligation"],
+  "notes": "DRAFT - pending expert PLC review. NEW FAMILY: cyclic one-at-a-time pulse sequencer with a header-protection one-hot invariant (at most one valve energized). Uses two TONs (pulse width + dwell) driving a 7-state CASE. Distinct from the existing linear start-up sequences (burner purge, conveyor start) which are one-shot ordered starts of persistent outputs; here the outputs are momentary, mutually exclusive pulses in a repeating cycle. The one-hot property is the novel class."
+}

@@ -1,0 +1,31 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights:   0%|          | 1/339 [00:00<01:03,  5.31it/s]Loading weights:   9%|▉         | 30/339 [00:00<00:02, 128.10it/s]Loading weights:  19%|█▉        | 64/339 [00:00<00:01, 205.98it/s]Loading weights:  29%|██▉       | 100/339 [00:00<00:00, 255.22it/s]Loading weights:  38%|███▊      | 129/339 [00:00<00:00, 263.42it/s]Loading weights:  47%|████▋     | 161/339 [00:00<00:00, 274.05it/s]Loading weights:  58%|█████▊    | 196/339 [00:00<00:00, 289.11it/s]Loading weights:  67%|██████▋   | 226/339 [00:00<00:00, 285.27it/s]Loading weights:  76%|███████▌  | 257/339 [00:01<00:00, 289.10it/s]Loading weights:  86%|████████▌ | 292/339 [00:01<00:00, 290.45it/s]Loading weights:  96%|█████████▋| 327/339 [00:01<00:00, 290.99it/s]Loading weights: 100%|██████████| 339/339 [00:01<00:00, 263.45it/s]
+  GEN_mguard_1_Motor             frac=1.00
+  GEN_estop_1_Motor              frac=1.00
+  GEN_estop_2_Motor              frac=1.00
+  GEN_estop_3_Motor              frac=1.00
+  GEN_mguard_4_Motor             frac=1.00
+  GEN_ondelay_1_Motor            frac=1.00
+  GEN_ondelay_3_Motor            frac=1.00
+  GEN_counter_2_Motor            frac=1.00
+  GEN_counter_3_Motor            frac=1.00
+  GEN_counter_5_Motor            frac=1.00
+  GEN_override_Motor_Fault       frac=1.00
+  GEN_estop_1_Drive              frac=1.00
+  GEN_mguard_2_Drive             frac=1.00
+  GEN_mguard_3_Drive             frac=1.00
+  GEN_mguard_4_Drive             frac=1.00
+  GEN_ondelay_1_Drive            frac=1.00
+  GEN_ondelay_2_Drive            frac=1.00
+  GEN_ondelay_4_Drive            frac=1.00
+  GEN_counter_3_Drive            frac=1.00
+  GEN_counter_4_Drive            frac=1.00
+  GEN_override_Drive_OverTemp    frac=1.00
+  GEN_mguard_1_Pump              frac=1.00
+  GEN_mguard_2_Pump              frac=1.00
+  GEN_estop_2_Pump               frac=1.00
+  GEN_estop_3_Pump               frac=1.00
+  GEN_estop_4_Pump               frac=1.00
+  GEN_ondelay_2_Pump             frac=1.00
+  GEN_ondelay_3_Pump             frac=0.40  (keep)
+  GEN_counter_2_Pump             frac=1.00

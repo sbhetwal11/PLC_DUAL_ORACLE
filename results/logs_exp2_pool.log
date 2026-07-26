@@ -1,0 +1,11 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights:   0%|          | 1/339 [00:00<01:12,  4.69it/s]Loading weights:   4%|▍         | 15/339 [00:00<00:05, 58.43it/s]Loading weights:  12%|█▏        | 40/339 [00:00<00:02, 120.90it/s]Loading weights:  16%|█▌        | 55/339 [00:00<00:02, 123.08it/s]Loading weights:  23%|██▎       | 77/339 [00:00<00:01, 149.50it/s]Loading weights:  29%|██▉       | 100/339 [00:00<00:01, 167.98it/s]Loading weights:  35%|███▍      | 118/339 [00:00<00:01, 157.24it/s]Loading weights:  40%|███▉      | 135/339 [00:01<00:01, 141.62it/s]Loading weights:  47%|████▋     | 159/339 [00:01<00:01, 144.27it/s]Loading weights:  54%|█████▍    | 183/339 [00:01<00:00, 160.63it/s]Loading weights:  59%|█████▉    | 200/339 [00:01<00:00, 154.73it/s]Loading weights:  65%|██████▍   | 220/339 [00:01<00:00, 163.09it/s]Loading weights:  70%|██████▉   | 237/339 [00:01<00:00, 157.27it/s]Loading weights:  75%|███████▌  | 255/339 [00:01<00:00, 160.52it/s]Loading weights:  80%|████████  | 272/339 [00:01<00:00, 154.73it/s]Loading weights:  86%|████████▌ | 291/339 [00:02<00:00, 158.32it/s]Loading weights:  91%|█████████ | 307/339 [00:02<00:00, 144.37it/s]Loading weights:  97%|█████████▋| 328/339 [00:02<00:00, 144.53it/s]Loading weights: 100%|██████████| 339/339 [00:02<00:00, 121.81it/s]
+  [20/158] pool=80 dual=8 compile=65 inv=9
+  [40/158] pool=160 dual=16 compile=128 inv=19
+  [60/158] pool=240 dual=26 compile=190 inv=31
+  [80/158] pool=320 dual=37 compile=248 inv=46
+  [100/158] pool=400 dual=46 compile=299 inv=57
+  [120/158] pool=480 dual=58 compile=362 inv=70
+  [140/158] pool=560 dual=74 compile=432 inv=87
+POOL TALLY: {"total": 632, "compile": 492, "invariant": 103, "scenario": 240, "dual": 88}
+wrote finetune/data/pool_model.jsonl

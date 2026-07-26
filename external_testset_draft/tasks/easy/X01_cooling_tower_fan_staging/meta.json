@@ -1,0 +1,45 @@
+{
+  "id": "X01_cooling_tower_fan_staging",
+  "title": "Cooling-tower fan staging on temperature bands",
+  "difficulty": "easy",
+  "domain": "HVAC / thermal",
+  "nl_spec": "A cooling tower has two fans that are staged on rising basin-water temperature. Fan1 (lead) runs when the water temperature WaterTemp reaches the lead stage point T_ON1 = 25 C; Fan2 (lag) additionally runs when WaterTemp reaches the lag stage point T_ON2 = 32 C. Staging is monotonic: the lag fan must never run unless the lead fan is also running. The system runs only while Enable is TRUE. EStop is the emergency-stop input, wired normally-closed, so EStop = TRUE means healthy and EStop = FALSE means the emergency stop is ACTIVATED; when it is activated or when Enable is FALSE, both fans must be off. Use pure rising thresholds (no hysteresis / no off-band). Write an IEC 61131-3 Structured Text PROGRAM named cooling_tower with inputs WaterTemp, Enable, EStop and outputs Fan1, Fan2.",
+  "interface": [
+    {"name": "WaterTemp", "type": "INT", "direction": "input", "description": "Basin/return water temperature in deg C", "range": [0, 120]},
+    {"name": "Enable", "type": "BOOL", "direction": "input", "description": "System enable"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "Fan1", "type": "BOOL", "direction": "output", "description": "Lead cooling fan"},
+    {"name": "Fan2", "type": "BOOL", "direction": "output", "description": "Lag cooling fan"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "When the emergency stop is activated (EStop = FALSE), both fans are off.", "ltl": "G(!EStop -> (!Fan1 & !Fan2))"},
+    {"id": "P2", "kind": "safety", "severity": "high", "nl": "Monotonic staging: the lag fan never runs unless the lead fan is also running.", "ltl": "G(Fan2 -> Fan1)"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "When the system is disabled (Enable = FALSE), both fans are off.", "ltl": "G(!Enable -> (!Fan1 & !Fan2))"},
+    {"id": "P4", "kind": "safety", "severity": "medium", "nl": "Positive obligation: while enabled, healthy and at/above the lead stage point, the lead fan runs.", "ltl": "G((Enable & EStop & WaterTemp >= 25) -> Fan1)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Fans stage up with temperature",
+     "steps": [
+       {"inputs": {"WaterTemp": 20, "Enable": true, "EStop": true}, "expect": {"Fan1": false, "Fan2": false}},
+       {"inputs": {"WaterTemp": 28, "Enable": true, "EStop": true}, "expect": {"Fan1": true, "Fan2": false}},
+       {"inputs": {"WaterTemp": 35, "Enable": true, "EStop": true}, "expect": {"Fan1": true, "Fan2": true}}
+     ]},
+    {"id": "S2", "description": "Emergency stop drops both fans",
+     "steps": [
+       {"inputs": {"WaterTemp": 35, "Enable": true, "EStop": false}, "expect": {"Fan1": false, "Fan2": false}}
+     ]},
+    {"id": "S3", "description": "Disable drops both fans",
+     "steps": [
+       {"inputs": {"WaterTemp": 35, "Enable": false, "EStop": true}, "expect": {"Fan1": false, "Fan2": false}}
+     ]},
+    {"id": "S4", "description": "Boundary staging sweep (healthy and enabled throughout): Fan1 engages at >= 25, Fan2 at >= 32",
+     "steps": [
+       {"inputs": {"WaterTemp": 24, "Enable": true, "EStop": true}, "expect": {"Fan1": false, "Fan2": false}},
+       {"inputs": {"WaterTemp": 25, "Enable": true, "EStop": true}, "expect": {"Fan1": true, "Fan2": false}},
+       {"inputs": {"WaterTemp": 31, "Enable": true, "EStop": true}, "expect": {"Fan1": true, "Fan2": false}},
+       {"inputs": {"WaterTemp": 32, "Enable": true, "EStop": true}, "expect": {"Fan1": true, "Fan2": true}}
+     ]}
+  ],
+  "tags": ["draft", "staging", "temperature-bands", "cooling-tower", "positive-obligation"],
+  "notes": "DRAFT - pending expert PLC review. NEW FAMILY: monotonic capacity-staging ladder (stage N implies stage N-1). Avoids on-delay timing (no timer), bounded counters, mutual exclusion (outputs are nested, not exclusive), hysteresis (pure rising thresholds, no off-band memory), and safety chains. The staging invariant Fan2 -> Fan1 is the structurally novel property class."
+}

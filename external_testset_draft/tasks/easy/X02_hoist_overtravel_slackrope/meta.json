@@ -1,0 +1,46 @@
+{
+  "id": "X02_hoist_overtravel_slackrope",
+  "title": "Hoist over-travel and slack-rope protection",
+  "difficulty": "easy",
+  "domain": "material handling / crane",
+  "nl_spec": "A hoist is jogged up and down by momentary RaiseCmd and LowerCmd. Two over-travel limit switches and a slack-rope switch are wired normally-closed (TRUE = healthy/clear, FALSE = tripped): UpperLimitOK = FALSE means the upper over-travel limit is reached, LowerLimitOK = FALSE means the lower over-travel limit is reached, SlackRopeOK = FALSE means slack rope is detected. Raising is inhibited when the upper limit is reached; lowering is inhibited when the lower limit is reached OR when slack rope is detected (to prevent piling rope). Up and down must never be commanded together, and a simultaneous raise+lower request produces no motion. EStop is the emergency stop, normally-closed (TRUE = healthy, FALSE = activated); when activated all motion stops. A holding brake output BrakeSet must be engaged (TRUE) whenever the hoist is not moving. (Note: the physical brake coil is the inverse of the logical BrakeSet state - real hoist brakes are spring-applied and power-released, so BrakeSet = TRUE, brake engaged, corresponds to the brake coil being de-energized.) Write an IEC 61131-3 Structured Text PROGRAM named hoist with inputs RaiseCmd, LowerCmd, UpperLimitOK, LowerLimitOK, SlackRopeOK, EStop and outputs HoistUp, HoistDown, BrakeSet.",
+  "interface": [
+    {"name": "RaiseCmd", "type": "BOOL", "direction": "input", "description": "Momentary raise pushbutton"},
+    {"name": "LowerCmd", "type": "BOOL", "direction": "input", "description": "Momentary lower pushbutton"},
+    {"name": "UpperLimitOK", "type": "BOOL", "direction": "input", "description": "Upper over-travel limit, normally-closed: TRUE = clear, FALSE = limit reached"},
+    {"name": "LowerLimitOK", "type": "BOOL", "direction": "input", "description": "Lower over-travel limit, normally-closed: TRUE = clear, FALSE = limit reached"},
+    {"name": "SlackRopeOK", "type": "BOOL", "direction": "input", "description": "Slack-rope switch, normally-closed: TRUE = rope taut, FALSE = slack detected"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "HoistUp", "type": "BOOL", "direction": "output", "description": "Raise contactor"},
+    {"name": "HoistDown", "type": "BOOL", "direction": "output", "description": "Lower contactor"},
+    {"name": "BrakeSet", "type": "BOOL", "direction": "output", "description": "Holding brake engaged (TRUE = brake applied)"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "On emergency stop (EStop = FALSE), there is no motion.", "ltl": "G(!EStop -> (!HoistUp & !HoistDown))"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "When the upper over-travel limit is reached, raising is inhibited.", "ltl": "G(!UpperLimitOK -> !HoistUp)"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "When slack rope is detected, lowering is inhibited.", "ltl": "G(!SlackRopeOK -> !HoistDown)"},
+    {"id": "P4", "kind": "safety", "severity": "critical", "nl": "Up and down are never commanded at the same time.", "ltl": "G(!(HoistUp & HoistDown))"},
+    {"id": "P5", "kind": "safety", "severity": "high", "nl": "Positive obligation: whenever the hoist is not moving, the holding brake is engaged.", "ltl": "G((!HoistUp & !HoistDown) -> BrakeSet)"},
+    {"id": "P6", "kind": "safety", "severity": "critical", "nl": "When the lower over-travel limit is reached, lowering is inhibited.", "ltl": "G(!LowerLimitOK -> !HoistDown)"},
+    {"id": "P7", "kind": "safety", "severity": "high", "nl": "A simultaneous raise+lower request produces no motion.", "ltl": "G((RaiseCmd & LowerCmd) -> (!HoistUp & !HoistDown))"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Normal raise, then lower, with brake tracking motion",
+     "steps": [
+       {"inputs": {"RaiseCmd": true, "LowerCmd": false, "UpperLimitOK": true, "LowerLimitOK": true, "SlackRopeOK": true, "EStop": true}, "expect": {"HoistUp": true, "HoistDown": false, "BrakeSet": false}},
+       {"inputs": {"RaiseCmd": false, "LowerCmd": true, "UpperLimitOK": true, "LowerLimitOK": true, "SlackRopeOK": true, "EStop": true}, "expect": {"HoistUp": false, "HoistDown": true, "BrakeSet": false}},
+       {"inputs": {"RaiseCmd": false, "LowerCmd": false, "UpperLimitOK": true, "LowerLimitOK": true, "SlackRopeOK": true, "EStop": true}, "expect": {"HoistUp": false, "HoistDown": false, "BrakeSet": true}}
+     ]},
+    {"id": "S2", "description": "Upper over-travel blocks raise; slack rope blocks lower",
+     "steps": [
+       {"inputs": {"RaiseCmd": true, "LowerCmd": false, "UpperLimitOK": false, "LowerLimitOK": true, "SlackRopeOK": true, "EStop": true}, "expect": {"HoistUp": false, "BrakeSet": true}},
+       {"inputs": {"RaiseCmd": false, "LowerCmd": true, "UpperLimitOK": true, "LowerLimitOK": true, "SlackRopeOK": false, "EStop": true}, "expect": {"HoistDown": false, "BrakeSet": true}}
+     ]},
+    {"id": "S3", "description": "Emergency stop stops motion and sets the brake",
+     "steps": [
+       {"inputs": {"RaiseCmd": true, "LowerCmd": false, "UpperLimitOK": true, "LowerLimitOK": true, "SlackRopeOK": true, "EStop": false}, "expect": {"HoistUp": false, "HoistDown": false, "BrakeSet": true}}
+     ]}
+  ],
+  "tags": ["draft", "over-travel", "slack-rope", "directional-inhibit", "brake", "positive-obligation"],
+  "notes": "DRAFT - pending expert PLC review. NEW FAMILY: directional motion protection - the upper limit inhibits ONLY raising and the lower limit / slack rope inhibit ONLY lowering (asymmetric), plus a positive brake-engagement obligation. Distinct from generic multi-guard interlocks (guards are direction-specific, not a single permissive AND) and from two-hand control. The up/down mutual-exclusion appears only as a secondary property, not the primary structure."
+}

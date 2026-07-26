@@ -1,0 +1,14 @@
+[05:25:11Z] ===== EXP7 inference baselines =====
+[05:25:11Z] START results/exp7/base_infer_s0.json
+[05:41:01Z] OK results/exp7/base_infer_s0.json
+[05:41:01Z] START results/exp7/sft_infer_s0.json
+[06:07:54Z] OK results/exp7/sft_infer_s0.json
+[06:07:54Z] START results/exp7/base_infer_s1.json
+[06:27:59Z] OK results/exp7/base_infer_s1.json
+[06:27:59Z] START results/exp7/sft_infer_s1.json
+[06:53:34Z] OK results/exp7/sft_infer_s1.json
+[06:53:34Z] START results/exp7/base_infer_s2.json
+[07:17:36Z] OK results/exp7/base_infer_s2.json
+[07:17:36Z] START results/exp7/sft_infer_s2.json
+[07:42:06Z] OK results/exp7/sft_infer_s2.json
+[07:42:06Z] ===== EXP7 DONE =====

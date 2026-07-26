@@ -1,0 +1,101 @@
+{
+ "item17": {
+  "SFT->RL (exp1a rl)": {
+   "per_seed": {
+    "rl_s0.json": 0.272727,
+    "rl_s1.json": 0.272727,
+    "rl_s2.json": 0.272727
+   },
+   "mean": 0.272727,
+   "std": 0.0
+  },
+  "RL-func (exp1b rlfunc_sftlite)": {
+   "per_seed": {
+    "rlfunc_sftlite_s0.json": 0.409091,
+    "rlfunc_sftlite_s1.json": 0.409091,
+    "rlfunc_sftlite_s2.json": 0.409091
+   },
+   "mean": 0.409091,
+   "std": 0.0
+  }
+ },
+ "item13": {
+  "base": {
+   "per_seed_best_of_10": {
+    "base_infer_s0.json": 0.1818,
+    "base_infer_s1.json": 0.2273,
+    "base_infer_s2.json": 0.1818
+   },
+   "mean_best_of_10": 0.197,
+   "std": 0.0214,
+   "mean_oracle_calls": [
+    9.227,
+    8.818,
+    9.045
+   ]
+  },
+  "sft": {
+   "per_seed_best_of_10": {
+    "sft_infer_s0.json": 0.3636,
+    "sft_infer_s1.json": 0.2727,
+    "sft_infer_s2.json": 0.2727
+   },
+   "mean_best_of_10": 0.303,
+   "std": 0.0429,
+   "mean_oracle_calls": [
+    7.682,
+    7.636,
+    7.636
+   ]
+  }
+ },
+ "item10": {
+  "RL-from-base (exp6 rlfunc_base)": {
+   "per_seed": {
+    "rlfunc_base_s0.json": 0.0636,
+    "rlfunc_base_s1.json": 0.05,
+    "rlfunc_base_s2.json": 0.0409
+   },
+   "mean_pass1": 0.0515,
+   "std": 0.0093
+  },
+  "RL-from-collapsed-3epoch-SFT (exp6 rlfunc_sft)": {
+   "per_seed": {
+    "rlfunc_sft_s0.json": 0.2227,
+    "rlfunc_sft_s1.json": 0.2227,
+    "rlfunc_sft_s2.json": 0.2
+   },
+   "mean_pass1": 0.2152,
+   "std": 0.0107
+  },
+  "RL-from-SFT-lite (exp1b rlfunc_sftlite)": {
+   "per_seed": {
+    "rlfunc_sftlite_s0.json": 0.2955,
+    "rlfunc_sftlite_s1.json": 0.2773,
+    "rlfunc_sftlite_s2.json": 0.2727
+   },
+   "mean_pass1": 0.2818,
+   "std": 0.0098
+  }
+ },
+ "item11": {
+  "run_B_exp1a": {
+   "per_seed": {
+    "sft_s0.json": 0.2909,
+    "sft_s1.json": 0.3455,
+    "sft_s2.json": 0.2955
+   },
+   "mean": 0.3106,
+   "std": 0.0247
+  },
+  "run_A_seeds_summary": {
+   "mean": 0.3137,
+   "std": 0.0329,
+   "vals": [
+    0.282,
+    0.359,
+    0.3
+   ]
+  }
+ }
+}

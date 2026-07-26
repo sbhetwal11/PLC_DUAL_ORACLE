@@ -1,0 +1,17 @@
+{
+ "deliverable": "D4 - Gemini model-ID versioning verification",
+ "date_checked": "2026-07-26",
+ "source": "https://ai.google.dev/gemini-api/docs/models",
+ "reviewer_claim": "gemini-2.5-flash is a STABLE (pinned) model ID, not auto-updated; the hot-swapped alias form is gemini-flash-latest; only gpt-4o (OpenAI) is an undated alias among the panel.",
+ "status": "VERIFIED",
+ "findings": {
+  "gemini-2.5-flash": "STABLE / pinned. Doc: listed under the 'Stable' category with no version-date suffix; 'Points to a specific stable model. Stable models usually don't change. Most production apps should use a specific stable model.'",
+  "gemini-flash-latest": "AUTO-UPDATED alias (the 'Latest' category). Doc: 'This alias will get hot-swapped with every new release of a specific model variation.'"
+ },
+ "quoted_doc_lines": [
+  "Stable: 'Points to a specific stable model. Stable models usually don't change. Most production apps should use a specific stable model.'",
+  "Latest (e.g. gemini-flash-latest): 'This alias will get hot-swapped with every new release of a specific model variation.'"
+ ],
+ "implication_for_paper": "main.tex ~line 511 currently states 'gpt-4o/gemini-2.5-flash are evergreen aliases' -- this is INCORRECT for gemini-2.5-flash. Per Google's docs gemini-2.5-flash is a stable pinned ID; the evergreen/auto-updated alias is gemini-flash-latest. Among the four panel models only gpt-4o is a genuinely undated evergreen alias (grok-3 = retired slug served by grok-4.3; claude-sonnet-4-6 = pinned snapshot; gemini-2.5-flash = stable pinned). Recommend correcting the model-identity paragraph so only gpt-4o is described as an undated alias.",
+ "caveat": "Fetched via automated summarizer over the live doc page on 2026-07-26; quotes are as surfaced by WebFetch. If exact verbatim table text is required for the camera-ready, re-confirm the 'Model versions' section wording directly."
+}

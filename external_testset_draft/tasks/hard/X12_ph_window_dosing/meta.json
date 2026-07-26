@@ -1,0 +1,48 @@
+{
+  "id": "X12_ph_window_dosing",
+  "title": "Batch neutralization pH-window dosing with out-of-range trip",
+  "difficulty": "hard",
+  "domain": "water / effluent treatment",
+  "nl_spec": "An effluent tank is neutralized to a pH window by dosing acid or base. pH is supplied as a scaled integer (pH x 10), so pH = 70 means 7.0. The target window is PH_LOW = 65 to PH_HIGH = 75 (6.5 to 7.5). When pH is above the window (pH > PH_HIGH) the AcidValve doses acid to lower it; when pH is below the window (pH < PH_LOW) the BaseValve doses base to raise it; inside the window neither valve doses. To avoid a concentrated dose without mixing, dosing is permitted only while the Agitator is running. If pH is outside the safe measurement band (pH < PH_MIN_SAFE = 20 or pH > PH_MAX_SAFE = 120) the reading is treated as a sensor/over-range fault: raise OutOfRange and stop all dosing (manual intervention required). (The 2.0-12.0 safe auto-dosing band, PH_MIN_SAFE/PH_MAX_SAFE, is a plant policy choice for when automatic dosing is trusted, not a limitation of the pH probe itself.) The station runs only while Enable is TRUE. EStop is normally-closed (TRUE = healthy, FALSE = activated); when activated all dosing stops. Acid and base must never dose at the same time. Write an IEC 61131-3 Structured Text PROGRAM named ph_dosing with inputs pH, Agitator, Enable, EStop and outputs AcidValve, BaseValve, OutOfRange.",
+  "interface": [
+    {"name": "pH", "type": "INT", "direction": "input", "description": "Scaled pH (pH x 10), e.g. 70 = 7.0", "range": [0, 140]},
+    {"name": "Agitator", "type": "BOOL", "direction": "input", "description": "Mixer running feedback (TRUE = mixing)"},
+    {"name": "Enable", "type": "BOOL", "direction": "input", "description": "Station enable"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "AcidValve", "type": "BOOL", "direction": "output", "description": "Acid dosing valve (lowers pH)"},
+    {"name": "BaseValve", "type": "BOOL", "direction": "output", "description": "Base/caustic dosing valve (raises pH)"},
+    {"name": "OutOfRange", "type": "BOOL", "direction": "output", "description": "pH out of safe measurement band"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "On emergency stop, neither dosing valve is open.", "ltl": "G(!EStop -> (!AcidValve & !BaseValve))"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "Acid and base never dose at the same time.", "ltl": "G(!(AcidValve & BaseValve))"},
+    {"id": "P3", "kind": "safety", "severity": "critical", "nl": "Dosing occurs only while the agitator is running.", "ltl": "G((AcidValve | BaseValve) -> Agitator)"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "Acid doses only when pH is above the target window.", "ltl": "G(AcidValve -> pH > 75)"},
+    {"id": "P5", "kind": "safety", "severity": "medium", "nl": "Positive obligation: while healthy, enabled, agitating, in the safe band and below the window, base doses.", "ltl": "G((EStop & Enable & Agitator & pH >= 20 & pH <= 120 & pH < 65) -> BaseValve)"},
+    {"id": "P6", "kind": "safety", "severity": "critical", "nl": "When the pH reading is outside the safe measurement band, neither dosing valve is open.", "ltl": "G((pH < 20 | pH > 120) -> (!AcidValve & !BaseValve))"},
+    {"id": "P7", "kind": "safety", "severity": "high", "nl": "When the station is disabled (Enable = FALSE), neither dosing valve is open.", "ltl": "G(!Enable -> (!AcidValve & !BaseValve))"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Low pH doses base",
+     "steps": [
+       {"inputs": {"pH": 50, "Agitator": true, "Enable": true, "EStop": true}, "expect": {"BaseValve": true, "AcidValve": false, "OutOfRange": false}}
+     ]},
+    {"id": "S2", "description": "High pH doses acid; over-range stops dosing",
+     "steps": [
+       {"inputs": {"pH": 90, "Agitator": true, "Enable": true, "EStop": true}, "expect": {"AcidValve": true, "BaseValve": false, "OutOfRange": false}},
+       {"inputs": {"pH": 130, "Agitator": true, "Enable": true, "EStop": true}, "expect": {"AcidValve": false, "BaseValve": false, "OutOfRange": true}}
+     ]},
+    {"id": "S3", "description": "In-window, no mixing, and E-stop all inhibit dosing",
+     "steps": [
+       {"inputs": {"pH": 70, "Agitator": true, "Enable": true, "EStop": true}, "expect": {"AcidValve": false, "BaseValve": false}},
+       {"inputs": {"pH": 50, "Agitator": false, "Enable": true, "EStop": true}, "expect": {"BaseValve": false}},
+       {"inputs": {"pH": 50, "Agitator": true, "Enable": true, "EStop": false}, "expect": {"AcidValve": false, "BaseValve": false}}
+     ]},
+    {"id": "S4", "description": "Disable inhibits all dosing even with pH below the window",
+     "steps": [
+       {"inputs": {"pH": 50, "Agitator": true, "Enable": false, "EStop": true}, "expect": {"AcidValve": false, "BaseValve": false}}
+     ]}
+  ],
+  "tags": ["draft", "ph-window", "scaled-int", "three-region", "dosing", "over-range-trip", "positive-obligation"],
+  "notes": "DRAFT - pending expert PLC review. NEW FAMILY: three-region window control on a scaled-INT process variable (below / inside / above the target band) with a dosing interlock and an out-of-safe-band fault. Distinct from hysteresis (no latched deadband memory - the region is a pure function of the current reading) and from two-output mutual exclusion (mutex is a secondary property; the primary structure is the three-region window plus the over-range fault). Exercises INT arithmetic comparisons in the verifier."
+}

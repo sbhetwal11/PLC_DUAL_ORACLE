@@ -1,0 +1,15 @@
+REPO=/mnt/c/Users/ragas/Videos/claude/ResearchPaper2/PLCCodeGenResearch_5090/PLCCodeGenResearch
+NUXMV_BIN=/home/ragas/nuxmv/usr/local/bin/nuXmv
+MATIEC_IEC2C=/home/ragas/matiec/iec2c
+PYBIN=/home/ragas/plcvenv/bin/python
+----
+== refs: {'n': 22, 'timer_progs': 8, 'timerless': 14, 'raw_exact': 16, 'comp_exact': 7, 'comp_na': 0, 'raw_mismatch_timerless': 0, 'raw_mismatch_timer': 6, 'comp_mismatch_pt1': 1, 'comp_mismatch_no_pt1': 0, 'toolchain_reject': 0, 'other': 0}
+  random: 50/300
+  random: 100/300
+  random: 150/300
+  random: 200/300
+  random: 250/300
+  random: 300/300
+== random: {'n': 300, 'timer_progs': 182, 'timerless': 118, 'raw_exact': 174, 'comp_exact': 139, 'comp_na': 0, 'raw_mismatch_timerless': 0, 'raw_mismatch_timer': 126, 'comp_mismatch_pt1': 43, 'comp_mismatch_no_pt1': 0, 'toolchain_reject': 0, 'other': 0}
+== model: {'n': 200, 'timer_progs': 59, 'timerless': 55, 'raw_exact': 73, 'comp_exact': 22, 'comp_na': 8, 'raw_mismatch_timerless': 0, 'raw_mismatch_timer': 41, 'comp_mismatch_pt1': 29, 'comp_mismatch_no_pt1': 0, 'toolchain_reject': 86, 'other': 0}
+wrote results/difftest/difftest_summary.json

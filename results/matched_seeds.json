@@ -1,0 +1,48 @@
+{
+  "metric": "taskvalid pass@1, unbiased estimator, k=1, n=10, mean over 22 tasks",
+  "per_seed": [
+    {
+      "seed": 0,
+      "sftlite_pass1": 0.18181818181818182,
+      "rl_pass1": 0.2954545454545454,
+      "diff_rl_minus_sft": 0.11363636363636359,
+      "sft_ntasks": 22,
+      "sft_n": 10,
+      "rl_ntasks": 22,
+      "rl_n": 10
+    },
+    {
+      "seed": 1,
+      "sftlite_pass1": 0.1272727272727273,
+      "rl_pass1": 0.2772727272727273,
+      "diff_rl_minus_sft": 0.15,
+      "sft_ntasks": 22,
+      "sft_n": 10,
+      "rl_ntasks": 22,
+      "rl_n": 10
+    },
+    {
+      "seed": 2,
+      "sftlite_pass1": 0.21363636363636365,
+      "rl_pass1": 0.2727272727272727,
+      "diff_rl_minus_sft": 0.059090909090909055,
+      "sft_ntasks": 22,
+      "sft_n": 10,
+      "rl_ntasks": 22,
+      "rl_n": 10
+    }
+  ],
+  "paired_diffs": [
+    0.11363636363636359,
+    0.15,
+    0.059090909090909055
+  ],
+  "paired_diff_mean": 0.10757575757575755,
+  "paired_diff_sd": 0.04575657233497425,
+  "sftlite_3seed_mean": 0.17424242424242425,
+  "sftlite_3seed_sd": 0.04367737971333204,
+  "sftlite_5seed_mean": 0.1790909090909091,
+  "sftlite_5seed_sd": 0.03175318035740542,
+  "rl_3seed_mean": 0.2818181818181818,
+  "rl_3seed_sd": 0.01202614232302085
+}

@@ -1,0 +1,15 @@
+{
+ "train_mutators": [
+  "weaken_or",
+  "flip_compare"
+ ],
+ "n_items": 102,
+ "counts": {
+  "full": 102,
+  "nocex": 102,
+  "proponly": 102,
+  "erroronly": 102,
+  "shuffle": 102,
+  "generic_sft": 102
+ }
+}

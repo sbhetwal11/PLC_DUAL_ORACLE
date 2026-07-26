@@ -1,0 +1,33 @@
+{
+  "id": "E04_conveyor_permissive",
+  "title": "Conveyor start permissive with guard and fault interlock",
+  "difficulty": "easy",
+  "domain": "machine safety",
+  "nl_spec": "A conveyor is started by a momentary StartPB and stopped by a momentary StopPB. Starting is only PERMITTED when the safety guard is closed (GuardClosed = TRUE) and there is no active fault (Fault = FALSE). Once running, the conveyor latches on. It must stop immediately if StopPB is pressed, if the guard opens, or if a fault occurs. Write an IEC 61131-3 Structured Text PROGRAM named conveyor_ctrl with inputs StartPB, StopPB, GuardClosed, Fault and output Conveyor.",
+  "interface": [
+    {"name": "StartPB", "type": "BOOL", "direction": "input", "description": "Momentary start pushbutton"},
+    {"name": "StopPB", "type": "BOOL", "direction": "input", "description": "Momentary stop pushbutton"},
+    {"name": "GuardClosed", "type": "BOOL", "direction": "input", "description": "Safety guard closed (TRUE = closed/safe)"},
+    {"name": "Fault", "type": "BOOL", "direction": "input", "description": "Active fault (TRUE = fault present)"},
+    {"name": "Conveyor", "type": "BOOL", "direction": "output", "description": "Conveyor motor"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "The conveyor is never running while the guard is open.", "ltl": "G(!GuardClosed -> !Conveyor)"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "The conveyor is never running while a fault is active.", "ltl": "G(Fault -> !Conveyor)"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "Whenever the stop button is pressed, the conveyor is off.", "ltl": "G(StopPB -> !Conveyor)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Start with permissives, then guard opens",
+     "steps": [
+       {"inputs": {"StartPB": true, "StopPB": false, "GuardClosed": true, "Fault": false}, "expect": {"Conveyor": true}},
+       {"inputs": {"StartPB": false, "StopPB": false, "GuardClosed": false, "Fault": false}, "expect": {"Conveyor": false}}
+     ]},
+    {"id": "S2", "description": "Fault stops a running conveyor",
+     "steps": [
+       {"inputs": {"StartPB": true, "StopPB": false, "GuardClosed": true, "Fault": false}, "expect": {"Conveyor": true}},
+       {"inputs": {"StartPB": false, "StopPB": false, "GuardClosed": true, "Fault": true}, "expect": {"Conveyor": false}}
+     ]}
+  ],
+  "tags": ["permissive", "interlock", "guard", "fault", "latch"],
+  "notes": "Start permissive AND latch with multiple stop conditions; combines de-energize priority with a gated start."
+}

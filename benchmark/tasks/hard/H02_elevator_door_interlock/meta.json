@@ -1,0 +1,41 @@
+{
+  "id": "H02_elevator_door_interlock",
+  "title": "Two-floor elevator with door interlock",
+  "difficulty": "hard",
+  "domain": "machine safety",
+  "nl_spec": "Control a two-floor elevator car as a state machine: 0 = At-bottom, 1 = Moving-up, 2 = At-top, 3 = Moving-down. A CallUp request (at the bottom) starts moving up; on reaching the top limit (AtTop) the car stops at the top. A CallDown request (at the top) starts moving down; on reaching the bottom limit (AtBottom) it stops at the bottom. Two motor outputs drive the car: MotorUp and MotorDown. A door sensor DoorClosed (TRUE = closed) is provided. SAFETY-CRITICAL: the car must never move while the door is open (motors are inhibited unless DoorClosed); the two motors must never run together; and the car must not drive past an end limit (no up at AtTop, no down at AtBottom). Use an internal INT State (0..3). Write an IEC 61131-3 Structured Text PROGRAM named elevator with inputs CallUp, CallDown, DoorClosed, AtTop, AtBottom and outputs MotorUp, MotorDown.",
+  "interface": [
+    {"name": "CallUp", "type": "BOOL", "direction": "input", "description": "Call to go up"},
+    {"name": "CallDown", "type": "BOOL", "direction": "input", "description": "Call to go down"},
+    {"name": "DoorClosed", "type": "BOOL", "direction": "input", "description": "Door closed sensor (TRUE = closed)"},
+    {"name": "AtTop", "type": "BOOL", "direction": "input", "description": "Top limit switch"},
+    {"name": "AtBottom", "type": "BOOL", "direction": "input", "description": "Bottom limit switch"},
+    {"name": "MotorUp", "type": "BOOL", "direction": "output", "description": "Drive car up"},
+    {"name": "MotorDown", "type": "BOOL", "direction": "output", "description": "Drive car down"},
+    {"name": "State", "type": "INT", "direction": "internal", "description": "0=bottom,1=up,2=top,3=down", "range": [0, 3]}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "The two motors never run at the same time.", "ltl": "G(!(MotorUp & MotorDown))"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "The car never moves while the door is open.", "ltl": "G(!DoorClosed -> (!MotorUp & !MotorDown))"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "The car never drives up past the top limit.", "ltl": "G(AtTop -> !MotorUp)"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "The car never drives down past the bottom limit.", "ltl": "G(AtBottom -> !MotorDown)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Call up, travel, stop at top",
+     "steps": [
+       {"inputs": {"CallUp": true, "CallDown": false, "DoorClosed": true, "AtTop": false, "AtBottom": true}, "expect": {"MotorUp": true, "MotorDown": false}},
+       {"inputs": {"CallUp": false, "CallDown": false, "DoorClosed": true, "AtTop": true, "AtBottom": false}, "expect": {"MotorUp": false, "MotorDown": false}}
+     ]},
+    {"id": "S2", "description": "Door opening mid-travel inhibits the motor",
+     "steps": [
+       {"inputs": {"CallUp": true, "CallDown": false, "DoorClosed": true, "AtTop": false, "AtBottom": true}, "expect": {"MotorUp": true}},
+       {"inputs": {"CallUp": false, "CallDown": false, "DoorClosed": false, "AtTop": false, "AtBottom": false}, "expect": {"MotorUp": false, "MotorDown": false}}
+     ]},
+    {"id": "S3", "description": "At bottom, a down call does not move the car",
+     "steps": [
+       {"inputs": {"CallUp": false, "CallDown": true, "DoorClosed": true, "AtTop": false, "AtBottom": true}, "expect": {"MotorUp": false, "MotorDown": false}}
+     ]}
+  ],
+  "tags": ["state-machine", "CASE", "door-interlock", "limit-switch", "interlock"],
+  "notes": "Motor outputs are gated on DoorClosed AND not-at-limit directly in the output mapping, guaranteeing the door-interlock and limit safety regardless of state."
+}

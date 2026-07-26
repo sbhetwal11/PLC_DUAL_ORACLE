@@ -1,0 +1,39 @@
+{
+  "id": "M01_motor_startup_delay",
+  "title": "Motor with on-delay start and emergency stop (TON)",
+  "difficulty": "medium",
+  "domain": "motor control",
+  "nl_spec": "A motor must only start after the start command has been held continuously for a fixed start-up delay (to avoid nuisance starts). Use an on-delay timer (TON) with preset PT_DELAY = 3 scan ticks. The motor energizes once StartCmd has been continuously TRUE (with the system healthy) for PT_DELAY ticks, and de-energizes immediately when StartCmd is released. The emergency stop EStop is normally-closed (TRUE = healthy, FALSE = activated) and must immediately and unconditionally stop the motor and reset the start timer. Write an IEC 61131-3 Structured Text PROGRAM named motor_delay with inputs StartCmd, EStop and output Motor, using a TON instance.",
+  "interface": [
+    {"name": "StartCmd", "type": "BOOL", "direction": "input", "description": "Maintained start command"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "Motor", "type": "BOOL", "direction": "output", "description": "Motor contactor"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "When the emergency stop is activated (EStop = FALSE), the motor is always off.", "ltl": "G(!EStop -> !Motor)"},
+    {"id": "P2", "kind": "safety", "severity": "high", "nl": "The motor only runs while the start command is held.", "ltl": "G(Motor -> StartCmd)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "On-delay: motor energizes only after 3 ticks of held start",
+     "steps": [
+       {"inputs": {"StartCmd": true, "EStop": true}, "expect": {"Motor": false}},
+       {"inputs": {"StartCmd": true, "EStop": true}, "expect": {"Motor": false}},
+       {"inputs": {"StartCmd": true, "EStop": true}, "expect": {"Motor": true}},
+       {"inputs": {"StartCmd": true, "EStop": true}, "expect": {"Motor": true}}
+     ]},
+    {"id": "S2", "description": "Emergency stop overrides and resets the timer",
+     "steps": [
+       {"inputs": {"StartCmd": true, "EStop": true}, "expect": {"Motor": false}},
+       {"inputs": {"StartCmd": true, "EStop": false}, "expect": {"Motor": false}}
+     ]},
+    {"id": "S3", "description": "Releasing start resets the delay",
+     "steps": [
+       {"inputs": {"StartCmd": true, "EStop": true}, "expect": {"Motor": false}},
+       {"inputs": {"StartCmd": true, "EStop": true}, "expect": {"Motor": false}},
+       {"inputs": {"StartCmd": false, "EStop": true}, "expect": {"Motor": false}},
+       {"inputs": {"StartCmd": true, "EStop": true}, "expect": {"Motor": false}}
+     ]}
+  ],
+  "tags": ["timer", "TON", "on-delay", "emergency-stop"],
+  "notes": "First TON task. PT in discrete scan ticks (benchmark abstracts time to scan cycles for model-checking). Q becomes true on the tick ET reaches PT."
+}

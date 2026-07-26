@@ -1,0 +1,16 @@
+REPO=/mnt/c/Users/ragas/Videos/claude/ResearchPaper2/PLCCodeGenResearch_5090/PLCCodeGenResearch
+NUXMV_BIN=/home/ragas/nuxmv/usr/local/bin/nuXmv
+MATIEC_IEC2C=/home/ragas/matiec/iec2c
+PYBIN=/home/ragas/plcvenv/bin/python
+----
+== refs: {'n': 22, 'timer_progs': 8, 'timerless': 14, 'raw_exact': 16, 'raw_mismatch_timerless': 0, 'raw_mismatch_timer': 6, 'comp_exact': 7, 'comp_mismatch_pt1': 1, 'comp_mismatch_no_pt1': 0, 'comp_na': 0, 'smv_ok': 22, 'smv_mismatch': 0, 'smv_translate_error': 0, 'smv_skipped': 0, 'case_normalized_progs': 0, 'reject_undeclared': 0, 'reject_collision': 0, 'reject_other': 0, 'toolchain_reject': 0, 'model_range_fallback': 0}
+  random: 50/300
+  random: 100/300
+  random: 150/300
+  random: 200/300
+  random: 250/300
+  random: 300/300
+== random: {'n': 300, 'timer_progs': 182, 'timerless': 118, 'raw_exact': 165, 'raw_mismatch_timerless': 0, 'raw_mismatch_timer': 135, 'comp_exact': 139, 'comp_mismatch_pt1': 43, 'comp_mismatch_no_pt1': 0, 'comp_na': 0, 'smv_ok': 300, 'smv_mismatch': 0, 'smv_translate_error': 0, 'smv_skipped': 0, 'case_normalized_progs': 0, 'reject_undeclared': 0, 'reject_collision': 0, 'reject_other': 0, 'toolchain_reject': 0, 'model_range_fallback': 0}
+== model: {'n': 200, 'timer_progs': 59, 'timerless': 55, 'raw_exact': 70, 'raw_mismatch_timerless': 0, 'raw_mismatch_timer': 44, 'comp_exact': 22, 'comp_mismatch_pt1': 29, 'comp_mismatch_no_pt1': 0, 'comp_na': 8, 'smv_ok': 70, 'smv_mismatch': 0, 'smv_translate_error': 44, 'smv_skipped': 0, 'case_normalized_progs': 0, 'reject_undeclared': 13, 'reject_collision': 0, 'reject_other': 73, 'toolchain_reject': 86, 'model_range_fallback': 16}
+== coverage: {'if': [1690, 2487], 'case': [918, 1302], 'timers_all3': 144, 'timers_total': 342, 'timers_never_rose': 89, 'timers_rose_never_expired': 8, 'timers_expired_never_reset': 101, 't1s_timers_total': 115, 't1s_timers_all3': 53, 't1s_timers_never_rose': 32, 't1s_timers_rose_never_expired': 2, 't1s_timers_expired_never_reset': 28}
+wrote results/difftest_v4/difftest_summary.json

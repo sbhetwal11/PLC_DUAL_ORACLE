@@ -1,0 +1,1069 @@
+{
+ "excluded_tasks": [
+  "E03_airlock_interlock",
+  "H03_batch_reactor_sequence",
+  "H04_parking_garage_counter",
+  "M02_star_delta_starter",
+  "M03_pedestrian_crossing",
+  "M06_burner_purge_sequence",
+  "M07_two_hand_control"
+ ],
+ "n_tasks_full": 22,
+ "n_tasks_retained": 15,
+ "estimator": "unbiased Chen et al. pass@k; trained = mean +/- population SD over seeds",
+ "api_panel": {
+  "full22": {
+   "grok": {
+    "display": "grok-4.3 (grok-3 slug)",
+    "n_tasks": 22,
+    "compile_and_invariant": {
+     "pass@1": 0.6772727272727272,
+     "pass@10": 0.9090909090909091
+    },
+    "all_checks_pass": {
+     "pass@1": 0.5909090909090909,
+     "pass@10": 0.9090909090909091
+    }
+   },
+   "claude": {
+    "display": "claude-sonnet-4-6",
+    "n_tasks": 22,
+    "compile_and_invariant": {
+     "pass@1": 0.5545454545454546,
+     "pass@10": 0.6363636363636364
+    },
+    "all_checks_pass": {
+     "pass@1": 0.45909090909090905,
+     "pass@10": 0.5
+    }
+   },
+   "gemini": {
+    "display": "gemini-2.5-flash",
+    "n_tasks": 22,
+    "compile_and_invariant": {
+     "pass@1": 0.1,
+     "pass@10": 0.2727272727272727
+    },
+    "all_checks_pass": {
+     "pass@1": 0.1,
+     "pass@10": 0.2727272727272727
+    }
+   },
+   "gpt-4o": {
+    "display": "gpt-4o",
+    "n_tasks": 22,
+    "compile_and_invariant": {
+     "pass@1": 0.10909090909090909,
+     "pass@10": 0.4090909090909091
+    },
+    "all_checks_pass": {
+     "pass@1": 0.09545454545454544,
+     "pass@10": 0.36363636363636365
+    }
+   }
+  },
+  "retained15": {
+   "grok": {
+    "display": "grok-4.3 (grok-3 slug)",
+    "n_tasks": 15,
+    "compile_and_invariant": {
+     "pass@1": 0.76,
+     "pass@10": 0.9333333333333333
+    },
+    "all_checks_pass": {
+     "pass@1": 0.6466666666666666,
+     "pass@10": 0.9333333333333333
+    }
+   },
+   "claude": {
+    "display": "claude-sonnet-4-6",
+    "n_tasks": 15,
+    "compile_and_invariant": {
+     "pass@1": 0.6666666666666666,
+     "pass@10": 0.7333333333333333
+    },
+    "all_checks_pass": {
+     "pass@1": 0.5266666666666667,
+     "pass@10": 0.5333333333333333
+    }
+   },
+   "gemini": {
+    "display": "gemini-2.5-flash",
+    "n_tasks": 15,
+    "compile_and_invariant": {
+     "pass@1": 0.12666666666666665,
+     "pass@10": 0.3333333333333333
+    },
+    "all_checks_pass": {
+     "pass@1": 0.12666666666666665,
+     "pass@10": 0.3333333333333333
+    }
+   },
+   "gpt-4o": {
+    "display": "gpt-4o",
+    "n_tasks": 15,
+    "compile_and_invariant": {
+     "pass@1": 0.14666666666666667,
+     "pass@10": 0.4666666666666667
+    },
+    "all_checks_pass": {
+     "pass@1": 0.13333333333333333,
+     "pass@10": 0.4666666666666667
+    }
+   }
+  }
+ },
+ "trained": {
+  "full22": {
+   "base": {
+    "n_seeds": 5,
+    "seed_files": [
+     "base_s0.json",
+     "base_s1.json",
+     "base_s2.json",
+     "base_s3.json",
+     "base_s4.json"
+    ],
+    "compile_and_invariant": {
+     "pass@1": {
+      "mean": 0.07909090909090907,
+      "sd": 0.01983402202661039,
+      "per_seed": [
+       0.0727,
+       0.0909,
+       0.0818,
+       0.0455,
+       0.1045
+      ]
+     },
+     "pass@10": {
+      "mean": 0.37272727272727274,
+      "sd": 0.018181818181818188,
+      "per_seed": [
+       0.3636,
+       0.4091,
+       0.3636,
+       0.3636,
+       0.3636
+      ]
+     }
+    },
+    "all_checks_pass": {
+     "pass@1": {
+      "mean": 0.04454545454545454,
+      "sd": 0.01758098145983066,
+      "per_seed": [
+       0.0409,
+       0.0409,
+       0.05,
+       0.0182,
+       0.0727
+      ]
+     },
+     "pass@10": {
+      "mean": 0.21818181818181817,
+      "sd": 0.05300865358950273,
+      "per_seed": [
+       0.2273,
+       0.2727,
+       0.1818,
+       0.1364,
+       0.2727
+      ]
+     }
+    }
+   },
+   "SFT": {
+    "n_seeds": 3,
+    "seed_files": [
+     "sft_s0.json",
+     "sft_s1.json",
+     "sft_s2.json"
+    ],
+    "compile_and_invariant": {
+     "pass@1": {
+      "mean": 0.3106060606060606,
+      "sd": 0.02471137337924255,
+      "per_seed": [
+       0.2909,
+       0.3455,
+       0.2955
+      ]
+     },
+     "pass@10": {
+      "mean": 0.4545454545454546,
+      "sd": 0.03711348095126026,
+      "per_seed": [
+       0.4091,
+       0.5,
+       0.4545
+      ]
+     }
+    },
+    "all_checks_pass": {
+     "pass@1": {
+      "mean": 0.18636363636363637,
+      "sd": 0.007422696190252046,
+      "per_seed": [
+       0.1955,
+       0.1773,
+       0.1864
+      ]
+     },
+     "pass@10": {
+      "mean": 0.28787878787878785,
+      "sd": 0.021427478217774173,
+      "per_seed": [
+       0.3182,
+       0.2727,
+       0.2727
+      ]
+     }
+    }
+   },
+   "SFT-v2": {
+    "n_seeds": 3,
+    "seed_files": [
+     "sftv2_s0.json",
+     "sftv2_s1.json",
+     "sftv2_s2.json"
+    ],
+    "compile_and_invariant": {
+     "pass@1": {
+      "mean": 0.3954545454545455,
+      "sd": 0.03927721635398702,
+      "per_seed": [
+       0.3773,
+       0.3591,
+       0.45
+      ]
+     },
+     "pass@10": {
+      "mean": 0.4696969696969697,
+      "sd": 0.056691778587483935,
+      "per_seed": [
+       0.4545,
+       0.4091,
+       0.5455
+      ]
+     }
+    },
+    "all_checks_pass": {
+     "pass@1": {
+      "mean": 0.3621212121212121,
+      "sd": 0.026330526056034483,
+      "per_seed": [
+       0.3682,
+       0.3273,
+       0.3909
+      ]
+     },
+     "pass@10": {
+      "mean": 0.393939393939394,
+      "sd": 0.021427478217774173,
+      "per_seed": [
+       0.4091,
+       0.3636,
+       0.4091
+      ]
+     }
+    }
+   },
+   "SFT-lite": {
+    "n_seeds": 5,
+    "seed_files": [
+     "sftlite_s0.json",
+     "sftlite_s1.json",
+     "sftlite_s2.json",
+     "sftlite_s3.json",
+     "sftlite_s4.json"
+    ],
+    "compile_and_invariant": {
+     "pass@1": {
+      "mean": 0.2418181818181818,
+      "sd": 0.04028821782938243,
+      "per_seed": [
+       0.2318,
+       0.1682,
+       0.2818,
+       0.2591,
+       0.2682
+      ]
+     },
+     "pass@10": {
+      "mean": 0.5181818181818182,
+      "sd": 0.022268088570756146,
+      "per_seed": [
+       0.5,
+       0.5,
+       0.5455,
+       0.5,
+       0.5455
+      ]
+     }
+    },
+    "all_checks_pass": {
+     "pass@1": {
+      "mean": 0.1790909090909091,
+      "sd": 0.028400907912387845,
+      "per_seed": [
+       0.1818,
+       0.1273,
+       0.2136,
+       0.1909,
+       0.1818
+      ]
+     },
+     "pass@10": {
+      "mean": 0.40909090909090906,
+      "sd": 0.049792959773196914,
+      "per_seed": [
+       0.4091,
+       0.3636,
+       0.5,
+       0.4091,
+       0.3636
+      ]
+     }
+    }
+   },
+   "RL-lite": {
+    "n_seeds": 5,
+    "seed_files": [
+     "rllite_s0.json",
+     "rllite_s1.json",
+     "rllite_s2.json",
+     "rllite_s3.json",
+     "rllite_s4.json"
+    ],
+    "compile_and_invariant": {
+     "pass@1": {
+      "mean": 0.38909090909090904,
+      "sd": 0.02124240262826894,
+      "per_seed": [
+       0.35,
+       0.3909,
+       0.4,
+       0.3909,
+       0.4136
+      ]
+     },
+     "pass@10": {
+      "mean": 0.6090909090909091,
+      "sd": 0.022268088570756146,
+      "per_seed": [
+       0.6364,
+       0.5909,
+       0.5909,
+       0.6364,
+       0.5909
+      ]
+     }
+    },
+    "all_checks_pass": {
+     "pass@1": {
+      "mean": 0.27181818181818185,
+      "sd": 0.010523488093445662,
+      "per_seed": [
+       0.2591,
+       0.2864,
+       0.2636,
+       0.2818,
+       0.2682
+      ]
+     },
+     "pass@10": {
+      "mean": 0.42727272727272725,
+      "sd": 0.022268088570756142,
+      "per_seed": [
+       0.4545,
+       0.4091,
+       0.4545,
+       0.4091,
+       0.4091
+      ]
+     }
+    }
+   },
+   "SFT->RL": {
+    "n_seeds": 3,
+    "seed_files": [
+     "rl_s0.json",
+     "rl_s1.json",
+     "rl_s2.json"
+    ],
+    "compile_and_invariant": {
+     "pass@1": {
+      "mean": 0.35151515151515156,
+      "sd": 0.00857099128710967,
+      "per_seed": [
+       0.3455,
+       0.3455,
+       0.3636
+      ]
+     },
+     "pass@10": {
+      "mean": 0.4696969696969697,
+      "sd": 0.021427478217774173,
+      "per_seed": [
+       0.4545,
+       0.5,
+       0.4545
+      ]
+     }
+    },
+    "all_checks_pass": {
+     "pass@1": {
+      "mean": 0.19696969696969693,
+      "sd": 0.016735395480586755,
+      "per_seed": [
+       0.1955,
+       0.1773,
+       0.2182
+      ]
+     },
+     "pass@10": {
+      "mean": 0.2727272727272727,
+      "sd": 0.0,
+      "per_seed": [
+       0.2727,
+       0.2727,
+       0.2727
+      ]
+     }
+    }
+   },
+   "RL-func": {
+    "n_seeds": 3,
+    "seed_files": [
+     "rlfunc_sftlite_s0.json",
+     "rlfunc_sftlite_s1.json",
+     "rlfunc_sftlite_s2.json"
+    ],
+    "compile_and_invariant": {
+     "pass@1": {
+      "mean": 0.38181818181818183,
+      "sd": 0.003711348095126006,
+      "per_seed": [
+       0.3864,
+       0.3818,
+       0.3773
+      ]
+     },
+     "pass@10": {
+      "mean": 0.5909090909090909,
+      "sd": 0.03711348095126028,
+      "per_seed": [
+       0.5909,
+       0.5455,
+       0.6364
+      ]
+     }
+    },
+    "all_checks_pass": {
+     "pass@1": {
+      "mean": 0.2818181818181818,
+      "sd": 0.00981930408849677,
+      "per_seed": [
+       0.2955,
+       0.2773,
+       0.2727
+      ]
+     },
+     "pass@10": {
+      "mean": 0.4090909090909091,
+      "sd": 0.0,
+      "per_seed": [
+       0.4091,
+       0.4091,
+       0.4091
+      ]
+     }
+    }
+   },
+   "RL-gated": {
+    "n_seeds": 3,
+    "seed_files": [
+     "rlgated_sftlite_s0.json",
+     "rlgated_sftlite_s1.json",
+     "rlgated_sftlite_s2.json"
+    ],
+    "compile_and_invariant": {
+     "pass@1": {
+      "mean": 0.41060606060606064,
+      "sd": 0.0077257871418072305,
+      "per_seed": [
+       0.4182,
+       0.4136,
+       0.4
+      ]
+     },
+     "pass@10": {
+      "mean": 0.6515151515151515,
+      "sd": 0.021427478217774146,
+      "per_seed": [
+       0.6364,
+       0.6818,
+       0.6364
+      ]
+     }
+    },
+    "all_checks_pass": {
+     "pass@1": {
+      "mean": 0.2924242424242424,
+      "sd": 0.015451574283614506,
+      "per_seed": [
+       0.2864,
+       0.3136,
+       0.2773
+      ]
+     },
+     "pass@10": {
+      "mean": 0.42424242424242425,
+      "sd": 0.021427478217774146,
+      "per_seed": [
+       0.4091,
+       0.4545,
+       0.4091
+      ]
+     }
+    }
+   }
+  },
+  "retained15": {
+   "base": {
+    "n_seeds": 5,
+    "seed_files": [
+     "base_s0.json",
+     "base_s1.json",
+     "base_s2.json",
+     "base_s3.json",
+     "base_s4.json"
+    ],
+    "compile_and_invariant": {
+     "pass@1": {
+      "mean": 0.09333333333333334,
+      "sd": 0.02494438257849295,
+      "per_seed": [
+       0.08,
+       0.1,
+       0.1067,
+       0.0533,
+       0.1267
+      ]
+     },
+     "pass@10": {
+      "mean": 0.38666666666666666,
+      "sd": 0.026666666666666682,
+      "per_seed": [
+       0.4,
+       0.4,
+       0.4,
+       0.4,
+       0.3333
+      ]
+     }
+    },
+    "all_checks_pass": {
+     "pass@1": {
+      "mean": 0.06,
+      "sd": 0.02231093404090868,
+      "per_seed": [
+       0.0533,
+       0.0533,
+       0.0733,
+       0.0267,
+       0.0933
+      ]
+     },
+     "pass@10": {
+      "mean": 0.26666666666666666,
+      "sd": 0.04216370213557838,
+      "per_seed": [
+       0.2667,
+       0.3333,
+       0.2667,
+       0.2,
+       0.2667
+      ]
+     }
+    }
+   },
+   "SFT": {
+    "n_seeds": 3,
+    "seed_files": [
+     "sft_s0.json",
+     "sft_s1.json",
+     "sft_s2.json"
+    ],
+    "compile_and_invariant": {
+     "pass@1": {
+      "mean": 0.35555555555555557,
+      "sd": 0.01662958838566196,
+      "per_seed": [
+       0.3333,
+       0.36,
+       0.3733
+      ]
+     },
+     "pass@10": {
+      "mean": 0.5111111111111111,
+      "sd": 0.03142696805273544,
+      "per_seed": [
+       0.4667,
+       0.5333,
+       0.5333
+      ]
+     }
+    },
+    "all_checks_pass": {
+     "pass@1": {
+      "mean": 0.27111111111111114,
+      "sd": 0.008314794192830984,
+      "per_seed": [
+       0.28,
+       0.26,
+       0.2733
+      ]
+     },
+     "pass@10": {
+      "mean": 0.4000000000000001,
+      "sd": 5.551115123125783e-17,
+      "per_seed": [
+       0.4,
+       0.4,
+       0.4
+      ]
+     }
+    }
+   },
+   "SFT-v2": {
+    "n_seeds": 3,
+    "seed_files": [
+     "sftv2_s0.json",
+     "sftv2_s1.json",
+     "sftv2_s2.json"
+    ],
+    "compile_and_invariant": {
+     "pass@1": {
+      "mean": 0.5022222222222222,
+      "sd": 0.051448164012401015,
+      "per_seed": [
+       0.48,
+       0.4533,
+       0.5733
+      ]
+     },
+     "pass@10": {
+      "mean": 0.5555555555555555,
+      "sd": 0.0831479419283098,
+      "per_seed": [
+       0.5333,
+       0.4667,
+       0.6667
+      ]
+     }
+    },
+    "all_checks_pass": {
+     "pass@1": {
+      "mean": 0.46444444444444444,
+      "sd": 0.0386181048821839,
+      "per_seed": [
+       0.4733,
+       0.4133,
+       0.5067
+      ]
+     },
+     "pass@10": {
+      "mean": 0.5111111111111111,
+      "sd": 0.03142696805273544,
+      "per_seed": [
+       0.5333,
+       0.4667,
+       0.5333
+      ]
+     }
+    }
+   },
+   "SFT-lite": {
+    "n_seeds": 5,
+    "seed_files": [
+     "sftlite_s0.json",
+     "sftlite_s1.json",
+     "sftlite_s2.json",
+     "sftlite_s3.json",
+     "sftlite_s4.json"
+    ],
+    "compile_and_invariant": {
+     "pass@1": {
+      "mean": 0.29333333333333333,
+      "sd": 0.038180856168736954,
+      "per_seed": [
+       0.3,
+       0.22,
+       0.3267,
+       0.32,
+       0.3
+      ]
+     },
+     "pass@10": {
+      "mean": 0.5866666666666667,
+      "sd": 0.02666666666666666,
+      "per_seed": [
+       0.6,
+       0.6,
+       0.6,
+       0.6,
+       0.5333
+      ]
+     }
+    },
+    "all_checks_pass": {
+     "pass@1": {
+      "mean": 0.25599999999999995,
+      "sd": 0.037853518844209046,
+      "per_seed": [
+       0.2667,
+       0.1867,
+       0.3,
+       0.2733,
+       0.2533
+      ]
+     },
+     "pass@10": {
+      "mean": 0.5466666666666666,
+      "sd": 0.04988876515698587,
+      "per_seed": [
+       0.6,
+       0.5333,
+       0.6,
+       0.5333,
+       0.4667
+      ]
+     }
+    }
+   },
+   "RL-lite": {
+    "n_seeds": 5,
+    "seed_files": [
+     "rllite_s0.json",
+     "rllite_s1.json",
+     "rllite_s2.json",
+     "rllite_s3.json",
+     "rllite_s4.json"
+    ],
+    "compile_and_invariant": {
+     "pass@1": {
+      "mean": 0.472,
+      "sd": 0.027776888874666218,
+      "per_seed": [
+       0.42,
+       0.4933,
+       0.4667,
+       0.4867,
+       0.4933
+      ]
+     },
+     "pass@10": {
+      "mean": 0.7066666666666667,
+      "sd": 0.03265986323710904,
+      "per_seed": [
+       0.7333,
+       0.7333,
+       0.6667,
+       0.7333,
+       0.6667
+      ]
+     }
+    },
+    "all_checks_pass": {
+     "pass@1": {
+      "mean": 0.396,
+      "sd": 0.01818424226264781,
+      "per_seed": [
+       0.3733,
+       0.42,
+       0.38,
+       0.4133,
+       0.3933
+      ]
+     },
+     "pass@10": {
+      "mean": 0.6,
+      "sd": 0.0,
+      "per_seed": [
+       0.6,
+       0.6,
+       0.6,
+       0.6,
+       0.6
+      ]
+     }
+    }
+   },
+   "SFT->RL": {
+    "n_seeds": 3,
+    "seed_files": [
+     "rl_s0.json",
+     "rl_s1.json",
+     "rl_s2.json"
+    ],
+    "compile_and_invariant": {
+     "pass@1": {
+      "mean": 0.38666666666666666,
+      "sd": 0.03399346342395191,
+      "per_seed": [
+       0.3533,
+       0.3733,
+       0.4333
+      ]
+     },
+     "pass@10": {
+      "mean": 0.5111111111111111,
+      "sd": 0.03142696805273544,
+      "per_seed": [
+       0.4667,
+       0.5333,
+       0.5333
+      ]
+     }
+    },
+    "all_checks_pass": {
+     "pass@1": {
+      "mean": 0.2888888888888889,
+      "sd": 0.02454524670486058,
+      "per_seed": [
+       0.2867,
+       0.26,
+       0.32
+      ]
+     },
+     "pass@10": {
+      "mean": 0.4000000000000001,
+      "sd": 5.551115123125783e-17,
+      "per_seed": [
+       0.4,
+       0.4,
+       0.4
+      ]
+     }
+    }
+   },
+   "RL-func": {
+    "n_seeds": 3,
+    "seed_files": [
+     "rlfunc_sftlite_s0.json",
+     "rlfunc_sftlite_s1.json",
+     "rlfunc_sftlite_s2.json"
+    ],
+    "compile_and_invariant": {
+     "pass@1": {
+      "mean": 0.4688888888888889,
+      "sd": 0.012570787221094155,
+      "per_seed": [
+       0.4867,
+       0.46,
+       0.46
+      ]
+     },
+     "pass@10": {
+      "mean": 0.6666666666666666,
+      "sd": 0.05443310539518172,
+      "per_seed": [
+       0.6667,
+       0.6,
+       0.7333
+      ]
+     }
+    },
+    "all_checks_pass": {
+     "pass@1": {
+      "mean": 0.41111111111111115,
+      "sd": 0.01571348402636772,
+      "per_seed": [
+       0.4333,
+       0.4,
+       0.4
+      ]
+     },
+     "pass@10": {
+      "mean": 0.5777777777777778,
+      "sd": 0.03142696805273544,
+      "per_seed": [
+       0.6,
+       0.5333,
+       0.6
+      ]
+     }
+    }
+   },
+   "RL-gated": {
+    "n_seeds": 3,
+    "seed_files": [
+     "rlgated_sftlite_s0.json",
+     "rlgated_sftlite_s1.json",
+     "rlgated_sftlite_s2.json"
+    ],
+    "compile_and_invariant": {
+     "pass@1": {
+      "mean": 0.5044444444444445,
+      "sd": 0.016629588385662,
+      "per_seed": [
+       0.5,
+       0.5267,
+       0.4867
+      ]
+     },
+     "pass@10": {
+      "mean": 0.7777777777777777,
+      "sd": 0.06285393610547094,
+      "per_seed": [
+       0.7333,
+       0.8667,
+       0.7333
+      ]
+     }
+    },
+    "all_checks_pass": {
+     "pass@1": {
+      "mean": 0.4288888888888889,
+      "sd": 0.022662308949301293,
+      "per_seed": [
+       0.42,
+       0.46,
+       0.4067
+      ]
+     },
+     "pass@10": {
+      "mean": 0.6222222222222222,
+      "sd": 0.03142696805273544,
+      "per_seed": [
+       0.6,
+       0.6667,
+       0.6
+      ]
+     }
+    }
+   }
+  }
+ },
+ "rankings": {
+  "R1_api_order": {
+   "compile_and_invariant": {
+    "full22_order": [
+     "grok",
+     "claude",
+     "gpt-4o",
+     "gemini"
+    ],
+    "retained15_order": [
+     "grok",
+     "claude",
+     "gpt-4o",
+     "gemini"
+    ],
+    "full22_vals": {
+     "grok": 0.6773,
+     "claude": 0.5545,
+     "gemini": 0.1,
+     "gpt-4o": 0.1091
+    },
+    "retained15_vals": {
+     "grok": 0.76,
+     "claude": 0.6667,
+     "gemini": 0.1267,
+     "gpt-4o": 0.1467
+    },
+    "rank_preserved": true
+   },
+   "all_checks_pass": {
+    "full22_order": [
+     "grok",
+     "claude",
+     "gemini",
+     "gpt-4o"
+    ],
+    "retained15_order": [
+     "grok",
+     "claude",
+     "gpt-4o",
+     "gemini"
+    ],
+    "full22_vals": {
+     "grok": 0.5909,
+     "claude": 0.4591,
+     "gemini": 0.1,
+     "gpt-4o": 0.0955
+    },
+    "retained15_vals": {
+     "grok": 0.6467,
+     "claude": 0.5267,
+     "gemini": 0.1267,
+     "gpt-4o": 0.1333
+    },
+    "rank_preserved": false
+   }
+  },
+  "R2_sftv2_top_taskvalid": {
+   "full22_leader": "SFT-v2",
+   "retained15_leader": "SFT-v2",
+   "full22_vals": {
+    "base": 0.0445,
+    "SFT": 0.1864,
+    "SFT-v2": 0.3621,
+    "SFT-lite": 0.1791,
+    "RL-lite": 0.2718,
+    "SFT->RL": 0.197,
+    "RL-func": 0.2818,
+    "RL-gated": 0.2924
+   },
+   "retained15_vals": {
+    "base": 0.06,
+    "SFT": 0.2711,
+    "SFT-v2": 0.4644,
+    "SFT-lite": 0.256,
+    "RL-lite": 0.396,
+    "SFT->RL": 0.2889,
+    "RL-func": 0.4111,
+    "RL-gated": 0.4289
+   },
+   "holds_full22": true,
+   "holds_retained15": true
+  },
+  "R3_gated_top_verified": {
+   "full22_leader": "RL-gated",
+   "retained15_leader": "RL-gated",
+   "full22_vals": {
+    "base": 0.0791,
+    "SFT": 0.3106,
+    "SFT-v2": 0.3955,
+    "SFT-lite": 0.2418,
+    "RL-lite": 0.3891,
+    "SFT->RL": 0.3515,
+    "RL-func": 0.3818,
+    "RL-gated": 0.4106
+   },
+   "retained15_vals": {
+    "base": 0.0933,
+    "SFT": 0.3556,
+    "SFT-v2": 0.5022,
+    "SFT-lite": 0.2933,
+    "RL-lite": 0.472,
+    "SFT->RL": 0.3867,
+    "RL-func": 0.4689,
+    "RL-gated": 0.5044
+   },
+   "holds_full22": true,
+   "holds_retained15": true
+  },
+  "R4_rlfunc_gt_sftlite_taskvalid": {
+   "full22_gain": 0.1027,
+   "retained15_gain": 0.1551,
+   "full22_rlfunc": 0.2818,
+   "full22_sftlite": 0.1791,
+   "retained15_rlfunc": 0.4111,
+   "retained15_sftlite": 0.256,
+   "sign_preserved": true
+  }
+ }
+}

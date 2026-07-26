@@ -1,0 +1,26 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights:   1%|          | 2/339 [00:00<00:36,  9.33it/s]Loading weights:   5%|▌         | 18/339 [00:00<00:04, 66.04it/s]Loading weights:  12%|█▏        | 41/339 [00:00<00:02, 115.55it/s]Loading weights:  19%|█▉        | 64/339 [00:00<00:02, 134.10it/s]Loading weights:  26%|██▌       | 88/339 [00:00<00:01, 147.54it/s]Loading weights:  31%|███▏      | 106/339 [00:00<00:01, 156.25it/s]Loading weights:  37%|███▋      | 125/339 [00:00<00:01, 156.45it/s]Loading weights:  42%|████▏     | 142/339 [00:01<00:01, 157.17it/s]Loading weights:  47%|████▋     | 161/339 [00:01<00:01, 151.18it/s]Loading weights:  54%|█████▍    | 184/339 [00:01<00:00, 166.98it/s]Loading weights:  60%|█████▉    | 202/339 [00:01<00:00, 161.55it/s]Loading weights:  65%|██████▌   | 222/339 [00:01<00:00, 169.51it/s]Loading weights:  72%|███████▏  | 243/339 [00:01<00:00, 163.85it/s]Loading weights:  79%|███████▉  | 268/339 [00:01<00:00, 182.08it/s]Loading weights:  85%|████████▍ | 287/339 [00:01<00:00, 174.43it/s]Loading weights:  90%|████████▉ | 305/339 [00:02<00:00, 170.45it/s]Loading weights:  97%|█████████▋| 328/339 [00:02<00:00, 179.42it/s]Loading weights: 100%|██████████| 339/339 [00:04<00:00, 77.29it/s] 
+  E01_motor_interlock              [easy  ] verified 9/10  taskvalid 4/10
+  E02_tank_overflow                [easy  ] verified 1/10  taskvalid 1/10
+  E03_airlock_interlock            [easy  ] verified 6/10  taskvalid 2/10
+  E04_conveyor_permissive          [easy  ] verified 8/10  taskvalid 8/10
+  E05_alarm_latch                  [easy  ] verified 4/10  taskvalid 4/10
+  E06_heater_overtemp              [easy  ] verified 9/10  taskvalid 9/10
+  E07_pump_dryrun_protection       [easy  ] verified 6/10  taskvalid 6/10
+  H01_intersection_signals         [hard  ] verified 0/10  taskvalid 0/10
+  H02_elevator_door_interlock      [hard  ] verified 0/10  taskvalid 0/10
+  H03_batch_reactor_sequence       [hard  ] verified 0/10  taskvalid 0/10
+  H04_parking_garage_counter       [hard  ] verified 1/10  taskvalid 0/10
+  M01_motor_startup_delay          [medium] verified 6/10  taskvalid 6/10
+  M02_star_delta_starter           [medium] verified 0/10  taskvalid 0/10
+  M03_pedestrian_crossing          [medium] verified 2/10  taskvalid 0/10
+  M04_tank_fill_drain_cycle        [medium] verified 0/10  taskvalid 0/10
+  M05_conveyor_sequence            [medium] verified 0/10  taskvalid 0/10
+  M06_burner_purge_sequence        [medium] verified 0/10  taskvalid 0/10
+  M07_two_hand_control             [medium] verified 5/10  taskvalid 0/10
+  M08_pump_alternation             [medium] verified 0/10  taskvalid 0/10
+  M09_gate_limits_obstruction      [medium] verified 0/10  taskvalid 0/10
+  M10_three_conveyor_start         [medium] verified 0/10  taskvalid 0/10
+  M11_dosing_counter               [medium] verified 2/10  taskvalid 0/10
+SUMMARY: {"verified_pass@1": 0.2682, "verified_pass@3": 0.4235, "verified_pass@5": 0.4785, "verified_pass@10": 0.5455, "taskvalid_pass@1": 0.1818, "taskvalid_pass@3": 0.2924, "taskvalid_pass@5": 0.3286, "taskvalid_pass@10": 0.3636, "compile_pass@1": 0.5, "compile_pass@3": 0.6538, "compile_pass@5": 0.7287, "compile_pass@10": 0.8636, "scenario_pass@1": 0.2409, "scenario_pass@3": 0.3428, "scenario_pass@5": 0.375, "scenario_pass@10": 0.4091}
+wrote results/exp1a/sftlite_s4.json

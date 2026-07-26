@@ -1,0 +1,140 @@
+{
+ "a_sftlite5_taskvalid_p1": {
+  "label": "SFT-lite 5-seed task-valid pass@1",
+  "values": [
+   0.1818,
+   0.1273,
+   0.2136,
+   0.1909,
+   0.1818
+  ],
+  "mean": 0.1791,
+  "sd_pop_ddof0": 0.0284,
+  "sd_samp_ddof1": 0.0317,
+  "note": "table \\tvfiveSftliteS=0.028 ; paragraph currently 0.179+/-0.032 (ddof1)"
+ },
+ "b_sftlite3_taskvalid_p1": {
+  "label": "SFT-lite 3-seed (matched) task-valid pass@1",
+  "values": [
+   0.1818,
+   0.1273,
+   0.2136
+  ],
+  "mean": 0.1742,
+  "sd_pop_ddof0": 0.0356,
+  "sd_samp_ddof1": 0.0436,
+  "note": "paragraph currently 0.174+/-0.044 (ddof1)"
+ },
+ "c_paired_rlfunc_minus_sftlite_taskvalid_p1": {
+  "label": "paired diff RL-func - SFT-lite, task-valid pass@1",
+  "values": [
+   0.1137,
+   0.15,
+   0.0591
+  ],
+  "mean": 0.1076,
+  "sd_pop_ddof0": 0.0374,
+  "sd_samp_ddof1": 0.0458,
+  "note": "table/paragraph currently mean +0.108, SD 0.046 (ddof1)"
+ },
+ "d_rlfunc3_taskvalid_p1": {
+  "label": "RL-func across-seed task-valid pass@1",
+  "values": [
+   0.2955,
+   0.2773,
+   0.2727
+  ],
+  "mean": 0.2818,
+  "sd_pop_ddof0": 0.0098,
+  "sd_samp_ddof1": 0.0121,
+  "note": "paragraph quotes across-seed SD 0.012 ; macro \\tvRlfuncOneS=0.010 (ddof0)"
+ },
+ "e_gated_taskvalid_p1": {
+  "label": "gated - func paired diff, taskvalid_pass@1",
+  "values": [
+   -0.0091,
+   0.0363,
+   0.0046
+  ],
+  "mean": 0.0106,
+  "sd_pop_ddof0": 0.019,
+  "sd_samp_ddof1": 0.0233,
+  "note": "current paper mean 0.011, SD 0.023 (ddof1)",
+  "gated_values": [
+   0.2864,
+   0.3136,
+   0.2773
+  ],
+  "func_values": [
+   0.2955,
+   0.2773,
+   0.2727
+  ]
+ },
+ "e_gated_verified_p1": {
+  "label": "gated - func paired diff, verified_pass@1",
+  "values": [
+   0.0318,
+   0.0318,
+   0.0227
+  ],
+  "mean": 0.0288,
+  "sd_pop_ddof0": 0.0043,
+  "sd_samp_ddof1": 0.0053,
+  "note": "current paper mean 0.029, SD 0.005 (ddof1)",
+  "gated_values": [
+   0.4182,
+   0.4136,
+   0.4
+  ],
+  "func_values": [
+   0.3864,
+   0.3818,
+   0.3773
+  ]
+ },
+ "e_gated_taskvalid_p10": {
+  "label": "gated - func paired diff, taskvalid_pass@10",
+  "values": [
+   0.0,
+   0.0454,
+   0.0
+  ],
+  "mean": 0.0151,
+  "sd_pop_ddof0": 0.0214,
+  "sd_samp_ddof1": 0.0262,
+  "note": "current paper mean 0.015, SD 0.026 (ddof1)",
+  "gated_values": [
+   0.4091,
+   0.4545,
+   0.4091
+  ],
+  "func_values": [
+   0.4091,
+   0.4091,
+   0.4091
+  ]
+ },
+ "e_gated_verified_p10": {
+  "label": "gated - func paired diff, verified_pass@10",
+  "values": [
+   0.0455,
+   0.1363,
+   0.0
+  ],
+  "mean": 0.0606,
+  "sd_pop_ddof0": 0.0567,
+  "sd_samp_ddof1": 0.0694,
+  "note": "current paper mean 0.061, SD 0.069 (ddof1)",
+  "gated_values": [
+   0.6364,
+   0.6818,
+   0.6364
+  ],
+  "func_values": [
+   0.5909,
+   0.5455,
+   0.6364
+  ]
+ }
+}

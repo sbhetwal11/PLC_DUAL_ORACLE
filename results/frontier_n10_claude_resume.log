@@ -1,0 +1,31 @@
+REPO=/mnt/c/Users/ragas/Videos/claude/ResearchPaper2/PLCCodeGenResearch_5090/PLCCodeGenResearch
+NUXMV_BIN=/home/ragas/nuxmv/usr/local/bin/nuXmv
+MATIEC_IEC2C=/home/ragas/matiec/iec2c
+PYBIN=/home/ragas/plcvenv/bin/python
+----
+n=10 temp=0.8 tasks=22 models=['anthropic:claude-sonnet-4-6']
+==== anthropic:claude-sonnet-4-6 ====
+  anthropic:claude-sonnet-4-6 E01_motor_interlock: already done, skip
+  anthropic:claude-sonnet-4-6 E02_tank_overflow: already done, skip
+  anthropic:claude-sonnet-4-6 E03_airlock_interlock: already done, skip
+  anthropic:claude-sonnet-4-6 E04_conveyor_permissive: already done, skip
+  anthropic:claude-sonnet-4-6 E05_alarm_latch: already done, skip
+  anthropic:claude-sonnet-4-6 E06_heater_overtemp: already done, skip
+  anthropic:claude-sonnet-4-6 E07_pump_dryrun_protection: already done, skip
+  anthropic:claude-sonnet-4-6 H01_intersection_signals: already done, skip
+  anthropic:claude-sonnet-4-6 H02_elevator_door_interlock: already done, skip
+  anthropic:claude-sonnet-4-6 H03_batch_reactor_sequence: already done, skip
+  anthropic:claude-sonnet-4-6 H04_parking_garage_counter: already done, skip
+  anthropic:claude-sonnet-4-6 M01_motor_startup_delay: already done, skip
+  anthropic:claude-sonnet-4-6 M02_star_delta_starter: already done, skip
+  anthropic:claude-sonnet-4-6 M03_pedestrian_crossing: already done, skip
+  anthropic:claude-sonnet-4-6 M04_tank_fill_drain_cycle: already done, skip
+  anthropic:claude-sonnet-4-6 M05_conveyor_sequence: already done, skip
+  anthropic:claude-sonnet-4-6 M06_burner_purge_sequence: compile 10/10 inv 0/10 scen 1/10 TV 0/10 err 0 (34s)
+  anthropic:claude-sonnet-4-6 M07_two_hand_control: compile 10/10 inv 0/10 scen 0/10 TV 0/10 err 0 (12s)
+  anthropic:claude-sonnet-4-6 M08_pump_alternation: compile 10/10 inv 10/10 scen 10/10 TV 10/10 err 0 (16s)
+  anthropic:claude-sonnet-4-6 M09_gate_limits_obstruction: compile 10/10 inv 10/10 scen 0/10 TV 0/10 err 0 (18s)
+  anthropic:claude-sonnet-4-6 M10_three_conveyor_start: compile 9/10 inv 0/10 scen 0/10 TV 0/10 err 0 (24s)
+  anthropic:claude-sonnet-4-6 M11_dosing_counter: compile 10/10 inv 10/10 scen 10/10 TV 10/10 err 0 (15s)
+DONE anthropic:claude-sonnet-4-6 -> results/frontier_n10/anthropic_claude-sonnet-4-6.json
+ALL DONE

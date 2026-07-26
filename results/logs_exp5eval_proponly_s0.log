@@ -1,0 +1,22 @@
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights:   0%|          | 1/339 [00:00<00:48,  6.97it/s]Loading weights:   1%|          | 2/339 [00:00<00:42,  7.96it/s]Loading weights:   5%|▌         | 18/339 [00:00<00:04, 65.81it/s]Loading weights:  12%|█▏        | 41/339 [00:00<00:02, 117.46it/s]Loading weights:  19%|█▉        | 64/339 [00:00<00:02, 135.65it/s]Loading weights:  24%|██▍       | 82/339 [00:00<00:01, 148.33it/s]Loading weights:  29%|██▉       | 100/339 [00:00<00:01, 156.53it/s]Loading weights:  34%|███▍      | 116/339 [00:00<00:01, 148.64it/s]Loading weights:  40%|███▉      | 135/339 [00:01<00:01, 148.95it/s]Loading weights:  46%|████▌     | 156/339 [00:01<00:01, 164.64it/s]Loading weights:  51%|█████     | 173/339 [00:01<00:01, 156.07it/s]Loading weights:  56%|█████▌    | 189/339 [00:01<00:00, 156.65it/s]Loading weights:  61%|██████    | 207/339 [00:01<00:00, 146.37it/s]Loading weights:  69%|██████▊   | 233/339 [00:01<00:00, 164.83it/s]Loading weights:  74%|███████▎  | 250/339 [00:01<00:00, 165.95it/s]Loading weights:  79%|███████▉  | 268/339 [00:01<00:00, 159.23it/s]Loading weights:  84%|████████▍ | 285/339 [00:01<00:00, 162.06it/s]Loading weights:  90%|████████▉ | 304/339 [00:02<00:00, 166.40it/s]Loading weights:  95%|█████████▍| 321/339 [00:02<00:00, 161.94it/s]Loading weights: 100%|██████████| 339/339 [00:02<00:00, 147.59it/s]
+  E01_motor_interlock              repaired 10/10
+  E02_tank_overflow                repaired 7/10
+  E03_airlock_interlock            repaired 10/10
+  E04_conveyor_permissive          repaired 10/10
+  E06_heater_overtemp              repaired 10/10
+  E07_pump_dryrun_protection       repaired 4/10
+  H02_elevator_door_interlock      repaired 7/10
+  H03_batch_reactor_sequence       repaired 3/10
+  M01_motor_startup_delay          repaired 0/10
+  M02_star_delta_starter           repaired 3/10
+  M03_pedestrian_crossing          repaired 10/10
+  M04_tank_fill_drain_cycle        repaired 0/10
+  M05_conveyor_sequence            repaired 4/10
+  M06_burner_purge_sequence        repaired 7/10
+  M08_pump_alternation             repaired 3/10
+  M09_gate_limits_obstruction      repaired 1/10
+  M10_three_conveyor_start         repaired 5/10
+
+SUMMARY: {"model": "hf:Qwen/Qwen2.5-Coder-7B-Instruct+finetune/out/exp/rep_proponly_s0", "n_samples": 10, "temperature": 0.8, "tasks": 17, "pass@1": 0.5529, "pass@3": 0.7637, "pass@5": 0.8352, "pass@10": 0.8824}
+BY TIER: {"easy": {"pass@1": 0.85, "pass@3": 0.9708, "pass@5": 0.996, "pass@10": 1.0}, "hard": {"pass@1": 0.5, "pass@3": 0.85, "pass@5": 0.9583, "pass@10": 1.0}, "medium": {"pass@1": 0.3667, "pass@3": 0.6065, "pass@5": 0.7006, "pass@10": 0.7778}}
+wrote results/exp5/rep_proponly_s0.json

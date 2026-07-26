@@ -1,0 +1,28 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights:   1%|          | 2/339 [00:00<00:28, 11.98it/s]Loading weights:   8%|▊         | 28/339 [00:00<00:02, 125.97it/s]Loading weights:  19%|█▉        | 64/339 [00:00<00:01, 214.23it/s]Loading weights:  27%|██▋       | 90/339 [00:00<00:01, 230.35it/s]Loading weights:  36%|███▋      | 123/339 [00:00<00:00, 256.94it/s]Loading weights:  47%|████▋     | 159/339 [00:00<00:00, 280.79it/s]Loading weights:  55%|█████▌    | 188/339 [00:00<00:00, 280.02it/s]Loading weights:  65%|██████▍   | 220/339 [00:00<00:00, 274.96it/s]Loading weights:  76%|███████▌  | 257/339 [00:01<00:00, 284.60it/s]Loading weights:  86%|████████▋ | 293/339 [00:01<00:00, 296.74it/s]Loading weights:  96%|█████████▌| 326/339 [00:01<00:00, 288.80it/s]Loading weights: 100%|██████████| 339/339 [00:01<00:00, 263.38it/s]
+  E01_motor_interlock              [easy  ] verified 10/10
+  E02_tank_overflow                [easy  ] verified 10/10
+  E03_airlock_interlock            [easy  ] verified 8/10
+  E04_conveyor_permissive          [easy  ] verified 10/10
+  E05_alarm_latch                  [easy  ] verified 0/10
+  E06_heater_overtemp              [easy  ] verified 10/10
+  E07_pump_dryrun_protection       [easy  ] verified 4/10
+  H01_intersection_signals         [hard  ] verified 0/10
+  H02_elevator_door_interlock      [hard  ] verified 0/10
+  H03_batch_reactor_sequence       [hard  ] verified 0/10
+  H04_parking_garage_counter       [hard  ] verified 7/10
+  M01_motor_startup_delay          [medium] verified 0/10
+  M02_star_delta_starter           [medium] verified 0/10
+  M03_pedestrian_crossing          [medium] verified 0/10
+  M04_tank_fill_drain_cycle        [medium] verified 0/10
+  M05_conveyor_sequence            [medium] verified 0/10
+  M06_burner_purge_sequence        [medium] verified 0/10
+  M07_two_hand_control             [medium] verified 0/10
+  M08_pump_alternation             [medium] verified 0/10
+  M09_gate_limits_obstruction      [medium] verified 0/10
+  M10_three_conveyor_start         [medium] verified 0/10
+  M11_dosing_counter               [medium] verified 3/10
+
+SUMMARY: {"model": "hf:Qwen/Qwen2.5-Coder-7B-Instruct+finetune/out/seeds/sft_s0", "n_samples": 10, "temperature": 0.8, "tasks": 22, "pass@1": 0.282, "pass@3": 0.342, "pass@5": 0.359, "pass@10": 0.364}
+BY TIER: {"easy": {"pass@1": 0.743, "pass@3": 0.833, "pass@5": 0.854, "pass@10": 0.857}, "medium": {"pass@1": 0.027, "pass@3": 0.064, "pass@5": 0.083, "pass@10": 0.091}, "hard": {"pass@1": 0.175, "pass@3": 0.248, "pass@5": 0.25, "pass@10": 0.25}}
+wrote results/seeds/sft_s0.json

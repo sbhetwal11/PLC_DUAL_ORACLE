@@ -1,0 +1,46 @@
+July-2026 task-valid panel bootstrap: B=20000, seed=0, tasks=22, n=10
+
+## per-model task-bootstrap 95% CIs
+  grok-3                 TV@1 0.591 CI [0.455,0.727]   TV@10 0.909 CI [0.773,1.000]
+  claude-sonnet-4-6      TV@1 0.459 CI [0.264,0.668]   TV@10 0.500 CI [0.273,0.727]
+  gemini-2.5-flash       TV@1 0.100 CI [0.032,0.182]   TV@10 0.273 CI [0.091,0.455]
+  gpt-4o                 TV@1 0.095 CI [0.023,0.191]   TV@10 0.364 CI [0.182,0.591]
+
+## paired task-bootstrap differences, TV@1 (A-B), 95% CI (6 unadjusted contrasts: exploratory)
+  grok-3 - claude-sonnet-4-6: +0.132 CI [-0.009,+0.282]  (includes 0)
+  grok-3 - gemini-2.5-flash: +0.491 CI [+0.373,+0.614]  (excludes 0)
+  grok-3 - gpt-4o: +0.495 CI [+0.336,+0.645]  (excludes 0)
+  claude-sonnet-4-6 - gemini-2.5-flash: +0.359 CI [+0.200,+0.532]  (excludes 0)
+  claude-sonnet-4-6 - gpt-4o: +0.364 CI [+0.195,+0.545]  (excludes 0)
+  gemini-2.5-flash - gpt-4o: +0.005 CI [-0.073,+0.077]  (includes 0)
+
+## hierarchical bootstrap (tasks, then completions), TV@1
+  grok-3                 CI [0.441,0.736]
+  claude-sonnet-4-6      CI [0.264,0.659]
+  gemini-2.5-flash       CI [0.027,0.191]
+  gpt-4o                 CI [0.023,0.195]
+
+## per-task task-valid counts (out of n=10)
+task       grok-3  claude-so  gemini-2.     gpt-4o
+E01            10         10          2          1
+E02             7          9          0          0
+E03            10         10          0          0
+E04             8         10          0          1
+E05             9         10          5          1
+E06             8         10          5          6
+E07            10         10          5          2
+H01             5          0          0          0
+H02             4          0          0          0
+H03             0          0          0          0
+H04            10          9          3          1
+M01            10          0          0          0
+M02             3          3          0          0
+M03             1          0          0          0
+M04             4          0          0          0
+M05             3          0          0          0
+M06             3          0          0          0
+M07             6          0          0          0
+M08             9         10          0          0
+M09             6          0          0          0
+M10             0          0          0          1
+M11             4         10          2          8

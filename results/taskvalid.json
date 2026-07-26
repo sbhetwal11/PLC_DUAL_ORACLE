@@ -1,0 +1,816 @@
+{
+ "grok-3(dagger)": {
+  "compile": 20,
+  "invariant": 15,
+  "scenario": 15,
+  "taskvalid": 12,
+  "n": 22,
+  "taxonomy": {
+   "extraction": {
+    "found": 22
+   },
+   "matiec": {
+    "accepted": 20,
+    "rejected": 2
+   },
+   "translator": {
+    "supported": 22
+   },
+   "nuxmv": {
+    "all_hold": 17,
+    "some_fail": 5
+   }
+  },
+  "range_rejects": [],
+  "per_task": [
+   [
+    "easy",
+    "E01_motor_interlock",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "easy",
+    "E02_tank_overflow",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "easy",
+    "E03_airlock_interlock",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "easy",
+    "E04_conveyor_permissive",
+    true,
+    false,
+    true,
+    false
+   ],
+   [
+    "easy",
+    "E05_alarm_latch",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "easy",
+    "E06_heater_overtemp",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "easy",
+    "E07_pump_dryrun_protection",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "hard",
+    "H01_intersection_signals",
+    true,
+    false,
+    false,
+    false
+   ],
+   [
+    "hard",
+    "H02_elevator_door_interlock",
+    true,
+    true,
+    false,
+    false
+   ],
+   [
+    "hard",
+    "H03_batch_reactor_sequence",
+    true,
+    false,
+    false,
+    false
+   ],
+   [
+    "hard",
+    "H04_parking_garage_counter",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "medium",
+    "M01_motor_startup_delay",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "medium",
+    "M02_star_delta_starter",
+    true,
+    false,
+    true,
+    false
+   ],
+   [
+    "medium",
+    "M03_pedestrian_crossing",
+    true,
+    true,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M04_tank_fill_drain_cycle",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M05_conveyor_sequence",
+    true,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M06_burner_purge_sequence",
+    false,
+    false,
+    true,
+    false
+   ],
+   [
+    "medium",
+    "M07_two_hand_control",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "medium",
+    "M08_pump_alternation",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "medium",
+    "M09_gate_limits_obstruction",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "medium",
+    "M10_three_conveyor_start",
+    true,
+    true,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M11_dosing_counter",
+    true,
+    true,
+    true,
+    true
+   ]
+  ]
+ },
+ "claude-sonnet-4-6": {
+  "compile": 22,
+  "invariant": 15,
+  "scenario": 12,
+  "taskvalid": 12,
+  "n": 22,
+  "taxonomy": {
+   "extraction": {
+    "found": 22
+   },
+   "matiec": {
+    "accepted": 22
+   },
+   "translator": {
+    "supported": 22
+   },
+   "nuxmv": {
+    "all_hold": 15,
+    "some_fail": 7
+   }
+  },
+  "range_rejects": [],
+  "per_task": [
+   [
+    "easy",
+    "E01_motor_interlock",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "easy",
+    "E02_tank_overflow",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "easy",
+    "E03_airlock_interlock",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "easy",
+    "E04_conveyor_permissive",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "easy",
+    "E05_alarm_latch",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "easy",
+    "E06_heater_overtemp",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "easy",
+    "E07_pump_dryrun_protection",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "hard",
+    "H01_intersection_signals",
+    true,
+    false,
+    false,
+    false
+   ],
+   [
+    "hard",
+    "H02_elevator_door_interlock",
+    true,
+    true,
+    false,
+    false
+   ],
+   [
+    "hard",
+    "H03_batch_reactor_sequence",
+    true,
+    false,
+    false,
+    false
+   ],
+   [
+    "hard",
+    "H04_parking_garage_counter",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "medium",
+    "M01_motor_startup_delay",
+    true,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M02_star_delta_starter",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "medium",
+    "M03_pedestrian_crossing",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "medium",
+    "M04_tank_fill_drain_cycle",
+    true,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M05_conveyor_sequence",
+    true,
+    true,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M06_burner_purge_sequence",
+    true,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M07_two_hand_control",
+    true,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M08_pump_alternation",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "medium",
+    "M09_gate_limits_obstruction",
+    true,
+    true,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M10_three_conveyor_start",
+    true,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M11_dosing_counter",
+    true,
+    true,
+    true,
+    true
+   ]
+  ]
+ },
+ "gemini-2.5-flash": {
+  "compile": 4,
+  "invariant": 4,
+  "scenario": 4,
+  "taskvalid": 4,
+  "n": 22,
+  "taxonomy": {
+   "extraction": {
+    "found": 22
+   },
+   "matiec": {
+    "rejected": 18,
+    "accepted": 4
+   },
+   "translator": {
+    "supported": 22
+   },
+   "nuxmv": {
+    "some_fail": 18,
+    "all_hold": 4
+   }
+  },
+  "range_rejects": [],
+  "per_task": [
+   [
+    "easy",
+    "E01_motor_interlock",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "easy",
+    "E02_tank_overflow",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "easy",
+    "E03_airlock_interlock",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "easy",
+    "E04_conveyor_permissive",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "easy",
+    "E05_alarm_latch",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "easy",
+    "E06_heater_overtemp",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "easy",
+    "E07_pump_dryrun_protection",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "hard",
+    "H01_intersection_signals",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "hard",
+    "H02_elevator_door_interlock",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "hard",
+    "H03_batch_reactor_sequence",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "hard",
+    "H04_parking_garage_counter",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "medium",
+    "M01_motor_startup_delay",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M02_star_delta_starter",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M03_pedestrian_crossing",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M04_tank_fill_drain_cycle",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M05_conveyor_sequence",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M06_burner_purge_sequence",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M07_two_hand_control",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M08_pump_alternation",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M09_gate_limits_obstruction",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M10_three_conveyor_start",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M11_dosing_counter",
+    false,
+    false,
+    false,
+    false
+   ]
+  ]
+ },
+ "gpt-4o": {
+  "compile": 3,
+  "invariant": 2,
+  "scenario": 5,
+  "taskvalid": 2,
+  "n": 22,
+  "taxonomy": {
+   "extraction": {
+    "found": 22
+   },
+   "matiec": {
+    "rejected": 19,
+    "accepted": 3
+   },
+   "translator": {
+    "supported": 22
+   },
+   "nuxmv": {
+    "some_fail": 18,
+    "all_hold": 4
+   }
+  },
+  "range_rejects": [],
+  "per_task": [
+   [
+    "easy",
+    "E01_motor_interlock",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "easy",
+    "E02_tank_overflow",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "easy",
+    "E03_airlock_interlock",
+    true,
+    false,
+    true,
+    false
+   ],
+   [
+    "easy",
+    "E04_conveyor_permissive",
+    false,
+    false,
+    true,
+    false
+   ],
+   [
+    "easy",
+    "E05_alarm_latch",
+    false,
+    false,
+    true,
+    false
+   ],
+   [
+    "easy",
+    "E06_heater_overtemp",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "easy",
+    "E07_pump_dryrun_protection",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "hard",
+    "H01_intersection_signals",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "hard",
+    "H02_elevator_door_interlock",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "hard",
+    "H03_batch_reactor_sequence",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "hard",
+    "H04_parking_garage_counter",
+    true,
+    true,
+    true,
+    true
+   ],
+   [
+    "medium",
+    "M01_motor_startup_delay",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M02_star_delta_starter",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M03_pedestrian_crossing",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M04_tank_fill_drain_cycle",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M05_conveyor_sequence",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M06_burner_purge_sequence",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M07_two_hand_control",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M08_pump_alternation",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M09_gate_limits_obstruction",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M10_three_conveyor_start",
+    false,
+    false,
+    false,
+    false
+   ],
+   [
+    "medium",
+    "M11_dosing_counter",
+    false,
+    false,
+    false,
+    false
+   ]
+  ]
+ },
+ "_reference": {
+  "compile": 22,
+  "invariant": 22,
+  "scenario": 22,
+  "taskvalid": 22,
+  "n": 22
+ }
+}

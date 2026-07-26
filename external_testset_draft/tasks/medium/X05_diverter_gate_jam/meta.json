@@ -1,0 +1,53 @@
+{
+  "id": "X05_diverter_gate_jam",
+  "title": "Diverter-gate sorting with position-timeout jam detection",
+  "difficulty": "medium",
+  "domain": "sortation / conveyor",
+  "nl_spec": "A pivoting diverter gate sorts items either straight or to a side chute. DivertCmd = TRUE energizes GateSolenoid to move the gate to the divert position; DivertCmd = FALSE de-energizes it so a spring returns it to straight. Two position sensors confirm the gate: AtDivert (TRUE when at the divert position) and AtStraight (TRUE when at the straight position). If the commanded position is not confirmed (commanded to divert but not AtDivert, or commanded to straight but not AtStraight) continuously for JAM_TIME = 3 seconds, latch a Jam alarm. While jammed, de-energize the gate solenoid and stop the conveyor. A Reset input clears the jam once the system is healthy. The sorting conveyor output ConveyorRun follows the upstream RunConveyor request only while healthy and not jammed. EStop is normally-closed (TRUE = healthy, FALSE = activated); when activated the gate solenoid is de-energized and the conveyor stops. Use one TON. Write an IEC 61131-3 Structured Text PROGRAM named diverter with inputs DivertCmd, AtDivert, AtStraight, RunConveyor, Reset, EStop and outputs GateSolenoid, ConveyorRun, Jam.",
+  "interface": [
+    {"name": "DivertCmd", "type": "BOOL", "direction": "input", "description": "TRUE = divert to side chute, FALSE = straight"},
+    {"name": "AtDivert", "type": "BOOL", "direction": "input", "description": "Gate-at-divert position sensor"},
+    {"name": "AtStraight", "type": "BOOL", "direction": "input", "description": "Gate-at-straight position sensor"},
+    {"name": "RunConveyor", "type": "BOOL", "direction": "input", "description": "Upstream conveyor-run request"},
+    {"name": "Reset", "type": "BOOL", "direction": "input", "description": "Jam reset"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "GateSolenoid", "type": "BOOL", "direction": "output", "description": "Diverter solenoid (energize = divert)"},
+    {"name": "ConveyorRun", "type": "BOOL", "direction": "output", "description": "Sorting conveyor run"},
+    {"name": "Jam", "type": "BOOL", "direction": "output", "description": "Latched jam alarm"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "On emergency stop, the gate solenoid is de-energized and the conveyor is stopped.", "ltl": "G(!EStop -> (!GateSolenoid & !ConveyorRun))"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "While a jam is latched, the conveyor is stopped.", "ltl": "G(Jam -> !ConveyorRun)"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "While a jam is latched, the gate solenoid is de-energized.", "ltl": "G(Jam -> !GateSolenoid)"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "The gate solenoid is energized only on a healthy divert command with no jam.", "ltl": "G(GateSolenoid -> (DivertCmd & EStop & !Jam))"},
+    {"id": "P5", "kind": "safety", "severity": "medium", "nl": "Positive obligation: while healthy, not jammed and the conveyor is requested, the conveyor runs.", "ltl": "G((EStop & !Jam & RunConveyor) -> ConveyorRun)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Confirmed divert: gate energized, no jam, conveyor runs",
+     "steps": [
+       {"inputs": {"DivertCmd": true, "AtDivert": true, "AtStraight": false, "RunConveyor": true, "Reset": false, "EStop": true}, "expect": {"GateSolenoid": true, "Jam": false, "ConveyorRun": true}},
+       {"inputs": {"DivertCmd": true, "AtDivert": true, "AtStraight": false, "RunConveyor": true, "Reset": false, "EStop": true}, "expect": {"Jam": false, "ConveyorRun": true}}
+     ]},
+    {"id": "S2", "description": "Unconfirmed for 3 s latches a jam and stops the line",
+     "steps": [
+       {"inputs": {"DivertCmd": true, "AtDivert": false, "AtStraight": false, "RunConveyor": true, "Reset": false, "EStop": true}, "expect": {"Jam": false, "ConveyorRun": true}},
+       {"inputs": {"DivertCmd": true, "AtDivert": false, "AtStraight": false, "RunConveyor": true, "Reset": false, "EStop": true}, "expect": {"Jam": false, "ConveyorRun": true}},
+       {"inputs": {"DivertCmd": true, "AtDivert": false, "AtStraight": false, "RunConveyor": true, "Reset": false, "EStop": true}, "expect": {"Jam": true, "GateSolenoid": false, "ConveyorRun": false}},
+       {"inputs": {"DivertCmd": true, "AtDivert": false, "AtStraight": false, "RunConveyor": true, "Reset": false, "EStop": true}, "expect": {"Jam": true, "ConveyorRun": false}}
+     ]},
+    {"id": "S3", "description": "Emergency stop stops gate and conveyor",
+     "steps": [
+       {"inputs": {"DivertCmd": true, "AtDivert": true, "AtStraight": false, "RunConveyor": true, "Reset": false, "EStop": false}, "expect": {"GateSolenoid": false, "ConveyorRun": false}}
+     ]},
+    {"id": "S4", "description": "A held Reset while the position is still unconfirmed does NOT clear a latched jam",
+     "steps": [
+       {"inputs": {"DivertCmd": true, "AtDivert": false, "AtStraight": false, "RunConveyor": true, "Reset": false, "EStop": true}, "expect": {"Jam": false, "ConveyorRun": true}},
+       {"inputs": {"DivertCmd": true, "AtDivert": false, "AtStraight": false, "RunConveyor": true, "Reset": false, "EStop": true}, "expect": {"Jam": false, "ConveyorRun": true}},
+       {"inputs": {"DivertCmd": true, "AtDivert": false, "AtStraight": false, "RunConveyor": true, "Reset": false, "EStop": true}, "expect": {"Jam": true, "GateSolenoid": false, "ConveyorRun": false}},
+       {"inputs": {"DivertCmd": true, "AtDivert": false, "AtStraight": false, "RunConveyor": true, "Reset": true, "EStop": true}, "expect": {"Jam": true, "GateSolenoid": false, "ConveyorRun": false}},
+       {"inputs": {"DivertCmd": true, "AtDivert": false, "AtStraight": false, "RunConveyor": true, "Reset": true, "EStop": true}, "expect": {"Jam": true, "ConveyorRun": false}}
+     ]}
+  ],
+  "tags": ["draft", "jam-detection", "position-timeout", "TON", "latched-alarm", "positive-obligation"],
+  "notes": "DRAFT - pending expert PLC review. NEW FAMILY: position-confirmation timeout (a TON that measures how long a commanded actuator fails to reach its confirmed position, latching a jam). Distinct from on-delay start timing (the timer detects a FAULT, not a start permissive) and from bounded counters. The jam-implies-line-stopped obligations are the novel property class."
+}

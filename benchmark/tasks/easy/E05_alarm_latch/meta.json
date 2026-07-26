@@ -1,0 +1,30 @@
+{
+  "id": "E05_alarm_latch",
+  "title": "Latching alarm annunciator with reset",
+  "difficulty": "easy",
+  "domain": "alarm management",
+  "nl_spec": "An alarm annunciator monitors a trip condition. When Trip becomes active the Alarm latches ON and stays on until the operator presses Reset. A Reset must NOT clear the alarm while the trip condition is still active (you cannot reset away a live fault). Write an IEC 61131-3 Structured Text PROGRAM named alarm_ctrl with inputs Trip, Reset and output Alarm.",
+  "interface": [
+    {"name": "Trip", "type": "BOOL", "direction": "input", "description": "Trip / abnormal condition active"},
+    {"name": "Reset", "type": "BOOL", "direction": "input", "description": "Operator reset pushbutton"},
+    {"name": "Alarm", "type": "BOOL", "direction": "output", "description": "Latched alarm output"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "While the trip condition is active, the alarm is always on.", "ltl": "G(Trip -> Alarm)"},
+    {"id": "P2", "kind": "safety", "severity": "high", "nl": "A set alarm can only clear via Reset (it never drops on its own).", "ltl": "G(Alarm -> X(Alarm | Reset))"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Latch on trip, hold, clear on reset",
+     "steps": [
+       {"inputs": {"Trip": true, "Reset": false}, "expect": {"Alarm": true}},
+       {"inputs": {"Trip": false, "Reset": false}, "expect": {"Alarm": true}},
+       {"inputs": {"Trip": false, "Reset": true}, "expect": {"Alarm": false}}
+     ]},
+    {"id": "S2", "description": "Trip dominates a simultaneous reset",
+     "steps": [
+       {"inputs": {"Trip": true, "Reset": true}, "expect": {"Alarm": true}}
+     ]}
+  ],
+  "tags": ["latch", "alarm", "reset", "annunciator"],
+  "notes": "Set-dominant latch (Trip checked before Reset). P2 uses the LTL next operator X to express the latch-retention property."
+}

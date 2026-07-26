@@ -1,0 +1,45 @@
+{
+  "id": "X08_accumulator_leadlag_pumps",
+  "title": "Accumulator pressure maintenance with lead/lag pumps and relief",
+  "difficulty": "medium",
+  "domain": "hydraulic / pressure control",
+  "nl_spec": "A hydraulic accumulator is kept charged by two fixed-role pumps. The lead pump runs when Pressure falls below P_LEAD = 200 bar; the lag pump additionally runs when Pressure falls below P_LAG = 150 bar (staging is monotonic: the lag pump never runs unless the lead pump also runs). To prevent over-pressurization, whenever Pressure reaches P_MAX = 280 bar a ReliefValve opens and BOTH pumps are inhibited. (A direct-acting mechanical relief valve protects the accumulator independently of this PLC; ReliefValve here is a supplementary PLC-commanded dump/unload output, not the primary code-safety device.) The station runs only while Enable is TRUE. EStop is normally-closed (TRUE = healthy, FALSE = activated); when activated both pumps stop (the relief valve is a pressure-driven safety device and is not inhibited by E-stop). Use pure thresholds (no hysteresis). Write an IEC 61131-3 Structured Text PROGRAM named accumulator with inputs Pressure, Enable, EStop and outputs LeadPump, LagPump, ReliefValve.",
+  "interface": [
+    {"name": "Pressure", "type": "INT", "direction": "input", "description": "Accumulator pressure in bar", "range": [0, 300]},
+    {"name": "Enable", "type": "BOOL", "direction": "input", "description": "Station enable"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "LeadPump", "type": "BOOL", "direction": "output", "description": "Lead charge pump"},
+    {"name": "LagPump", "type": "BOOL", "direction": "output", "description": "Lag charge pump"},
+    {"name": "ReliefValve", "type": "BOOL", "direction": "output", "description": "Over-pressure relief valve"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "At or above the maximum pressure, both pumps are inhibited (no pumping into over-pressure).", "ltl": "G(Pressure >= 280 -> (!LeadPump & !LagPump))"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "Positive obligation: at or above the maximum pressure, the relief valve is open.", "ltl": "G(Pressure >= 280 -> ReliefValve)"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "Monotonic staging: the lag pump never runs unless the lead pump also runs.", "ltl": "G(LagPump -> LeadPump)"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "On emergency stop, both pumps are off.", "ltl": "G(!EStop -> (!LeadPump & !LagPump))"},
+    {"id": "P5", "kind": "safety", "severity": "medium", "nl": "Positive obligation: while healthy, enabled and pressure is critically low, the lead pump runs.", "ltl": "G((EStop & Enable & Pressure < 120) -> LeadPump)"},
+    {"id": "P6", "kind": "safety", "severity": "high", "nl": "When the station is disabled (Enable = FALSE), both pumps are off.", "ltl": "G(!Enable -> (!LeadPump & !LagPump))"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Lead/lag staging on falling pressure",
+     "steps": [
+       {"inputs": {"Pressure": 250, "Enable": true, "EStop": true}, "expect": {"LeadPump": false, "LagPump": false, "ReliefValve": false}},
+       {"inputs": {"Pressure": 180, "Enable": true, "EStop": true}, "expect": {"LeadPump": true, "LagPump": false}},
+       {"inputs": {"Pressure": 100, "Enable": true, "EStop": true}, "expect": {"LeadPump": true, "LagPump": true}}
+     ]},
+    {"id": "S2", "description": "Over-pressure inhibits pumps and opens relief",
+     "steps": [
+       {"inputs": {"Pressure": 290, "Enable": true, "EStop": true}, "expect": {"LeadPump": false, "LagPump": false, "ReliefValve": true}}
+     ]},
+    {"id": "S3", "description": "Emergency stop stops both pumps",
+     "steps": [
+       {"inputs": {"Pressure": 100, "Enable": true, "EStop": false}, "expect": {"LeadPump": false, "LagPump": false, "ReliefValve": false}}
+     ]},
+    {"id": "S4", "description": "Disable stops both pumps even at low pressure",
+     "steps": [
+       {"inputs": {"Pressure": 100, "Enable": false, "EStop": true}, "expect": {"LeadPump": false, "LagPump": false}}
+     ]}
+  ],
+  "tags": ["draft", "lead-lag", "pressure-maintenance", "relief", "staging", "positive-obligation"],
+  "notes": "DRAFT - pending expert PLC review. NEW FAMILY: fixed-role lead/lag pressure maintenance with an over-pressure relief obligation. Distinct from the existing pump-alternation family (roles are FIXED by pressure band, not alternated on each start, and there is no start-counter). Two positive obligations (relief-on-overpressure, lead-on-critical-low). Pure thresholds, no hysteresis."
+}

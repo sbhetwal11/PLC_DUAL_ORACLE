@@ -1,0 +1,45 @@
+{
+  "id": "X03_oven_zone_door_interlock",
+  "title": "Two-zone oven heat-up with door interlock",
+  "difficulty": "easy",
+  "domain": "thermal process",
+  "nl_spec": "A batch oven has two independently heated zones. Each zone heater is a simple thermostat: Heater1 is on while zone-1 temperature Temp1 is below its setpoint SET1 = 200 deg C, and Heater2 is on while zone-2 temperature Temp2 is below SET2 = 250 deg C (pure thresholds, no hysteresis). A shared door-interlock switch DoorClosed (TRUE = door closed) must gate ALL heating: whenever the door is open, both heaters are de-energized regardless of temperature, so an operator is never exposed to live heaters. Heating also requires the master Enable and a healthy emergency stop EStop, which is normally-closed (TRUE = healthy, FALSE = activated). Write an IEC 61131-3 Structured Text PROGRAM named oven_zones with inputs DoorClosed, Temp1, Temp2, Enable, EStop and outputs Heater1, Heater2.",
+  "interface": [
+    {"name": "DoorClosed", "type": "BOOL", "direction": "input", "description": "Door interlock: TRUE = door closed"},
+    {"name": "Temp1", "type": "INT", "direction": "input", "description": "Zone-1 temperature in deg C", "range": [0, 400]},
+    {"name": "Temp2", "type": "INT", "direction": "input", "description": "Zone-2 temperature in deg C", "range": [0, 400]},
+    {"name": "Enable", "type": "BOOL", "direction": "input", "description": "Master enable"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "Heater1", "type": "BOOL", "direction": "output", "description": "Zone-1 heater"},
+    {"name": "Heater2", "type": "BOOL", "direction": "output", "description": "Zone-2 heater"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "When the door is open (DoorClosed = FALSE), both heaters are de-energized.", "ltl": "G(!DoorClosed -> (!Heater1 & !Heater2))"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "On emergency stop (EStop = FALSE), both heaters are de-energized.", "ltl": "G(!EStop -> (!Heater1 & !Heater2))"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "Zone-1 heater is never on at or above its setpoint.", "ltl": "G(Heater1 -> Temp1 < 200)"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "Zone-2 heater is never on at or above its setpoint.", "ltl": "G(Heater2 -> Temp2 < 250)"},
+    {"id": "P5", "kind": "safety", "severity": "medium", "nl": "Positive obligation: while healthy, enabled, door closed and zone-1 below setpoint, the zone-1 heater is on.", "ltl": "G((EStop & Enable & DoorClosed & Temp1 < 200) -> Heater1)"},
+    {"id": "P6", "kind": "safety", "severity": "high", "nl": "When the system is disabled (Enable = FALSE), both heaters are de-energized.", "ltl": "G(!Enable -> (!Heater1 & !Heater2))"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Independent zone thermostats with door closed",
+     "steps": [
+       {"inputs": {"DoorClosed": true, "Temp1": 100, "Temp2": 100, "Enable": true, "EStop": true}, "expect": {"Heater1": true, "Heater2": true}},
+       {"inputs": {"DoorClosed": true, "Temp1": 250, "Temp2": 100, "Enable": true, "EStop": true}, "expect": {"Heater1": false, "Heater2": true}}
+     ]},
+    {"id": "S2", "description": "Opening the door drops both heaters",
+     "steps": [
+       {"inputs": {"DoorClosed": false, "Temp1": 100, "Temp2": 100, "Enable": true, "EStop": true}, "expect": {"Heater1": false, "Heater2": false}}
+     ]},
+    {"id": "S3", "description": "Emergency stop drops both heaters",
+     "steps": [
+       {"inputs": {"DoorClosed": true, "Temp1": 100, "Temp2": 100, "Enable": true, "EStop": false}, "expect": {"Heater1": false, "Heater2": false}}
+     ]},
+    {"id": "S4", "description": "Disable drops both heaters even with both zones below setpoint",
+     "steps": [
+       {"inputs": {"DoorClosed": true, "Temp1": 100, "Temp2": 100, "Enable": false, "EStop": true}, "expect": {"Heater1": false, "Heater2": false}}
+     ]}
+  ],
+  "tags": ["draft", "door-interlock", "multi-zone", "thermostat", "positive-obligation"],
+  "notes": "DRAFT - pending expert PLC review. NEW FAMILY: access/door-interlocked multi-zone heating - a single shared interlock gates two independent process outputs. Uses pure thresholds (NO hysteresis, distinguishing it from a bang-bang controller and from the existing heater-overtemp task which is a latched trip). The door-open -> all-heaters-off obligation and the positive heat-demand obligation are the structurally novel property classes."
+}

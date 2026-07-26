@@ -1,0 +1,46 @@
+{
+  "id": "H03_batch_reactor_sequence",
+  "title": "Batch reactor multi-phase sequence with dry-fire protection",
+  "difficulty": "hard",
+  "domain": "process control",
+  "nl_spec": "Control a batch reactor as a five-phase state machine: 0 = Idle, 1 = Fill, 2 = Heat, 3 = React, 4 = Drain. On StartBatch (when healthy) begin Fill: open the FillValve until the level reaches LVL_HIGH = 80%. Then Heat: run the Heater and Agitator until the temperature reaches TEMP_SET = 100. Then React: keep heating and agitating for PT_REACT = 3 ticks. Then Drain: open the DrainValve until the level falls to LVL_LOW = 5%, returning to Idle. The emergency stop EStop is normally-closed (TRUE = healthy, FALSE = activated) and forces Idle with everything de-energized. SAFETY-CRITICAL: the fill and drain valves must never be open together; on emergency stop everything is off; and the heater and agitator must never run unless there is sufficient liquid (Level >= LIQ_MIN = 10) to prevent dry-firing. Use an internal INT State (0..4) and a TON timer. Write an IEC 61131-3 Structured Text PROGRAM named batch_reactor with inputs StartBatch, Level, Temp, EStop and outputs FillValve, Heater, Agitator, DrainValve.",
+  "interface": [
+    {"name": "StartBatch", "type": "BOOL", "direction": "input", "description": "Start a batch"},
+    {"name": "Level", "type": "INT", "direction": "input", "description": "Tank level percent", "range": [0, 100]},
+    {"name": "Temp", "type": "INT", "direction": "input", "description": "Reactor temperature", "range": [0, 200]},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "FillValve", "type": "BOOL", "direction": "output", "description": "Inlet fill valve"},
+    {"name": "Heater", "type": "BOOL", "direction": "output", "description": "Heater"},
+    {"name": "Agitator", "type": "BOOL", "direction": "output", "description": "Agitator motor"},
+    {"name": "DrainValve", "type": "BOOL", "direction": "output", "description": "Outlet drain valve"},
+    {"name": "State", "type": "INT", "direction": "internal", "description": "0=Idle,1=Fill,2=Heat,3=React,4=Drain", "range": [0, 4]}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "The fill and drain valves are never open at the same time.", "ltl": "G(!(FillValve & DrainValve))"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "On emergency stop, all actuators are de-energized.", "ltl": "G(!EStop -> (!FillValve & !Heater & !Agitator & !DrainValve))"},
+    {"id": "P3", "kind": "safety", "severity": "critical", "nl": "The heater never runs without sufficient liquid (dry-fire protection).", "ltl": "G(Heater -> Level >= 10)"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "The agitator never runs without sufficient liquid.", "ltl": "G(Agitator -> Level >= 10)"},
+    {"id": "P5", "kind": "safety", "severity": "high", "nl": "The heater is never on while the drain valve is open.", "ltl": "G(DrainValve -> !Heater)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Idle -> Fill -> Heat -> React",
+     "steps": [
+       {"inputs": {"StartBatch": true, "Level": 0, "Temp": 20, "EStop": true}, "expect": {"FillValve": true, "Heater": false}},
+       {"inputs": {"StartBatch": false, "Level": 85, "Temp": 20, "EStop": true}, "expect": {"FillValve": false, "Heater": true, "Agitator": true}},
+       {"inputs": {"StartBatch": false, "Level": 85, "Temp": 105, "EStop": true}, "expect": {"Heater": true, "Agitator": true}}
+     ]},
+    {"id": "S2", "description": "Emergency stop forces everything off",
+     "steps": [
+       {"inputs": {"StartBatch": true, "Level": 0, "Temp": 20, "EStop": true}, "expect": {"FillValve": true}},
+       {"inputs": {"StartBatch": false, "Level": 85, "Temp": 20, "EStop": false}, "expect": {"FillValve": false, "Heater": false, "Agitator": false, "DrainValve": false}}
+     ]},
+    {"id": "S3", "description": "Dry-fire protection: low level inhibits the heater in Heat phase",
+     "steps": [
+       {"inputs": {"StartBatch": true, "Level": 0, "Temp": 20, "EStop": true}, "expect": {"FillValve": true}},
+       {"inputs": {"StartBatch": false, "Level": 85, "Temp": 20, "EStop": true}, "expect": {"Heater": true}},
+       {"inputs": {"StartBatch": false, "Level": 5, "Temp": 20, "EStop": true}, "expect": {"Heater": false}}
+     ]}
+  ],
+  "tags": ["state-machine", "CASE", "timer", "TON", "multi-actuator", "process", "dry-fire-protection"],
+  "notes": "Five-phase sequence; heater/agitator gated on Level>=LIQ_MIN in their output expressions so the dry-fire property holds even though Level is a free input."
+}

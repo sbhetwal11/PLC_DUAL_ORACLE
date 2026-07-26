@@ -1,0 +1,216 @@
+{
+  "summary": {
+    "model": "reference",
+    "tasks": 18,
+    "errors": 0,
+    "verified_rate": 1.0,
+    "compile_rate": 0.0,
+    "property_pass_rate": 1.0,
+    "scenario_pass_rate": 1.0
+  },
+  "by_tier": {
+    "easy": 1.0,
+    "medium": 1.0,
+    "hard": 1.0
+  },
+  "rows": [
+    {
+      "task_id": "E01_motor_interlock",
+      "difficulty": "easy",
+      "compiles": null,
+      "verified": true,
+      "n_props": 2,
+      "n_props_pass": 2,
+      "scenarios_total": 2,
+      "scenarios_pass": 2,
+      "error": ""
+    },
+    {
+      "task_id": "E02_tank_overflow",
+      "difficulty": "easy",
+      "compiles": null,
+      "verified": true,
+      "n_props": 3,
+      "n_props_pass": 3,
+      "scenarios_total": 1,
+      "scenarios_pass": 1,
+      "error": ""
+    },
+    {
+      "task_id": "E03_airlock_interlock",
+      "difficulty": "easy",
+      "compiles": null,
+      "verified": true,
+      "n_props": 3,
+      "n_props_pass": 3,
+      "scenarios_total": 2,
+      "scenarios_pass": 2,
+      "error": ""
+    },
+    {
+      "task_id": "E04_conveyor_permissive",
+      "difficulty": "easy",
+      "compiles": null,
+      "verified": true,
+      "n_props": 3,
+      "n_props_pass": 3,
+      "scenarios_total": 2,
+      "scenarios_pass": 2,
+      "error": ""
+    },
+    {
+      "task_id": "E05_alarm_latch",
+      "difficulty": "easy",
+      "compiles": null,
+      "verified": true,
+      "n_props": 2,
+      "n_props_pass": 2,
+      "scenarios_total": 2,
+      "scenarios_pass": 2,
+      "error": ""
+    },
+    {
+      "task_id": "E06_heater_overtemp",
+      "difficulty": "easy",
+      "compiles": null,
+      "verified": true,
+      "n_props": 3,
+      "n_props_pass": 3,
+      "scenarios_total": 2,
+      "scenarios_pass": 2,
+      "error": ""
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "difficulty": "hard",
+      "compiles": null,
+      "verified": true,
+      "n_props": 4,
+      "n_props_pass": 4,
+      "scenarios_total": 1,
+      "scenarios_pass": 1,
+      "error": ""
+    },
+    {
+      "task_id": "H02_elevator_door_interlock",
+      "difficulty": "hard",
+      "compiles": null,
+      "verified": true,
+      "n_props": 4,
+      "n_props_pass": 4,
+      "scenarios_total": 3,
+      "scenarios_pass": 3,
+      "error": ""
+    },
+    {
+      "task_id": "H03_batch_reactor_sequence",
+      "difficulty": "hard",
+      "compiles": null,
+      "verified": true,
+      "n_props": 5,
+      "n_props_pass": 5,
+      "scenarios_total": 3,
+      "scenarios_pass": 3,
+      "error": ""
+    },
+    {
+      "task_id": "M01_motor_startup_delay",
+      "difficulty": "medium",
+      "compiles": null,
+      "verified": true,
+      "n_props": 2,
+      "n_props_pass": 2,
+      "scenarios_total": 3,
+      "scenarios_pass": 3,
+      "error": ""
+    },
+    {
+      "task_id": "M02_star_delta_starter",
+      "difficulty": "medium",
+      "compiles": null,
+      "verified": true,
+      "n_props": 4,
+      "n_props_pass": 4,
+      "scenarios_total": 3,
+      "scenarios_pass": 3,
+      "error": ""
+    },
+    {
+      "task_id": "M03_pedestrian_crossing",
+      "difficulty": "medium",
+      "compiles": null,
+      "verified": true,
+      "n_props": 4,
+      "n_props_pass": 4,
+      "scenarios_total": 2,
+      "scenarios_pass": 2,
+      "error": ""
+    },
+    {
+      "task_id": "M04_tank_fill_drain_cycle",
+      "difficulty": "medium",
+      "compiles": null,
+      "verified": true,
+      "n_props": 4,
+      "n_props_pass": 4,
+      "scenarios_total": 3,
+      "scenarios_pass": 3,
+      "error": ""
+    },
+    {
+      "task_id": "M05_conveyor_sequence",
+      "difficulty": "medium",
+      "compiles": null,
+      "verified": true,
+      "n_props": 3,
+      "n_props_pass": 3,
+      "scenarios_total": 3,
+      "scenarios_pass": 3,
+      "error": ""
+    },
+    {
+      "task_id": "M06_burner_purge_sequence",
+      "difficulty": "medium",
+      "compiles": null,
+      "verified": true,
+      "n_props": 4,
+      "n_props_pass": 4,
+      "scenarios_total": 2,
+      "scenarios_pass": 2,
+      "error": ""
+    },
+    {
+      "task_id": "M07_two_hand_control",
+      "difficulty": "medium",
+      "compiles": null,
+      "verified": true,
+      "n_props": 2,
+      "n_props_pass": 2,
+      "scenarios_total": 2,
+      "scenarios_pass": 2,
+      "error": ""
+    },
+    {
+      "task_id": "M08_pump_alternation",
+      "difficulty": "medium",
+      "compiles": null,
+      "verified": true,
+      "n_props": 3,
+      "n_props_pass": 3,
+      "scenarios_total": 2,
+      "scenarios_pass": 2,
+      "error": ""
+    },
+    {
+      "task_id": "M09_gate_limits_obstruction",
+      "difficulty": "medium",
+      "compiles": null,
+      "verified": true,
+      "n_props": 4,
+      "n_props_pass": 4,
+      "scenarios_total": 3,
+      "scenarios_pass": 3,
+      "error": ""
+    }
+  ]
+}

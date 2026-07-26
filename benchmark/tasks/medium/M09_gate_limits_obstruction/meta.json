@@ -1,0 +1,41 @@
+{
+  "id": "M09_gate_limits_obstruction",
+  "title": "Motorized gate with end limits and obstruction protection",
+  "difficulty": "medium",
+  "domain": "machine safety",
+  "nl_spec": "A motorized gate is driven open or closed by two motor outputs (MotorOpen, MotorClose). It is commanded by OpenCmd and CloseCmd and has end limit switches OpenLimit (fully open) and CloseLimit (fully closed). An Obstruction sensor detects something in the gate path. Implement as a state machine: 0 = Idle, 1 = Opening, 2 = Closing. From Idle, OpenCmd starts Opening (unless already fully open); CloseCmd starts Closing (unless already fully closed or obstructed). Opening stops (returns to Idle) at OpenLimit; Closing stops at CloseLimit. SAFETY-CRITICAL: the gate must never close while an obstruction is present (stop immediately if obstructed while closing, and never start closing when obstructed); the two motor outputs must never be energized together; and the motor must not drive past an end limit. Use an internal INT State (0..2). Write an IEC 61131-3 Structured Text PROGRAM named gate with inputs OpenCmd, CloseCmd, OpenLimit, CloseLimit, Obstruction and outputs MotorOpen, MotorClose.",
+  "interface": [
+    {"name": "OpenCmd", "type": "BOOL", "direction": "input", "description": "Open command"},
+    {"name": "CloseCmd", "type": "BOOL", "direction": "input", "description": "Close command"},
+    {"name": "OpenLimit", "type": "BOOL", "direction": "input", "description": "Fully-open limit switch"},
+    {"name": "CloseLimit", "type": "BOOL", "direction": "input", "description": "Fully-closed limit switch"},
+    {"name": "Obstruction", "type": "BOOL", "direction": "input", "description": "Obstruction detected in path"},
+    {"name": "MotorOpen", "type": "BOOL", "direction": "output", "description": "Drive gate open"},
+    {"name": "MotorClose", "type": "BOOL", "direction": "output", "description": "Drive gate closed"},
+    {"name": "State", "type": "INT", "direction": "internal", "description": "0=Idle,1=Opening,2=Closing", "range": [0, 2]}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "The two motor outputs are never energized together.", "ltl": "G(!(MotorOpen & MotorClose))"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "The gate never drives closed while an obstruction is present.", "ltl": "G(Obstruction -> !MotorClose)"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "The gate never drives open past the open limit.", "ltl": "G(OpenLimit -> !MotorOpen)"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "The gate never drives closed past the close limit.", "ltl": "G(CloseLimit -> !MotorClose)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Open until the open limit",
+     "steps": [
+       {"inputs": {"OpenCmd": true, "CloseCmd": false, "OpenLimit": false, "CloseLimit": false, "Obstruction": false}, "expect": {"MotorOpen": true, "MotorClose": false}},
+       {"inputs": {"OpenCmd": false, "CloseCmd": false, "OpenLimit": true, "CloseLimit": false, "Obstruction": false}, "expect": {"MotorOpen": false, "MotorClose": false}}
+     ]},
+    {"id": "S2", "description": "Closing stops on obstruction",
+     "steps": [
+       {"inputs": {"OpenCmd": false, "CloseCmd": true, "OpenLimit": false, "CloseLimit": false, "Obstruction": false}, "expect": {"MotorOpen": false, "MotorClose": true}},
+       {"inputs": {"OpenCmd": false, "CloseCmd": true, "OpenLimit": false, "CloseLimit": false, "Obstruction": true}, "expect": {"MotorClose": false}}
+     ]},
+    {"id": "S3", "description": "Will not start closing while obstructed",
+     "steps": [
+       {"inputs": {"OpenCmd": false, "CloseCmd": true, "OpenLimit": false, "CloseLimit": false, "Obstruction": true}, "expect": {"MotorClose": false}}
+     ]}
+  ],
+  "tags": ["state-machine", "CASE", "limit-switch", "obstruction", "interlock"],
+  "notes": "Obstruction-while-closing forces Idle (pre-CASE guard); closing cannot be entered when obstructed; one-hot motor outputs; limits end motion."
+}

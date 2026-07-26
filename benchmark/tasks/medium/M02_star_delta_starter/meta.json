@@ -1,0 +1,43 @@
+{
+  "id": "M02_star_delta_starter",
+  "title": "Star-delta motor starter (timed state machine)",
+  "difficulty": "medium",
+  "domain": "motor control",
+  "nl_spec": "Implement a star-delta starter as a state machine with three states: 0 = Off, 1 = Star, 2 = Delta. On StartPB (when healthy) enter Star: energize the main contactor (MainK) and star contactor (StarK). After the motor has run in star for PT_STAR = 3 scan ticks, transition to Delta: de-energize StarK and energize the delta contactor (DeltaK); MainK stays on. StopPB or an activated emergency stop (EStop normally-closed: TRUE = healthy, FALSE = activated) returns to Off and de-energizes everything. SAFETY-CRITICAL: the star and delta contactors must NEVER be energized simultaneously. Use an internal INT State (0..2) and a TON timer. Write an IEC 61131-3 Structured Text PROGRAM named star_delta with inputs StartPB, StopPB, EStop and outputs MainK, StarK, DeltaK.",
+  "interface": [
+    {"name": "StartPB", "type": "BOOL", "direction": "input", "description": "Momentary start pushbutton"},
+    {"name": "StopPB", "type": "BOOL", "direction": "input", "description": "Momentary stop pushbutton"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "MainK", "type": "BOOL", "direction": "output", "description": "Main contactor"},
+    {"name": "StarK", "type": "BOOL", "direction": "output", "description": "Star contactor"},
+    {"name": "DeltaK", "type": "BOOL", "direction": "output", "description": "Delta contactor"},
+    {"name": "State", "type": "INT", "direction": "internal", "description": "0=Off,1=Star,2=Delta", "range": [0, 2]}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "The star and delta contactors are never energized at the same time.", "ltl": "G(!(StarK & DeltaK))"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "When the emergency stop is activated, all contactors are de-energized.", "ltl": "G(!EStop -> (!MainK & !StarK & !DeltaK))"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "Whenever stop is pressed, all contactors are de-energized.", "ltl": "G(StopPB -> (!MainK & !StarK & !DeltaK))"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "A star or delta contactor is only energized while the main contactor is energized.", "ltl": "G((StarK | DeltaK) -> MainK)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Start in star, transition to delta after 3 ticks",
+     "steps": [
+       {"inputs": {"StartPB": true, "StopPB": false, "EStop": true}, "expect": {"MainK": true, "StarK": true, "DeltaK": false}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": true}, "expect": {"MainK": true, "StarK": true, "DeltaK": false}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": true}, "expect": {"MainK": true, "StarK": true, "DeltaK": false}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": true}, "expect": {"MainK": true, "StarK": false, "DeltaK": true}}
+     ]},
+    {"id": "S2", "description": "Stop returns to off",
+     "steps": [
+       {"inputs": {"StartPB": true, "StopPB": false, "EStop": true}, "expect": {"StarK": true}},
+       {"inputs": {"StartPB": false, "StopPB": true, "EStop": true}, "expect": {"MainK": false, "StarK": false, "DeltaK": false}}
+     ]},
+    {"id": "S3", "description": "Emergency stop de-energizes everything",
+     "steps": [
+       {"inputs": {"StartPB": true, "StopPB": false, "EStop": true}, "expect": {"StarK": true}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": false}, "expect": {"MainK": false, "StarK": false, "DeltaK": false}}
+     ]}
+  ],
+  "tags": ["state-machine", "CASE", "timer", "TON", "interlock", "star-delta"],
+  "notes": "Timed CASE state machine with a contactor interlock. Timer gated by (State=1) at top level; transitions in a nested CASE; outputs derived from State."
+}

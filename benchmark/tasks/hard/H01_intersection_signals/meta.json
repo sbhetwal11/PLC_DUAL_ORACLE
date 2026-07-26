@@ -1,0 +1,33 @@
+{
+  "id": "H01_intersection_signals",
+  "title": "Four-way intersection signal controller (two directions)",
+  "difficulty": "hard",
+  "domain": "traffic control",
+  "nl_spec": "Control a two-direction (North-South and East-West) traffic intersection with a six-phase cycle: 0 = NS green / EW red, 1 = NS yellow / EW red, 2 = all-red clearance, 3 = EW green / NS red, 4 = EW yellow / NS red, 5 = all-red clearance, then repeat. Green lasts PT_GREEN = 2 ticks, yellow PT_YELLOW = 1 tick, all-red PT_ALLRED = 1 tick. Each direction has green/yellow/red outputs. Use an internal INT State (0..5) and three TON timers (green, yellow, all-red) gated by the relevant states. SAFETY-CRITICAL: the two directions must never both show a movement aspect (green or yellow) at the same time; when one direction may move, the cross direction must be red. Write an IEC 61131-3 Structured Text PROGRAM named intersection with outputs NS_G, NS_Y, NS_R, EW_G, EW_Y, EW_R (no inputs; it free-runs).",
+  "interface": [
+    {"name": "NS_G", "type": "BOOL", "direction": "output", "description": "North-South green"},
+    {"name": "NS_Y", "type": "BOOL", "direction": "output", "description": "North-South yellow"},
+    {"name": "NS_R", "type": "BOOL", "direction": "output", "description": "North-South red"},
+    {"name": "EW_G", "type": "BOOL", "direction": "output", "description": "East-West green"},
+    {"name": "EW_Y", "type": "BOOL", "direction": "output", "description": "East-West yellow"},
+    {"name": "EW_R", "type": "BOOL", "direction": "output", "description": "East-West red"},
+    {"name": "State", "type": "INT", "direction": "internal", "description": "phase 0..5", "range": [0, 5]}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "Both directions never show green at the same time.", "ltl": "G(!(NS_G & EW_G))"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "Conflicting movements never occur: the two directions never both show a movement aspect (green or yellow).", "ltl": "G(!((NS_G | NS_Y) & (EW_G | EW_Y)))"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "When NS may move (green or yellow), EW is red.", "ltl": "G((NS_G | NS_Y) -> EW_R)"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "When EW may move (green or yellow), NS is red.", "ltl": "G((EW_G | EW_Y) -> NS_R)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "NS green -> NS yellow -> all-red -> EW green",
+     "steps": [
+       {"inputs": {}, "expect": {"NS_G": true, "EW_R": true, "EW_G": false, "NS_R": false}},
+       {"inputs": {}, "expect": {"NS_Y": true, "EW_R": true, "NS_G": false}},
+       {"inputs": {}, "expect": {"NS_R": true, "EW_R": true, "NS_G": false, "EW_G": false}},
+       {"inputs": {}, "expect": {"EW_G": true, "NS_R": true, "EW_R": false}}
+     ]}
+  ],
+  "tags": ["state-machine", "CASE", "multi-timer", "TON", "mutual-exclusion", "traffic", "cross-conflict"],
+  "notes": "Six-phase free-running cycle with all-red clearance phases. Three timers gated by state sets (green: 0|3, yellow: 1|4, all-red: 2|5). The cross-conflict invariant P2 is the safety-critical property."
+}

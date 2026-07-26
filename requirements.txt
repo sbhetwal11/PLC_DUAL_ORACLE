@@ -1,0 +1,9 @@
+# Core (already present in the dev env, pinned loosely)
+pydantic>=2.7
+pytest>=8.0
+
+# Phase C (LLM generation) — install on the 5090 box, not needed for harness/benchmark
+# transformers>=4.46
+# accelerate
+# peft
+# vllm

@@ -1,0 +1,9 @@
+# Phase-3 training deps -- install on the 5090 box (Blackwell: torch cu128).
+# pip install torch --index-url https://download.pytorch.org/whl/cu128
+transformers>=4.49
+trl>=0.12          # provides SFTTrainer (SFTConfig) and GRPOTrainer (GRPOConfig)
+peft>=0.13
+bitsandbytes>=0.44 # 4-bit QLoRA
+accelerate>=1.0
+datasets>=3.0
+# plus the harness deps (pydantic) and nuXmv/MATIEC for the RL reward + eval.

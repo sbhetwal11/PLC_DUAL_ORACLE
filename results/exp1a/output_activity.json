@@ -1,0 +1,65 @@
+{
+ "base": {
+  "n_samples": 220.0,
+  "n_parsed": 100.6667,
+  "scenario_pass_rate": 0.2015,
+  "activation_freq": 0.7728,
+  "alloff_equiv_frac": 0.2272,
+  "allon_equiv_frac": 0.0032,
+  "constant_output_frac": 0.2369
+ },
+ "sft": {
+  "n_samples": 220.0,
+  "n_parsed": 103.0,
+  "scenario_pass_rate": 0.2439,
+  "activation_freq": 0.9438,
+  "alloff_equiv_frac": 0.0562,
+  "allon_equiv_frac": 0.0,
+  "constant_output_frac": 0.0562
+ },
+ "rl": {
+  "n_samples": 220.0,
+  "n_parsed": 110.6667,
+  "scenario_pass_rate": 0.2455,
+  "activation_freq": 0.9425,
+  "alloff_equiv_frac": 0.0575,
+  "allon_equiv_frac": 0.0,
+  "constant_output_frac": 0.0606
+ },
+ "sftv2": {
+  "n_samples": 220.0,
+  "n_parsed": 104.0,
+  "scenario_pass_rate": 0.3727,
+  "activation_freq": 0.9751,
+  "alloff_equiv_frac": 0.0249,
+  "allon_equiv_frac": 0.0,
+  "constant_output_frac": 0.0249
+ },
+ "sftlite": {
+  "n_samples": 220.0,
+  "n_parsed": 127.3333,
+  "scenario_pass_rate": 0.2667,
+  "activation_freq": 0.8608,
+  "alloff_equiv_frac": 0.1339,
+  "allon_equiv_frac": 0.0027,
+  "constant_output_frac": 0.1477
+ },
+ "rllite": {
+  "n_samples": 220.0,
+  "n_parsed": 147.6667,
+  "scenario_pass_rate": 0.3076,
+  "activation_freq": 0.8412,
+  "alloff_equiv_frac": 0.1588,
+  "allon_equiv_frac": 0.0047,
+  "constant_output_frac": 0.1682
+ },
+ "sftzs": {
+  "n_samples": 220.0,
+  "n_parsed": 110.6667,
+  "scenario_pass_rate": 0.3076,
+  "activation_freq": 0.9873,
+  "alloff_equiv_frac": 0.0127,
+  "allon_equiv_frac": 0.0,
+  "constant_output_frac": 0.0127
+ }
+}

@@ -1,0 +1,55 @@
+REPO=/mnt/c/Users/ragas/Videos/claude/ResearchPaper2/PLCCodeGenResearch_5090/PLCCodeGenResearch
+NUXMV_BIN=/home/ragas/nuxmv/usr/local/bin/nuXmv
+MATIEC_IEC2C=/home/ragas/matiec/iec2c
+PYBIN=/home/ragas/plcvenv/bin/python
+----
+n=10 temp=0.8 tasks=22 models=['gemini:gemini-2.5-flash', 'openai:gpt-4o']
+==== gemini:gemini-2.5-flash ====
+  gemini:gemini-2.5-flash E01_motor_interlock: compile 2/10 inv 2/10 scen 3/10 TV 2/10 err 0 (22s)
+  gemini:gemini-2.5-flash E02_tank_overflow: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (21s)
+  gemini:gemini-2.5-flash E03_airlock_interlock: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (21s)
+  gemini:gemini-2.5-flash E04_conveyor_permissive: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (21s)
+  gemini:gemini-2.5-flash E05_alarm_latch: compile 5/10 inv 5/10 scen 7/10 TV 5/10 err 0 (22s)
+  gemini:gemini-2.5-flash E06_heater_overtemp: compile 5/10 inv 5/10 scen 10/10 TV 5/10 err 0 (17s)
+  gemini:gemini-2.5-flash E07_pump_dryrun_protection: compile 5/10 inv 5/10 scen 10/10 TV 5/10 err 0 (12s)
+  gemini:gemini-2.5-flash H01_intersection_signals: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (20s)
+  gemini:gemini-2.5-flash H02_elevator_door_interlock: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (21s)
+  gemini:gemini-2.5-flash H03_batch_reactor_sequence: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (21s)
+  gemini:gemini-2.5-flash H04_parking_garage_counter: compile 9/10 inv 3/10 scen 9/10 TV 3/10 err 0 (12s)
+  gemini:gemini-2.5-flash M01_motor_startup_delay: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (22s)
+  gemini:gemini-2.5-flash M02_star_delta_starter: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (22s)
+  gemini:gemini-2.5-flash M03_pedestrian_crossing: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (20s)
+  gemini:gemini-2.5-flash M04_tank_fill_drain_cycle: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (21s)
+  gemini:gemini-2.5-flash M05_conveyor_sequence: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (22s)
+  gemini:gemini-2.5-flash M06_burner_purge_sequence: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (21s)
+  gemini:gemini-2.5-flash M07_two_hand_control: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (22s)
+  gemini:gemini-2.5-flash M08_pump_alternation: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (21s)
+  gemini:gemini-2.5-flash M09_gate_limits_obstruction: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (21s)
+  gemini:gemini-2.5-flash M10_three_conveyor_start: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (21s)
+  gemini:gemini-2.5-flash M11_dosing_counter: compile 2/10 inv 2/10 scen 5/10 TV 2/10 err 0 (20s)
+DONE gemini:gemini-2.5-flash -> results/frontier_n10/gemini_gemini-2.5-flash.json
+==== openai:gpt-4o ====
+  openai:gpt-4o E01_motor_interlock: compile 1/10 inv 1/10 scen 4/10 TV 1/10 err 0 (6s)
+  openai:gpt-4o E02_tank_overflow: compile 0/10 inv 0/10 scen 1/10 TV 0/10 err 0 (6s)
+  openai:gpt-4o E03_airlock_interlock: compile 0/10 inv 0/10 scen 4/10 TV 0/10 err 0 (6s)
+  openai:gpt-4o E04_conveyor_permissive: compile 1/10 inv 1/10 scen 6/10 TV 1/10 err 0 (5s)
+  openai:gpt-4o E05_alarm_latch: compile 1/10 inv 1/10 scen 7/10 TV 1/10 err 0 (5s)
+  openai:gpt-4o E06_heater_overtemp: compile 6/10 inv 6/10 scen 10/10 TV 6/10 err 0 (5s)
+  openai:gpt-4o E07_pump_dryrun_protection: compile 2/10 inv 2/10 scen 10/10 TV 2/10 err 0 (5s)
+  openai:gpt-4o H01_intersection_signals: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (13s)
+  openai:gpt-4o H02_elevator_door_interlock: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (9s)
+  openai:gpt-4o H03_batch_reactor_sequence: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (26s)
+  openai:gpt-4o H04_parking_garage_counter: compile 1/10 inv 1/10 scen 4/10 TV 1/10 err 0 (12s)
+  openai:gpt-4o M01_motor_startup_delay: compile 0/10 inv 0/10 scen 1/10 TV 0/10 err 0 (10s)
+  openai:gpt-4o M02_star_delta_starter: compile 3/10 inv 0/10 scen 0/10 TV 0/10 err 0 (15s)
+  openai:gpt-4o M03_pedestrian_crossing: compile 1/10 inv 1/10 scen 0/10 TV 0/10 err 0 (17s)
+  openai:gpt-4o M04_tank_fill_drain_cycle: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (21s)
+  openai:gpt-4o M05_conveyor_sequence: compile 3/10 inv 0/10 scen 0/10 TV 0/10 err 0 (13s)
+  openai:gpt-4o M06_burner_purge_sequence: compile 1/10 inv 0/10 scen 0/10 TV 0/10 err 0 (28s)
+  openai:gpt-4o M07_two_hand_control: compile 0/10 inv 0/10 scen 2/10 TV 0/10 err 0 (6s)
+  openai:gpt-4o M08_pump_alternation: compile 0/10 inv 0/10 scen 5/10 TV 0/10 err 0 (15s)
+  openai:gpt-4o M09_gate_limits_obstruction: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 0 (23s)
+  openai:gpt-4o M10_three_conveyor_start: compile 3/10 inv 3/10 scen 1/10 TV 1/10 err 0 (9s)
+  openai:gpt-4o M11_dosing_counter: compile 8/10 inv 8/10 scen 8/10 TV 8/10 err 0 (13s)
+DONE openai:gpt-4o -> results/frontier_n10/openai_gpt-4o.json
+ALL DONE

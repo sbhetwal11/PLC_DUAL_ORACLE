@@ -1,0 +1,30 @@
+July-2026 compile-and-invariant panel bootstrap: B=20000, seed=0, tasks=22, n=10
+
+## per-model task-bootstrap 95% CIs
+  grok-3                 TV@1 0.677 CI [0.532,0.814]   TV@10 0.909 CI [0.773,1.000]
+  claude-sonnet-4-6      TV@1 0.555 CI [0.355,0.755]   TV@10 0.636 CI [0.455,0.818]
+  gpt-4o                 TV@1 0.109 CI [0.036,0.205]   TV@10 0.409 CI [0.227,0.636]
+  gemini-2.5-flash       TV@1 0.100 CI [0.032,0.182]   TV@10 0.273 CI [0.091,0.455]
+
+## paired task-bootstrap differences, TV@1 (A-B), 95% CI (6 unadjusted contrasts: exploratory)
+  grok-3 - claude-sonnet-4-6: +0.123 CI [-0.027,+0.286]  (includes 0)
+  grok-3 - gpt-4o: +0.568 CI [+0.386,+0.736]  (excludes 0)
+  grok-3 - gemini-2.5-flash: +0.577 CI [+0.441,+0.714]  (excludes 0)
+  claude-sonnet-4-6 - gpt-4o: +0.445 CI [+0.259,+0.636]  (excludes 0)
+  claude-sonnet-4-6 - gemini-2.5-flash: +0.455 CI [+0.282,+0.627]  (excludes 0)
+  gpt-4o - gemini-2.5-flash: +0.009 CI [-0.068,+0.091]  (includes 0)
+
+## hierarchical bootstrap (tasks, then completions), TV@1
+  grok-3                 CI [0.523,0.818]
+  claude-sonnet-4-6      CI [0.350,0.750]
+  gpt-4o                 CI [0.032,0.209]
+  gemini-2.5-flash       CI [0.027,0.186]
+
+## per-task compile-and-invariant counts (out of n=10)
+task       grok-3  claude-so     gpt-4o  gemini-2.
+E01            10         10          1          2
+E02             7          9          0          0
+E03            10         10          0          0
+E04             8         10          1          0
+E05             9         10          1          5
+E06             8         10          6          5

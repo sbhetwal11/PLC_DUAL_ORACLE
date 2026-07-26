@@ -1,0 +1,37 @@
+{
+  "id": "M08_pump_alternation",
+  "title": "Duty/standby pump alternation (lead rotation)",
+  "difficulty": "medium",
+  "domain": "process control",
+  "nl_spec": "Two pumps share a duty in a lead/standby arrangement. While there is a Demand (and the system is healthy), exactly one pump - the current lead pump - runs. Each time the demand ends, the lead role alternates to the other pump so wear is shared. Use an internal INT Lead (0 = pump 1 leads, 1 = pump 2 leads) and an internal BOOL PrevDemand to detect the end (falling edge) of demand. The emergency stop EStop is normally-closed (TRUE = healthy, FALSE = activated) and stops both pumps. SAFETY: the two pumps must never run at the same time, and a pump only runs while there is demand. Write an IEC 61131-3 Structured Text PROGRAM named pump_alt with inputs Demand, EStop and outputs Pump1, Pump2.",
+  "interface": [
+    {"name": "Demand", "type": "BOOL", "direction": "input", "description": "Run demand"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "Pump1", "type": "BOOL", "direction": "output", "description": "Pump 1"},
+    {"name": "Pump2", "type": "BOOL", "direction": "output", "description": "Pump 2"},
+    {"name": "Lead", "type": "INT", "direction": "internal", "description": "0=pump1 leads, 1=pump2 leads", "range": [0, 1]},
+    {"name": "PrevDemand", "type": "BOOL", "direction": "internal", "description": "Demand value last scan (edge detection)"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "The two pumps never run at the same time.", "ltl": "G(!(Pump1 & Pump2))"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "On emergency stop, both pumps are off.", "ltl": "G(!EStop -> (!Pump1 & !Pump2))"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "A pump only runs while there is demand.", "ltl": "G((Pump1 | Pump2) -> Demand)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Alternate lead on each demand cycle",
+     "steps": [
+       {"inputs": {"Demand": true, "EStop": true}, "expect": {"Pump1": true, "Pump2": false}},
+       {"inputs": {"Demand": false, "EStop": true}, "expect": {"Pump1": false, "Pump2": false}},
+       {"inputs": {"Demand": true, "EStop": true}, "expect": {"Pump1": false, "Pump2": true}},
+       {"inputs": {"Demand": false, "EStop": true}, "expect": {"Pump1": false, "Pump2": false}},
+       {"inputs": {"Demand": true, "EStop": true}, "expect": {"Pump1": true, "Pump2": false}}
+     ]},
+    {"id": "S2", "description": "Emergency stop stops both",
+     "steps": [
+       {"inputs": {"Demand": true, "EStop": true}, "expect": {"Pump1": true}},
+       {"inputs": {"Demand": true, "EStop": false}, "expect": {"Pump1": false, "Pump2": false}}
+     ]}
+  ],
+  "tags": ["state", "edge-detection", "alternation", "duty-standby", "interlock"],
+  "notes": "Lead read for outputs uses the pre-toggle (previous) value; lead toggles on the falling edge of Demand; PrevDemand updated last each scan."
+}

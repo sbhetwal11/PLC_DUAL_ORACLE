@@ -1,0 +1,40 @@
+{
+ "source": "results/exp7/{base,sft}_infer_s{0,1,2}.json  (best_of_k block)",
+ "k_cap": 10,
+ "per_condition": {
+  "base": {
+   "per_seed_mean_oracle_calls": {
+    "0": 9.227,
+    "1": 8.818,
+    "2": 9.045
+   },
+   "per_seed_success_rate": {
+    "0": 0.1818,
+    "1": 0.2273,
+    "2": 0.1818
+   },
+   "three_seed_mean_oracle_calls": 9.03,
+   "three_seed_sd_oracle_calls": 0.1673100913473744
+  },
+  "sft": {
+   "per_seed_mean_oracle_calls": {
+    "0": 7.682,
+    "1": 7.636,
+    "2": 7.636
+   },
+   "per_seed_success_rate": {
+    "0": 0.3636,
+    "1": 0.2727,
+    "2": 0.2727
+   },
+   "three_seed_mean_oracle_calls": 7.6513333333333335,
+   "three_seed_sd_oracle_calls": 0.021684607956387582
+  }
+ },
+ "cost_ratio_rl_single_vs_sft_bestof10": {
+  "formula": "1 / mean_sft_best_of_k_oracle_calls",
+  "value": 0.13069617495861288,
+  "mean_sft_calls": 7.6513333333333335,
+  "mean_base_calls": 9.03
+ }
+}

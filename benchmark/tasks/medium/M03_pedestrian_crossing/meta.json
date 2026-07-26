@@ -1,0 +1,43 @@
+{
+  "id": "M03_pedestrian_crossing",
+  "title": "Pedestrian crossing signal controller (timed phases)",
+  "difficulty": "medium",
+  "domain": "traffic control",
+  "nl_spec": "Control a road signal with a pedestrian crossing using a timed state machine with three states: 0 = cars green, 1 = cars yellow, 2 = cars red / pedestrian walk. In state 0 the car signal is green and the pedestrian sign shows don't-walk; the controller leaves green only after a minimum green time (PT_GREEN = 3 ticks) AND a pedestrian request (PedReq) is present, moving to yellow. Yellow lasts PT_YELLOW = 2 ticks, then to the walk phase. The walk phase (cars red, pedestrian walk) lasts PT_WALK = 3 ticks, then back to green. Use an internal INT State (0..2) and one TON timer per phase. SAFETY-CRITICAL: cars must never have green while pedestrians have walk, and only one car aspect may be lit at a time. Write an IEC 61131-3 Structured Text PROGRAM named ped_crossing with input PedReq and outputs CarGreen, CarYellow, CarRed, PedWalk.",
+  "interface": [
+    {"name": "PedReq", "type": "BOOL", "direction": "input", "description": "Pedestrian crossing request"},
+    {"name": "CarGreen", "type": "BOOL", "direction": "output", "description": "Car signal green"},
+    {"name": "CarYellow", "type": "BOOL", "direction": "output", "description": "Car signal yellow"},
+    {"name": "CarRed", "type": "BOOL", "direction": "output", "description": "Car signal red"},
+    {"name": "PedWalk", "type": "BOOL", "direction": "output", "description": "Pedestrian walk"},
+    {"name": "State", "type": "INT", "direction": "internal", "description": "0=green,1=yellow,2=walk", "range": [0, 2]}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "Cars never have green while pedestrians have walk.", "ltl": "G(!(CarGreen & PedWalk))"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "Pedestrian walk is only shown while the car signal is red.", "ltl": "G(PedWalk -> CarRed)"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "Car green and car yellow are never lit together.", "ltl": "G(!(CarGreen & CarYellow))"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "Car green and car red are never lit together.", "ltl": "G(!(CarGreen & CarRed))"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Full cycle with a standing pedestrian request",
+     "steps": [
+       {"inputs": {"PedReq": true}, "expect": {"CarGreen": true, "PedWalk": false}},
+       {"inputs": {"PedReq": true}, "expect": {"CarGreen": true}},
+       {"inputs": {"PedReq": true}, "expect": {"CarYellow": true, "CarGreen": false}},
+       {"inputs": {"PedReq": true}, "expect": {"CarYellow": true}},
+       {"inputs": {"PedReq": true}, "expect": {"CarRed": true, "PedWalk": true, "CarGreen": false}},
+       {"inputs": {"PedReq": true}, "expect": {"CarRed": true, "PedWalk": true}},
+       {"inputs": {"PedReq": true}, "expect": {"CarRed": true, "PedWalk": true}},
+       {"inputs": {"PedReq": true}, "expect": {"CarGreen": true, "PedWalk": false}}
+     ]},
+    {"id": "S2", "description": "No request: stays green indefinitely",
+     "steps": [
+       {"inputs": {"PedReq": false}, "expect": {"CarGreen": true}},
+       {"inputs": {"PedReq": false}, "expect": {"CarGreen": true}},
+       {"inputs": {"PedReq": false}, "expect": {"CarGreen": true}},
+       {"inputs": {"PedReq": false}, "expect": {"CarGreen": true}}
+     ]}
+  ],
+  "tags": ["state-machine", "CASE", "multi-timer", "TON", "mutual-exclusion", "traffic"],
+  "notes": "Three TON timers (one per phase) gated by state at top level. Minimum-green plus pedestrian-request gating before leaving green."
+}

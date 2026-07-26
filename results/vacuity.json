@@ -1,0 +1,582 @@
+{
+ "rows": [
+  [
+   "E01_motor_interlock",
+   "P1",
+   "guard->!out",
+   true,
+   false,
+   "G(!EStop -> !Motor)"
+  ],
+  [
+   "E01_motor_interlock",
+   "P2",
+   "guard->!out",
+   true,
+   false,
+   "G(Stop -> !Motor)"
+  ],
+  [
+   "E02_tank_overflow",
+   "P1",
+   "guard->!out",
+   true,
+   false,
+   "G(Level >= 90 -> !PumpIn)"
+  ],
+  [
+   "E02_tank_overflow",
+   "P2",
+   "positive-obligation",
+   false,
+   true,
+   "G(Level >= 90 -> ValveOut)"
+  ],
+  [
+   "E02_tank_overflow",
+   "P3",
+   "mutual-exclusion",
+   true,
+   false,
+   "G(!(PumpIn & ValveOut))"
+  ],
+  [
+   "E03_airlock_interlock",
+   "P1",
+   "mutual-exclusion",
+   true,
+   false,
+   "G(!(DoorA & DoorB))"
+  ],
+  [
+   "E03_airlock_interlock",
+   "P2",
+   "other",
+   true,
+   false,
+   "G(DoorA -> OpenA_Cmd)"
+  ],
+  [
+   "E03_airlock_interlock",
+   "P3",
+   "other",
+   true,
+   false,
+   "G(DoorB -> OpenB_Cmd)"
+  ],
+  [
+   "E04_conveyor_permissive",
+   "P1",
+   "guard->!out",
+   true,
+   false,
+   "G(!GuardClosed -> !Conveyor)"
+  ],
+  [
+   "E04_conveyor_permissive",
+   "P2",
+   "guard->!out",
+   true,
+   false,
+   "G(Fault -> !Conveyor)"
+  ],
+  [
+   "E04_conveyor_permissive",
+   "P3",
+   "guard->!out",
+   true,
+   false,
+   "G(StopPB -> !Conveyor)"
+  ],
+  [
+   "E05_alarm_latch",
+   "P1",
+   "positive-obligation",
+   false,
+   true,
+   "G(Trip -> Alarm)"
+  ],
+  [
+   "E05_alarm_latch",
+   "P2",
+   "other",
+   true,
+   false,
+   "G(Alarm -> X(Alarm | Reset))"
+  ],
+  [
+   "E06_heater_overtemp",
+   "P1",
+   "guard->!out",
+   true,
+   false,
+   "G(OverTemp -> !Heater)"
+  ],
+  [
+   "E06_heater_overtemp",
+   "P2",
+   "other",
+   true,
+   false,
+   "G(Heater -> Enable)"
+  ],
+  [
+   "E06_heater_overtemp",
+   "P3",
+   "other",
+   true,
+   false,
+   "G(Heater -> HeatRequest)"
+  ],
+  [
+   "E07_pump_dryrun_protection",
+   "P1",
+   "guard->!out",
+   true,
+   false,
+   "G(LowLevel -> !Pump)"
+  ],
+  [
+   "E07_pump_dryrun_protection",
+   "P2",
+   "other",
+   true,
+   false,
+   "G(Pump -> Demand)"
+  ],
+  [
+   "M01_motor_startup_delay",
+   "P1",
+   "guard->!out",
+   true,
+   false,
+   "G(!EStop -> !Motor)"
+  ],
+  [
+   "M01_motor_startup_delay",
+   "P2",
+   "other",
+   true,
+   false,
+   "G(Motor -> StartCmd)"
+  ],
+  [
+   "M02_star_delta_starter",
+   "P1",
+   "mutual-exclusion",
+   true,
+   false,
+   "G(!(StarK & DeltaK))"
+  ],
+  [
+   "M02_star_delta_starter",
+   "P2",
+   "guard->!out",
+   true,
+   false,
+   "G(!EStop -> (!MainK & !StarK & !DeltaK))"
+  ],
+  [
+   "M02_star_delta_starter",
+   "P3",
+   "guard->!out",
+   true,
+   false,
+   "G(StopPB -> (!MainK & !StarK & !DeltaK))"
+  ],
+  [
+   "M02_star_delta_starter",
+   "P4",
+   "other",
+   true,
+   false,
+   "G((StarK | DeltaK) -> MainK)"
+  ],
+  [
+   "M03_pedestrian_crossing",
+   "P1",
+   "mutual-exclusion",
+   true,
+   false,
+   "G(!(CarGreen & PedWalk))"
+  ],
+  [
+   "M03_pedestrian_crossing",
+   "P2",
+   "other",
+   true,
+   false,
+   "G(PedWalk -> CarRed)"
+  ],
+  [
+   "M03_pedestrian_crossing",
+   "P3",
+   "mutual-exclusion",
+   true,
+   false,
+   "G(!(CarGreen & CarYellow))"
+  ],
+  [
+   "M03_pedestrian_crossing",
+   "P4",
+   "mutual-exclusion",
+   true,
+   false,
+   "G(!(CarGreen & CarRed))"
+  ],
+  [
+   "M04_tank_fill_drain_cycle",
+   "P1",
+   "mutual-exclusion",
+   true,
+   false,
+   "G(!(Pump & Valve))"
+  ],
+  [
+   "M04_tank_fill_drain_cycle",
+   "P2",
+   "guard->!out",
+   true,
+   false,
+   "G(!EStop -> (!Pump & !Valve))"
+  ],
+  [
+   "M04_tank_fill_drain_cycle",
+   "P3",
+   "guard->!out",
+   true,
+   false,
+   "G(Level >= 90 -> !Pump)"
+  ],
+  [
+   "M04_tank_fill_drain_cycle",
+   "P4",
+   "guard->!out",
+   true,
+   false,
+   "G(Level <= 10 -> !Valve)"
+  ],
+  [
+   "M05_conveyor_sequence",
+   "P1",
+   "other",
+   true,
+   false,
+   "G(C1 -> C2)"
+  ],
+  [
+   "M05_conveyor_sequence",
+   "P2",
+   "guard->!out",
+   true,
+   false,
+   "G(!EStop -> (!C1 & !C2))"
+  ],
+  [
+   "M05_conveyor_sequence",
+   "P3",
+   "guard->!out",
+   true,
+   false,
+   "G(StopPB -> (!C1 & !C2))"
+  ],
+  [
+   "M06_burner_purge_sequence",
+   "P1",
+   "other",
+   true,
+   false,
+   "G(Fuel -> Fan)"
+  ],
+  [
+   "M06_burner_purge_sequence",
+   "P2",
+   "guard->!out",
+   true,
+   false,
+   "G(!EStop -> (!Fan & !Fuel & !Ignition))"
+  ],
+  [
+   "M06_burner_purge_sequence",
+   "P3",
+   "other",
+   true,
+   false,
+   "G(Ignition -> Fuel)"
+  ],
+  [
+   "M06_burner_purge_sequence",
+   "P4",
+   "guard->!out",
+   true,
+   false,
+   "G(StopPB -> (!Fan & !Fuel & !Ignition))"
+  ],
+  [
+   "M07_two_hand_control",
+   "P1",
+   "other",
+   true,
+   false,
+   "G(Actuator -> (LH & RH))"
+  ],
+  [
+   "M07_two_hand_control",
+   "P2",
+   "other",
+   true,
+   false,
+   "G(Actuator -> Armed)"
+  ],
+  [
+   "M08_pump_alternation",
+   "P1",
+   "mutual-exclusion",
+   true,
+   false,
+   "G(!(Pump1 & Pump2))"
+  ],
+  [
+   "M08_pump_alternation",
+   "P2",
+   "guard->!out",
+   true,
+   false,
+   "G(!EStop -> (!Pump1 & !Pump2))"
+  ],
+  [
+   "M08_pump_alternation",
+   "P3",
+   "other",
+   true,
+   false,
+   "G((Pump1 | Pump2) -> Demand)"
+  ],
+  [
+   "M09_gate_limits_obstruction",
+   "P1",
+   "mutual-exclusion",
+   true,
+   false,
+   "G(!(MotorOpen & MotorClose))"
+  ],
+  [
+   "M09_gate_limits_obstruction",
+   "P2",
+   "guard->!out",
+   true,
+   false,
+   "G(Obstruction -> !MotorClose)"
+  ],
+  [
+   "M09_gate_limits_obstruction",
+   "P3",
+   "guard->!out",
+   true,
+   false,
+   "G(OpenLimit -> !MotorOpen)"
+  ],
+  [
+   "M09_gate_limits_obstruction",
+   "P4",
+   "guard->!out",
+   true,
+   false,
+   "G(CloseLimit -> !MotorClose)"
+  ],
+  [
+   "M10_three_conveyor_start",
+   "P1",
+   "other",
+   true,
+   false,
+   "G(C1 -> C2)"
+  ],
+  [
+   "M10_three_conveyor_start",
+   "P2",
+   "other",
+   true,
+   false,
+   "G(C2 -> C3)"
+  ],
+  [
+   "M10_three_conveyor_start",
+   "P3",
+   "guard->!out",
+   true,
+   false,
+   "G(!EStop -> (!C1 & !C2 & !C3))"
+  ],
+  [
+   "M10_three_conveyor_start",
+   "P4",
+   "guard->!out",
+   true,
+   false,
+   "G(StopPB -> (!C1 & !C2 & !C3))"
+  ],
+  [
+   "M11_dosing_counter",
+   "P1",
+   "input-only",
+   true,
+   false,
+   "G(Count <= 3)"
+  ],
+  [
+   "M11_dosing_counter",
+   "P2",
+   "other",
+   true,
+   false,
+   "G(Done -> Count >= 3)"
+  ],
+  [
+   "H01_intersection_signals",
+   "P1",
+   "mutual-exclusion",
+   true,
+   false,
+   "G(!(NS_G & EW_G))"
+  ],
+  [
+   "H01_intersection_signals",
+   "P2",
+   "mutual-exclusion",
+   true,
+   false,
+   "G(!((NS_G | NS_Y) & (EW_G | EW_Y)))"
+  ],
+  [
+   "H01_intersection_signals",
+   "P3",
+   "other",
+   true,
+   false,
+   "G((NS_G | NS_Y) -> EW_R)"
+  ],
+  [
+   "H01_intersection_signals",
+   "P4",
+   "other",
+   true,
+   false,
+   "G((EW_G | EW_Y) -> NS_R)"
+  ],
+  [
+   "H02_elevator_door_interlock",
+   "P1",
+   "mutual-exclusion",
+   true,
+   false,
+   "G(!(MotorUp & MotorDown))"
+  ],
+  [
+   "H02_elevator_door_interlock",
+   "P2",
+   "guard->!out",
+   true,
+   false,
+   "G(!DoorClosed -> (!MotorUp & !MotorDown))"
+  ],
+  [
+   "H02_elevator_door_interlock",
+   "P3",
+   "guard->!out",
+   true,
+   false,
+   "G(AtTop -> !MotorUp)"
+  ],
+  [
+   "H02_elevator_door_interlock",
+   "P4",
+   "guard->!out",
+   true,
+   false,
+   "G(AtBottom -> !MotorDown)"
+  ],
+  [
+   "H03_batch_reactor_sequence",
+   "P1",
+   "mutual-exclusion",
+   true,
+   false,
+   "G(!(FillValve & DrainValve))"
+  ],
+  [
+   "H03_batch_reactor_sequence",
+   "P2",
+   "guard->!out",
+   true,
+   false,
+   "G(!EStop -> (!FillValve & !Heater & !Agitator & !DrainValve))"
+  ],
+  [
+   "H03_batch_reactor_sequence",
+   "P3",
+   "other",
+   true,
+   false,
+   "G(Heater -> Level >= 10)"
+  ],
+  [
+   "H03_batch_reactor_sequence",
+   "P4",
+   "other",
+   true,
+   false,
+   "G(Agitator -> Level >= 10)"
+  ],
+  [
+   "H03_batch_reactor_sequence",
+   "P5",
+   "guard->!out",
+   true,
+   false,
+   "G(DrainValve -> !Heater)"
+  ],
+  [
+   "H04_parking_garage_counter",
+   "P1",
+   "input-only",
+   true,
+   false,
+   "G(Count <= 3)"
+  ],
+  [
+   "H04_parking_garage_counter",
+   "P2",
+   "guard->!out",
+   true,
+   false,
+   "G(FullSign -> !EntryBarrierOpen)"
+  ],
+  [
+   "H04_parking_garage_counter",
+   "P3",
+   "other",
+   true,
+   false,
+   "G(FullSign -> Count >= 3)"
+  ],
+  [
+   "H04_parking_garage_counter",
+   "P4",
+   "other",
+   true,
+   false,
+   "G(EntryBarrierOpen -> EntryReq)"
+  ]
+ ],
+ "counts": {
+  "guard->!out": 30,
+  "vacuous_alloff": 69,
+  "positive-obligation": 2,
+  "nonvacuous_alloff": 2,
+  "positive_total": 2,
+  "mutual-exclusion": 13,
+  "other": 24,
+  "input-only": 2
+ }
+}

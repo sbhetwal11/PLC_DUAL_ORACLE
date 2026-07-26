@@ -1,0 +1,26 @@
+{
+  "id": "E02_tank_overflow",
+  "title": "Tank level control with overflow protection",
+  "difficulty": "easy",
+  "domain": "process control",
+  "nl_spec": "A storage tank has a measured level in percent (Level, 0..100). An inlet pump (PumpIn) fills the tank and an outlet valve (ValveOut) drains it. Maintain the level using hysteresis: turn the inlet pump ON when the level falls to or below the low limit (10%) and turn it OFF when the level rises to or above the high limit (90%). To prevent overflow, the outlet valve must open whenever the level is at or above the high limit. SAFETY: the inlet pump must never run while the level is at or above the high limit. Write an IEC 61131-3 Structured Text PROGRAM named tank_level with input Level and outputs PumpIn and ValveOut.",
+  "interface": [
+    {"name": "Level", "type": "INT", "direction": "input", "description": "Measured tank level in percent", "range": [0, 100]},
+    {"name": "PumpIn", "type": "BOOL", "direction": "output", "description": "Inlet pump"},
+    {"name": "ValveOut", "type": "BOOL", "direction": "output", "description": "Outlet drain valve"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "The inlet pump never runs when the level is at or above the high limit (overflow prevention).", "ltl": "G(Level >= 90 -> !PumpIn)"},
+    {"id": "P2", "kind": "safety", "severity": "high", "nl": "The outlet valve is open whenever the level is at or above the high limit.", "ltl": "G(Level >= 90 -> ValveOut)"},
+    {"id": "P3", "kind": "safety", "severity": "medium", "nl": "The inlet pump and outlet valve are never energized at the same time.", "ltl": "G(!(PumpIn & ValveOut))"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Fill below low, stop at high",
+     "steps": [
+       {"inputs": {"Level": 5}, "expect": {"PumpIn": true, "ValveOut": false}},
+       {"inputs": {"Level": 95}, "expect": {"PumpIn": false, "ValveOut": true}}
+     ]}
+  ],
+  "tags": ["hysteresis", "overflow", "process", "bounded-int"],
+  "notes": "Numeric INT input bounded to [0,100] so the property is finite-state model-checkable. High=90, Low=10 are constants in the reference."
+}

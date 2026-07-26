@@ -1,0 +1,2 @@
+composition {'total': 632, 'compile_pass': 492, 'invariant_pass': 103, 'scenario_pass': 240, 'dual_pass': 88, 'taskvalid_pass': 71, 'reject_total': 544, 'reject_compile_only': 15, 'reject_invariant_only': 404, 'reject_both': 125, 'reject_rate': 0.8608}
+sizes {'all': 632, 'matiec_only': 492, 'property_only': 103, 'dual': 88, 'random_sizematched': 88}

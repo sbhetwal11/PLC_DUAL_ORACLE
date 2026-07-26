@@ -1,0 +1,27 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights:   5%|▌         | 17/339 [00:00<00:02, 130.49it/s]Loading weights:   9%|▉         | 31/339 [00:00<00:02, 109.07it/s]Loading weights:  13%|█▎        | 43/339 [00:00<00:03, 93.13it/s] Loading weights:  16%|█▌        | 54/339 [00:00<00:03, 94.69it/s]Loading weights:  19%|█▉        | 64/339 [00:00<00:02, 94.82it/s]Loading weights:  22%|██▏       | 76/339 [00:00<00:02, 101.75it/s]Loading weights:  26%|██▌       | 87/339 [00:00<00:02, 97.42it/s] Loading weights:  29%|██▊       | 97/339 [00:01<00:02, 84.66it/s]Loading weights:  31%|███▏      | 106/339 [00:01<00:03, 74.23it/s]Loading weights:  34%|███▎      | 114/339 [00:01<00:03, 63.48it/s]Loading weights:  37%|███▋      | 124/339 [00:01<00:03, 66.03it/s]Loading weights:  40%|████      | 136/339 [00:01<00:02, 71.14it/s]Loading weights:  42%|████▏     | 144/339 [00:01<00:02, 68.53it/s]Loading weights:  45%|████▍     | 151/339 [00:01<00:03, 58.83it/s]Loading weights:  48%|████▊     | 162/339 [00:02<00:02, 64.41it/s]Loading weights:  51%|█████     | 173/339 [00:02<00:02, 72.12it/s]Loading weights:  55%|█████▍    | 186/339 [00:02<00:01, 79.51it/s]Loading weights:  58%|█████▊    | 196/339 [00:02<00:02, 63.36it/s]Loading weights:  62%|██████▏   | 210/339 [00:02<00:01, 69.66it/s]Loading weights:  65%|██████▍   | 219/339 [00:02<00:01, 71.69it/s]Loading weights:  68%|██████▊   | 232/339 [00:03<00:01, 77.04it/s]Loading weights:  72%|███████▏  | 244/339 [00:03<00:01, 83.24it/s]Loading weights:  76%|███████▌  | 256/339 [00:03<00:00, 87.65it/s]Loading weights:  78%|███████▊  | 266/339 [00:03<00:00, 79.65it/s]Loading weights:  82%|████████▏ | 278/339 [00:03<00:00, 82.55it/s]Loading weights:  85%|████████▍ | 287/339 [00:03<00:00, 83.61it/s]Loading weights:  88%|████████▊ | 298/339 [00:03<00:00, 89.79it/s]Loading weights:  91%|█████████ | 308/339 [00:03<00:00, 85.19it/s]Loading weights:  94%|█████████▍| 318/339 [00:04<00:00, 84.10it/s]Loading weights:  97%|█████████▋| 330/339 [00:04<00:00, 89.74it/s]Loading weights: 100%|██████████| 339/339 [00:04<00:00, 82.01it/s]
+  E01_motor_interlock            best-of-10=n(10) repair=n(5)
+  E02_tank_overflow              best-of-10=Y(1) repair=Y(1)
+  E03_airlock_interlock          best-of-10=n(10) repair=n(5)
+  E04_conveyor_permissive        best-of-10=Y(1) repair=Y(1)
+  E05_alarm_latch                best-of-10=n(10) repair=Y(2)
+  E06_heater_overtemp            best-of-10=Y(1) repair=Y(1)
+  E07_pump_dryrun_protection     best-of-10=Y(2) repair=Y(2)
+  H01_intersection_signals       best-of-10=n(10) repair=n(5)
+  H02_elevator_door_interlock    best-of-10=n(10) repair=n(5)
+  H03_batch_reactor_sequence     best-of-10=n(10) repair=n(5)
+  H04_parking_garage_counter     best-of-10=n(10) repair=n(5)
+  M01_motor_startup_delay        best-of-10=Y(1) repair=Y(3)
+  M02_star_delta_starter         best-of-10=n(10) repair=n(5)
+  M03_pedestrian_crossing        best-of-10=n(10) repair=n(5)
+  M04_tank_fill_drain_cycle      best-of-10=n(10) repair=n(5)
+  M05_conveyor_sequence          best-of-10=n(10) repair=n(5)
+  M06_burner_purge_sequence      best-of-10=n(10) repair=n(5)
+  M07_two_hand_control           best-of-10=n(10) repair=n(5)
+  M08_pump_alternation           best-of-10=n(10) repair=n(5)
+  M09_gate_limits_obstruction    best-of-10=n(10) repair=n(5)
+  M10_three_conveyor_start       best-of-10=n(10) repair=n(5)
+  M11_dosing_counter             best-of-10=Y(2) repair=n(5)
+best-of-k: {"success_rate": 0.2727, "mean_oracle_calls": 7.636, "total_oracle_calls": 168, "tasks": 22}
+repair   : {"success_rate": 0.2727, "mean_oracle_calls": 4.091, "total_oracle_calls": 90, "tasks": 22}
+wrote results/exp7/sft_infer_s2.json

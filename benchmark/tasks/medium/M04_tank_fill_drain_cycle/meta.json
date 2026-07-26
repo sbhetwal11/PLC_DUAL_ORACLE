@@ -1,0 +1,42 @@
+{
+  "id": "M04_tank_fill_drain_cycle",
+  "title": "Tank fill/drain batch cycle (level-driven state machine)",
+  "difficulty": "medium",
+  "domain": "process control",
+  "nl_spec": "A batch tank runs a fill/drain cycle as a state machine with three states: 0 = Idle, 1 = Filling, 2 = Draining. From Idle, pressing StartCycle begins Filling (inlet Pump on) ONLY if the tank is not already at/above the high level (HIGH = 90%). In Filling, when the level reaches HIGH, switch to Draining (Pump off, outlet Valve on). In Draining, when the level falls to/below the low level (LOW = 10%), return to Idle. The emergency stop EStop is normally-closed (TRUE = healthy, FALSE = activated) and forces Idle with everything off. SAFETY: the pump and valve must never both be on; the pump must never run at/above HIGH; the valve must never be open at/below LOW. Use an internal INT State (0..2). Write an IEC 61131-3 Structured Text PROGRAM named tank_cycle with inputs Level, StartCycle, EStop and outputs Pump, Valve.",
+  "interface": [
+    {"name": "Level", "type": "INT", "direction": "input", "description": "Tank level percent", "range": [0, 100]},
+    {"name": "StartCycle", "type": "BOOL", "direction": "input", "description": "Start batch cycle"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "Pump", "type": "BOOL", "direction": "output", "description": "Inlet pump"},
+    {"name": "Valve", "type": "BOOL", "direction": "output", "description": "Outlet drain valve"},
+    {"name": "State", "type": "INT", "direction": "internal", "description": "0=Idle,1=Filling,2=Draining", "range": [0, 2]}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "The pump and valve are never both energized.", "ltl": "G(!(Pump & Valve))"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "On emergency stop, the pump and valve are both off.", "ltl": "G(!EStop -> (!Pump & !Valve))"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "The inlet pump never runs at or above the high level.", "ltl": "G(Level >= 90 -> !Pump)"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "The outlet valve is never open at or below the low level.", "ltl": "G(Level <= 10 -> !Valve)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Idle -> Fill -> Drain -> Idle",
+     "steps": [
+       {"inputs": {"StartCycle": true, "Level": 20, "EStop": true}, "expect": {"Pump": true, "Valve": false}},
+       {"inputs": {"StartCycle": false, "Level": 50, "EStop": true}, "expect": {"Pump": true, "Valve": false}},
+       {"inputs": {"StartCycle": false, "Level": 95, "EStop": true}, "expect": {"Pump": false, "Valve": true}},
+       {"inputs": {"StartCycle": false, "Level": 50, "EStop": true}, "expect": {"Pump": false, "Valve": true}},
+       {"inputs": {"StartCycle": false, "Level": 5, "EStop": true}, "expect": {"Pump": false, "Valve": false}}
+     ]},
+    {"id": "S2", "description": "Emergency stop forces idle",
+     "steps": [
+       {"inputs": {"StartCycle": true, "Level": 20, "EStop": true}, "expect": {"Pump": true}},
+       {"inputs": {"StartCycle": false, "Level": 50, "EStop": false}, "expect": {"Pump": false, "Valve": false}}
+     ]},
+    {"id": "S3", "description": "Start with an already-full tank stays idle",
+     "steps": [
+       {"inputs": {"StartCycle": true, "Level": 95, "EStop": true}, "expect": {"Pump": false, "Valve": false}}
+     ]}
+  ],
+  "tags": ["state-machine", "CASE", "bounded-int", "process", "interlock"],
+  "notes": "Analog-level-driven state machine (no timer). Start gated on Level<HIGH to avoid filling an already-full tank (else P3 would fail on entry)."
+}

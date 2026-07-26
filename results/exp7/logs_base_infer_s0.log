@@ -1,0 +1,27 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]Loading weights:   2%|▏         | 6/339 [00:00<00:05, 57.88it/s]Loading weights:   8%|▊         | 28/339 [00:00<00:02, 150.76it/s]Loading weights:  13%|█▎        | 44/339 [00:00<00:01, 151.69it/s]Loading weights:  19%|█▉        | 64/339 [00:00<00:01, 158.79it/s]Loading weights:  25%|██▍       | 84/339 [00:00<00:01, 171.59it/s]Loading weights:  30%|███       | 102/339 [00:00<00:01, 150.26it/s]Loading weights:  37%|███▋      | 124/339 [00:00<00:01, 165.59it/s]Loading weights:  42%|████▏     | 141/339 [00:00<00:01, 154.49it/s]Loading weights:  47%|████▋     | 159/339 [00:01<00:01, 157.13it/s]Loading weights:  52%|█████▏    | 175/339 [00:01<00:01, 146.81it/s]Loading weights:  58%|█████▊    | 196/339 [00:01<00:00, 150.58it/s]Loading weights:  63%|██████▎   | 214/339 [00:01<00:00, 157.98it/s]Loading weights:  69%|██████▊   | 233/339 [00:01<00:00, 155.58it/s]Loading weights:  74%|███████▎  | 250/339 [00:01<00:00, 155.90it/s]Loading weights:  79%|███████▉  | 268/339 [00:01<00:00, 159.84it/s]Loading weights:  84%|████████▍ | 285/339 [00:01<00:00, 148.83it/s]Loading weights:  90%|████████▉ | 304/339 [00:01<00:00, 154.71it/s]Loading weights:  94%|█████████▍| 320/339 [00:02<00:00, 147.52it/s]Loading weights: 100%|█████████▉| 338/339 [00:02<00:00, 109.10it/s]Loading weights: 100%|██████████| 339/339 [00:02<00:00, 143.67it/s]
+  E01_motor_interlock            best-of-10=n(10) repair=Y(5)
+  E02_tank_overflow              best-of-10=n(10) repair=n(5)
+  E03_airlock_interlock          best-of-10=n(10) repair=n(5)
+  E04_conveyor_permissive        best-of-10=n(10) repair=n(5)
+  E05_alarm_latch                best-of-10=n(10) repair=n(5)
+  E06_heater_overtemp            best-of-10=Y(2) repair=Y(1)
+  E07_pump_dryrun_protection     best-of-10=Y(10) repair=Y(3)
+  H01_intersection_signals       best-of-10=n(10) repair=n(5)
+  H02_elevator_door_interlock    best-of-10=n(10) repair=n(5)
+  H03_batch_reactor_sequence     best-of-10=n(10) repair=n(5)
+  H04_parking_garage_counter     best-of-10=n(10) repair=n(5)
+  M01_motor_startup_delay        best-of-10=n(10) repair=n(5)
+  M02_star_delta_starter         best-of-10=n(10) repair=n(5)
+  M03_pedestrian_crossing        best-of-10=n(10) repair=n(5)
+  M04_tank_fill_drain_cycle      best-of-10=n(10) repair=n(5)
+  M05_conveyor_sequence          best-of-10=n(10) repair=n(5)
+  M06_burner_purge_sequence      best-of-10=n(10) repair=n(5)
+  M07_two_hand_control           best-of-10=Y(6) repair=n(5)
+  M08_pump_alternation           best-of-10=n(10) repair=n(5)
+  M09_gate_limits_obstruction    best-of-10=n(10) repair=n(5)
+  M10_three_conveyor_start       best-of-10=n(10) repair=n(5)
+  M11_dosing_counter             best-of-10=Y(5) repair=n(5)
+best-of-k: {"success_rate": 0.1818, "mean_oracle_calls": 9.227, "total_oracle_calls": 203, "tasks": 22}
+repair   : {"success_rate": 0.1364, "mean_oracle_calls": 4.727, "total_oracle_calls": 104, "tasks": 22}
+wrote results/exp7/base_infer_s0.json

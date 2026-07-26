@@ -1,0 +1,31 @@
+{
+  "id": "E06_heater_overtemp",
+  "title": "Heater control with over-temperature cutout",
+  "difficulty": "easy",
+  "domain": "process control",
+  "nl_spec": "A heater is energized when there is a heat demand (HeatRequest) and the system is enabled (Enable). An over-temperature sensor (OverTemp = TRUE when too hot) must unconditionally cut the heater off as a safety override, regardless of demand or enable. The heater is not latching: it follows demand each scan when safe. Write an IEC 61131-3 Structured Text PROGRAM named heater_ctrl with inputs HeatRequest, Enable, OverTemp and output Heater.",
+  "interface": [
+    {"name": "HeatRequest", "type": "BOOL", "direction": "input", "description": "Heat demand"},
+    {"name": "Enable", "type": "BOOL", "direction": "input", "description": "System enable"},
+    {"name": "OverTemp", "type": "BOOL", "direction": "input", "description": "Over-temperature (TRUE = too hot)"},
+    {"name": "Heater", "type": "BOOL", "direction": "output", "description": "Heater element"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "On over-temperature, the heater is always off.", "ltl": "G(OverTemp -> !Heater)"},
+    {"id": "P2", "kind": "safety", "severity": "high", "nl": "The heater is only on when the system is enabled.", "ltl": "G(Heater -> Enable)"},
+    {"id": "P3", "kind": "safety", "severity": "medium", "nl": "The heater is only on when there is a heat demand.", "ltl": "G(Heater -> HeatRequest)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Heat on demand, cut on over-temp",
+     "steps": [
+       {"inputs": {"HeatRequest": true, "Enable": true, "OverTemp": false}, "expect": {"Heater": true}},
+       {"inputs": {"HeatRequest": true, "Enable": true, "OverTemp": true}, "expect": {"Heater": false}}
+     ]},
+    {"id": "S2", "description": "No heat without enable",
+     "steps": [
+       {"inputs": {"HeatRequest": true, "Enable": false, "OverTemp": false}, "expect": {"Heater": false}}
+     ]}
+  ],
+  "tags": ["override", "safety-cutout", "combinational", "over-temperature"],
+  "notes": "Non-latching combinational control with a hard safety override; contrast with the latching tasks E01/E04/E05."
+}

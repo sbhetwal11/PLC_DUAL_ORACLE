@@ -1,0 +1,40 @@
+{
+  "id": "X04_vacuum_pumpdown_valves",
+  "title": "Vacuum pump-down with staged roughing / high-vacuum valves",
+  "difficulty": "easy",
+  "domain": "vacuum / process control",
+  "nl_spec": "A vacuum chamber is evacuated through two lines selected by chamber Pressure (in mbar, 1000 = atmosphere, 0 = high vacuum). While pumping down and Pressure is above the crossover P_CROSS = 100 (illustrative; real systems are pump-specific, often 1-10 mbar), the RoughValve (roughing line) is open. Once Pressure falls to P_CROSS or below, the RoughValve closes and the HiVacValve (high-vacuum/backing line) opens. (A real high-vacuum readiness interlock - e.g. proving foreline/backing pressure before committing to the high-vacuum line - is out of scope for this easy task.) The two pump valves must NEVER be open at the same time (cross-connection would backstream oil into the chamber). A VentCmd opens the VentValve to atmosphere, and while venting both pump valves are closed; the vent valve must never be open together with either pump valve. Pumping runs only while StartPump is TRUE. EStop is the emergency stop, normally-closed (TRUE = healthy, FALSE = activated); when activated all three valves close (isolate). Write an IEC 61131-3 Structured Text PROGRAM named vacuum_pumpdown with inputs Pressure, StartPump, VentCmd, EStop and outputs RoughValve, HiVacValve, VentValve.",
+  "interface": [
+    {"name": "Pressure", "type": "INT", "direction": "input", "description": "Chamber pressure in mbar (1000 = atm, 0 = high vacuum)", "range": [0, 1000]},
+    {"name": "StartPump", "type": "BOOL", "direction": "input", "description": "Pump-down request"},
+    {"name": "VentCmd", "type": "BOOL", "direction": "input", "description": "Vent-to-atmosphere request"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "RoughValve", "type": "BOOL", "direction": "output", "description": "Roughing-line valve"},
+    {"name": "HiVacValve", "type": "BOOL", "direction": "output", "description": "High-vacuum / backing valve"},
+    {"name": "VentValve", "type": "BOOL", "direction": "output", "description": "Vent-to-atmosphere valve"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "On emergency stop (EStop = FALSE), all valves are closed.", "ltl": "G(!EStop -> (!RoughValve & !HiVacValve & !VentValve))"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "The roughing and high-vacuum valves are never open at the same time (crossover protection).", "ltl": "G(!(RoughValve & HiVacValve))"},
+    {"id": "P3", "kind": "safety", "severity": "critical", "nl": "The vent valve is never open together with either pump valve.", "ltl": "G(VentValve -> (!RoughValve & !HiVacValve))"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "The high-vacuum valve only opens at or below the crossover pressure.", "ltl": "G(HiVacValve -> Pressure <= 100)"},
+    {"id": "P5", "kind": "safety", "severity": "medium", "nl": "Positive obligation: a healthy vent request drives the vent valve open.", "ltl": "G((EStop & VentCmd) -> VentValve)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Roughing above crossover, high-vacuum below",
+     "steps": [
+       {"inputs": {"Pressure": 800, "StartPump": true, "VentCmd": false, "EStop": true}, "expect": {"RoughValve": true, "HiVacValve": false, "VentValve": false}},
+       {"inputs": {"Pressure": 50, "StartPump": true, "VentCmd": false, "EStop": true}, "expect": {"RoughValve": false, "HiVacValve": true, "VentValve": false}}
+     ]},
+    {"id": "S2", "description": "Vent request opens only the vent valve",
+     "steps": [
+       {"inputs": {"Pressure": 800, "StartPump": true, "VentCmd": true, "EStop": true}, "expect": {"RoughValve": false, "HiVacValve": false, "VentValve": true}}
+     ]},
+    {"id": "S3", "description": "Emergency stop isolates (all valves closed)",
+     "steps": [
+       {"inputs": {"Pressure": 50, "StartPump": true, "VentCmd": false, "EStop": false}, "expect": {"RoughValve": false, "HiVacValve": false, "VentValve": false}}
+     ]}
+  ],
+  "tags": ["draft", "vacuum", "valve-lineup", "crossover-interlock", "positive-obligation"],
+  "notes": "DRAFT - pending expert PLC review. NEW FAMILY: staged evacuation valve-lineup with a crossover / cross-connection interlock. Primary structure is a pressure-region-selected valve line-up with a physical-cross-connection prohibition (rough vs high-vacuum) plus a vent isolation prohibition - not a two-output mutual-exclusion latch and not hysteresis. Combinational, no timer, no counter."
+}

@@ -1,0 +1,35 @@
+{
+  "id": "M11_dosing_counter",
+  "title": "Batch dosing with a dose counter",
+  "difficulty": "medium",
+  "domain": "process control",
+  "nl_spec": "A dosing station counts discrete doses. Each rising edge of Trigger (a dose-complete pulse) increments an internal dose Count, up to the batch target N = 3; the count must never exceed N. When Count reaches N, assert Done. A Reset input clears the count back to 0 (and Done clears). Use an internal INT Count (0..N) and an internal BOOL PrevTrigger for edge detection. Write an IEC 61131-3 Structured Text PROGRAM named dosing with inputs Trigger, Reset and output Done.",
+  "interface": [
+    {"name": "Trigger", "type": "BOOL", "direction": "input", "description": "Dose-complete pulse"},
+    {"name": "Reset", "type": "BOOL", "direction": "input", "description": "Clear the dose count"},
+    {"name": "Done", "type": "BOOL", "direction": "output", "description": "Batch target reached"},
+    {"name": "Count", "type": "INT", "direction": "internal", "description": "Doses counted", "range": [0, 3]},
+    {"name": "PrevTrigger", "type": "BOOL", "direction": "internal", "description": "Trigger last scan (edge detection)"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "The dose count never exceeds the target (no over-dosing).", "ltl": "G(Count <= 3)"},
+    {"id": "P2", "kind": "safety", "severity": "high", "nl": "Done is asserted only when the target has been reached.", "ltl": "G(Done -> Count >= 3)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Three dose pulses reach Done",
+     "steps": [
+       {"inputs": {"Trigger": true, "Reset": false}, "expect": {"Done": false}},
+       {"inputs": {"Trigger": false, "Reset": false}, "expect": {"Done": false}},
+       {"inputs": {"Trigger": true, "Reset": false}, "expect": {"Done": false}},
+       {"inputs": {"Trigger": false, "Reset": false}, "expect": {"Done": false}},
+       {"inputs": {"Trigger": true, "Reset": false}, "expect": {"Done": true}}
+     ]},
+    {"id": "S2", "description": "Reset clears the batch",
+     "steps": [
+       {"inputs": {"Trigger": true, "Reset": false}, "expect": {"Done": false}},
+       {"inputs": {"Trigger": false, "Reset": true}, "expect": {"Done": false}}
+     ]}
+  ],
+  "tags": ["counter", "edge-detection", "bounded-int", "batch"],
+  "notes": "Counter via guarded INT increment (Count < N), edge-detected on Trigger; tests bounded arithmetic in the verifier."
+}

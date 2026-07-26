@@ -1,0 +1,18 @@
+[02:19:12Z] ############ CRITICAL-GATED REWARD RL START ############
+[02:19:12Z] NUXMV_BIN=/home/user/nuxmv/nuXmv-2.2.0-linux64/usr/local/bin/nuXmv  MATIEC_IEC2C=/home/user/matiec/iec2c
+[02:19:12Z] RL frontier set = finetune/data/rl_prompts_taskvalid.jsonl (39 prompts); steps=50
+[02:19:12Z] START rlgated_sftlite_s0
+[03:02:08Z] OK    rlgated_sftlite_s0
+[03:02:09Z] START eval_rlgated_sftlite_s0
+[03:09:16Z] OK    eval_rlgated_sftlite_s0
+[03:09:16Z] START rlgated_sftlite_s1
+[03:56:07Z] OK    rlgated_sftlite_s1
+[03:56:07Z] START eval_rlgated_sftlite_s1
+[04:03:33Z] OK    eval_rlgated_sftlite_s1
+[04:03:33Z] START rlgated_sftlite_s2
+[04:47:13Z] OK    rlgated_sftlite_s2
+[04:47:13Z] START eval_rlgated_sftlite_s2
+[04:54:16Z] OK    eval_rlgated_sftlite_s2
+[04:54:16Z] AGGREGATE (task-valid)
+[04:54:16Z] ############ CRITICAL-GATED REWARD RL DONE ############
+[04:54:16Z] outputs: results/exp_gated/rlgated_sftlite_s{0 1 2}.json (+ metrics_*, gated_summary.json)

@@ -1,0 +1,49 @@
+[08:15:04Z] ===== EXP1a 7B inference sweep =====
+[08:15:04Z] skip base s0 (exists)
+[08:15:04Z] START sft s0
+[08:21:08Z] OK    sft s0  "taskvalid_pass@1": 0.1955
+[08:21:08Z] START rl s0
+[08:27:19Z] OK    rl s0  "taskvalid_pass@1": 0.1955
+[08:27:19Z] START sftv2 s0
+[08:33:08Z] OK    sftv2 s0  "taskvalid_pass@1": 0.3682
+[08:33:08Z] START sftlite s0
+[08:40:14Z] OK    sftlite s0  "taskvalid_pass@1": 0.1818
+[08:40:14Z] START rllite s0
+[08:46:57Z] OK    rllite s0  "taskvalid_pass@1": 0.2591
+[08:46:57Z] START rlbase s0
+[08:54:52Z] OK    rlbase s0  "taskvalid_pass@1": 0.0227
+[08:54:52Z] START sftzs s0
+[09:00:33Z] OK    sftzs s0  "taskvalid_pass@1": 0.2727
+[09:00:33Z] START base s1
+[09:04:39Z] OK    base s1  "taskvalid_pass@1": 0.0409
+[09:04:39Z] START sft s1
+[09:10:01Z] OK    sft s1  "taskvalid_pass@1": 0.1773
+[09:10:01Z] START rl s1
+[09:15:24Z] OK    rl s1  "taskvalid_pass@1": 0.1773
+[09:15:24Z] START sftv2 s1
+[09:20:38Z] OK    sftv2 s1  "taskvalid_pass@1": 0.3273
+[09:20:38Z] START sftlite s1
+[09:27:59Z] OK    sftlite s1  "taskvalid_pass@1": 0.1273
+[09:27:59Z] START rllite s1
+[09:34:28Z] OK    rllite s1  "taskvalid_pass@1": 0.2864
+[09:34:28Z] START rlbase s1
+[09:41:40Z] OK    rlbase s1  "taskvalid_pass@1": 0.0318
+[09:41:40Z] START sftzs s1
+[09:46:56Z] OK    sftzs s1  "taskvalid_pass@1": 0.2636
+[09:46:56Z] START base s2
+[09:51:32Z] OK    base s2  "taskvalid_pass@1": 0.05
+[09:51:32Z] START sft s2
+[09:57:37Z] OK    sft s2  "taskvalid_pass@1": 0.1864
+[09:57:37Z] START rl s2
+[10:03:37Z] OK    rl s2  "taskvalid_pass@1": 0.2182
+[10:03:37Z] START sftv2 s2
+[10:08:36Z] OK    sftv2 s2  "taskvalid_pass@1": 0.3909
+[10:08:36Z] START sftlite s2
+[10:15:15Z] OK    sftlite s2  "taskvalid_pass@1": 0.2136
+[10:15:15Z] START rllite s2
+[10:21:42Z] OK    rllite s2  "taskvalid_pass@1": 0.2636
+[10:21:42Z] START rlbase s2
+[10:28:55Z] OK    rlbase s2  "taskvalid_pass@1": 0.05
+[10:28:55Z] START sftzs s2
+[10:34:33Z] OK    sftzs s2  "taskvalid_pass@1": 0.3136
+[10:34:33Z] ===== EXP1a 7B DONE =====

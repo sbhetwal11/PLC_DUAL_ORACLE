@@ -1,0 +1,442 @@
+{
+  "metric": "T#1s boundary-dependence audit (analysis-only variant)",
+  "semantics": {
+    "standard": "Q asserts on PT-th continuous-IN scan",
+    "variant": "Q asserts on (PT+1)-th continuous-IN scan (delayed)"
+  },
+  "unit_test": {
+    "std_Q_seq_PT2_INheld": [
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    "var_Q_seq_PT2_INheld": [
+      0,
+      0,
+      1,
+      1,
+      1
+    ]
+  },
+  "nuxmv_timeout_s": 90,
+  "n_unique_units": 640,
+  "per_dataset": {
+    "exp1a": {
+      "n_samples": 548,
+      "parse_ok": 129,
+      "invariant_changes": 4,
+      "scenario_changes": 18,
+      "taskvalid_changes": 7,
+      "invariant_indeterminate": 470,
+      "scenario_indeterminate": 421
+    },
+    "exp1b": {
+      "n_samples": 34,
+      "parse_ok": 8,
+      "invariant_changes": 0,
+      "scenario_changes": 0,
+      "taskvalid_changes": 0,
+      "invariant_indeterminate": 34,
+      "scenario_indeterminate": 27
+    },
+    "frontier_n10": {
+      "n_samples": 32,
+      "parse_ok": 7,
+      "invariant_changes": 0,
+      "scenario_changes": 6,
+      "taskvalid_changes": 5,
+      "invariant_indeterminate": 27,
+      "scenario_indeterminate": 25
+    },
+    "frontier_n10_constrained": {
+      "n_samples": 51,
+      "parse_ok": 48,
+      "invariant_changes": 0,
+      "scenario_changes": 26,
+      "taskvalid_changes": 20,
+      "invariant_indeterminate": 8,
+      "scenario_indeterminate": 3
+    },
+    "H01_reference": {
+      "n_samples": 1,
+      "parse_ok": 1,
+      "invariant_changes": 0,
+      "scenario_changes": 1,
+      "taskvalid_changes": 1,
+      "invariant_indeterminate": 0,
+      "scenario_indeterminate": 0
+    }
+  },
+  "changed_units": [
+    {
+      "task_id": "E03_airlock_interlock",
+      "code_sha1": "efd647347bd0",
+      "inv_std": "error",
+      "inv_var": "error",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "E03_airlock_interlock",
+      "code_sha1": "e7b719a027f8",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "E03_airlock_interlock",
+      "code_sha1": "6c008ad2997b",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "E03_airlock_interlock",
+      "code_sha1": "a1172fe931e8",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "E03_airlock_interlock",
+      "code_sha1": "92af0a08e407",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "E03_airlock_interlock",
+      "code_sha1": "7f384a147172",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "E03_airlock_interlock",
+      "code_sha1": "7ed73343b4e6",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "E04_conveyor_permissive",
+      "code_sha1": "fca06ef5a3d0",
+      "inv_std": "error",
+      "inv_var": "error",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "E04_conveyor_permissive",
+      "code_sha1": "4f6b1a0492a9",
+      "inv_std": "error",
+      "inv_var": "error",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "E05_alarm_latch",
+      "code_sha1": "c6329341e9b2",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "E06_heater_overtemp",
+      "code_sha1": "1023d6c12787",
+      "inv_std": "pass",
+      "inv_var": "fail",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "E06_heater_overtemp",
+      "code_sha1": "b48e01b88b06",
+      "inv_std": "error",
+      "inv_var": "error",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "E06_heater_overtemp",
+      "code_sha1": "f7b70a1eb87c",
+      "inv_std": "pass",
+      "inv_var": "fail",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "E06_heater_overtemp",
+      "code_sha1": "1cf481deba98",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "E06_heater_overtemp",
+      "code_sha1": "644d23b29e0f",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "fail",
+      "scen_var": "pass"
+    },
+    {
+      "task_id": "E07_pump_dryrun_protection",
+      "code_sha1": "feacbaa02468",
+      "inv_std": "error",
+      "inv_var": "error",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "E07_pump_dryrun_protection",
+      "code_sha1": "9e952003424c",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "799e57d00eaf",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "4de462a75b04",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "dac63120e391",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "9f7a21bfad1c",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "e488acaf56f4",
+      "inv_std": "error",
+      "inv_var": "error",
+      "scen_std": "fail",
+      "scen_var": "pass"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "9dec4db9b307",
+      "inv_std": "error",
+      "inv_var": "error",
+      "scen_std": "fail",
+      "scen_var": "pass"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "a34942dce3c2",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "aa63583f947c",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "51e3444feda3",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "823ae8dc1f74",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "aad78098fade",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "6776d0a78312",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "6480d67d2979",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "8df290c9a407",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "47b992eb170d",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "aa4da5d64722",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "7683be3ecc37",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "376c94549f00",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "b43febfca136",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "33185f08ba4a",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H01_intersection_signals",
+      "code_sha1": "3a0d57165805",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "H02_elevator_door_interlock",
+      "code_sha1": "de1015d990a4",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "fail",
+      "scen_var": "pass"
+    },
+    {
+      "task_id": "H02_elevator_door_interlock",
+      "code_sha1": "68e1b5971123",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "fail",
+      "scen_var": "pass"
+    },
+    {
+      "task_id": "H02_elevator_door_interlock",
+      "code_sha1": "5166c446cf02",
+      "inv_std": "pass",
+      "inv_var": "fail",
+      "scen_std": "fail",
+      "scen_var": "pass"
+    },
+    {
+      "task_id": "M07_two_hand_control",
+      "code_sha1": "faa91da161f1",
+      "inv_std": "error",
+      "inv_var": "error",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "M07_two_hand_control",
+      "code_sha1": "0ac440494db5",
+      "inv_std": "pass",
+      "inv_var": "pass",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "M08_pump_alternation",
+      "code_sha1": "bf1132cb0d63",
+      "inv_std": "error",
+      "inv_var": "error",
+      "scen_std": "pass",
+      "scen_var": "fail"
+    },
+    {
+      "task_id": "M08_pump_alternation",
+      "code_sha1": "2ada8c31e3b8",
+      "inv_std": "error",
+      "inv_var": "error",
+      "scen_std": "fail",
+      "scen_var": "pass"
+    },
+    {
+      "task_id": "M08_pump_alternation",
+      "code_sha1": "8b4d2347ff98",
+      "inv_std": "pass",
+      "inv_var": "fail",
+      "scen_std": "fail",
+      "scen_var": "fail"
+    }
+  ]
+}

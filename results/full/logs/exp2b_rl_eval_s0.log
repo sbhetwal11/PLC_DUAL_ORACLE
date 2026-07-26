@@ -1,0 +1,32 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/579 [00:00<?, ?it/s]Loading weights:   0%|          | 1/579 [00:00<01:24,  6.81it/s]Loading weights:   0%|          | 2/579 [00:00<01:22,  6.97it/s]/home/user/plcvenv/lib/python3.12/site-packages/bitsandbytes/backends/cuda/ops.py:213: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+Loading weights:   3%|▎         | 16/579 [00:00<00:10, 54.23it/s]Loading weights:   7%|▋         | 40/579 [00:00<00:04, 112.60it/s]Loading weights:  11%|█         | 64/579 [00:00<00:03, 147.90it/s]Loading weights:  15%|█▌        | 88/579 [00:00<00:02, 169.93it/s]Loading weights:  19%|█▉        | 112/579 [00:00<00:02, 184.35it/s]Loading weights:  23%|██▎       | 136/579 [00:00<00:02, 194.04it/s]Loading weights:  28%|██▊       | 160/579 [00:01<00:02, 200.47it/s]Loading weights:  32%|███▏      | 184/579 [00:01<00:01, 204.43it/s]Loading weights:  36%|███▌      | 206/579 [00:01<00:01, 208.60it/s]Loading weights:  39%|███▉      | 228/579 [00:01<00:01, 205.54it/s]Loading weights:  43%|████▎     | 249/579 [00:01<00:01, 206.36it/s]Loading weights:  47%|████▋     | 270/579 [00:01<00:01, 201.27it/s]Loading weights:  51%|█████     | 294/579 [00:01<00:01, 205.35it/s]Loading weights:  55%|█████▍    | 318/579 [00:01<00:01, 208.21it/s]Loading weights:  59%|█████▉    | 342/579 [00:01<00:01, 210.10it/s]Loading weights:  63%|██████▎   | 366/579 [00:02<00:01, 211.50it/s]Loading weights:  67%|██████▋   | 390/579 [00:02<00:00, 212.49it/s]Loading weights:  72%|███████▏  | 414/579 [00:02<00:00, 213.10it/s]Loading weights:  76%|███████▌  | 438/579 [00:02<00:00, 213.53it/s]Loading weights:  80%|███████▉  | 462/579 [00:02<00:00, 213.85it/s]Loading weights:  84%|████████▍ | 486/579 [00:02<00:00, 214.07it/s]Loading weights:  88%|████████▊ | 510/579 [00:02<00:00, 213.86it/s]Loading weights:  92%|█████████▏| 534/579 [00:02<00:00, 213.17it/s]Loading weights:  96%|█████████▋| 558/579 [00:02<00:00, 212.39it/s]Loading weights: 100%|██████████| 579/579 [00:03<00:00, 191.81it/s]
+/home/user/plcvenv/lib/python3.12/site-packages/bitsandbytes/backends/cuda/ops.py:468: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+  E01_motor_interlock              [easy  ] verified 10/10
+  E02_tank_overflow                [easy  ] verified 10/10
+  E03_airlock_interlock            [easy  ] verified 10/10
+  E04_conveyor_permissive          [easy  ] verified 10/10
+  E05_alarm_latch                  [easy  ] verified 1/10
+  E06_heater_overtemp              [easy  ] verified 10/10
+  E07_pump_dryrun_protection       [easy  ] verified 10/10
+  H01_intersection_signals         [hard  ] verified 2/10
+  H02_elevator_door_interlock      [hard  ] verified 0/10
+  H03_batch_reactor_sequence       [hard  ] verified 0/10
+  H04_parking_garage_counter       [hard  ] verified 7/10
+  M01_motor_startup_delay          [medium] verified 0/10
+  M02_star_delta_starter           [medium] verified 0/10
+  M03_pedestrian_crossing          [medium] verified 0/10
+  M04_tank_fill_drain_cycle        [medium] verified 10/10
+  M05_conveyor_sequence            [medium] verified 0/10
+  M06_burner_purge_sequence        [medium] verified 0/10
+  M07_two_hand_control             [medium] verified 10/10
+  M08_pump_alternation             [medium] verified 1/10
+  M09_gate_limits_obstruction      [medium] verified 0/10
+  M10_three_conveyor_start         [medium] verified 0/10
+  M11_dosing_counter               [medium] verified 10/10
+
+SUMMARY: {"model": "hf:Qwen/Qwen2.5-Coder-14B-Instruct+finetune/out/full/rl_14b_s0", "n_samples": 10, "temperature": 0.8, "tasks": 22, "pass@1": 0.459, "pass@3": 0.506, "pass@5": 0.535, "pass@10": 0.591}
+BY TIER: {"easy": {"pass@1": 0.871, "pass@3": 0.9, "pass@5": 0.929, "pass@10": 1.0}, "medium": {"pass@1": 0.282, "pass@3": 0.3, "pass@5": 0.318, "pass@10": 0.364}, "hard": {"pass@1": 0.225, "pass@3": 0.381, "pass@5": 0.444, "pass@10": 0.5}}
+wrote results/full/rl_14b_s0.json

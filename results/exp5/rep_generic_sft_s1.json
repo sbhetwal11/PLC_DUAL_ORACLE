@@ -1,0 +1,136 @@
+{
+  "summary": {
+    "model": "hf:Qwen/Qwen2.5-Coder-7B-Instruct+finetune/out/exp/rep_generic_sft_s1",
+    "n_samples": 10,
+    "temperature": 0.8,
+    "tasks": 17,
+    "pass@1": 0.4647,
+    "pass@3": 0.7304,
+    "pass@5": 0.8352,
+    "pass@10": 0.9412
+  },
+  "by_tier": {
+    "easy": {
+      "pass@1": 0.65,
+      "pass@3": 0.8139,
+      "pass@5": 0.8327,
+      "pass@10": 0.8333
+    },
+    "hard": {
+      "pass@1": 0.35,
+      "pass@3": 0.7708,
+      "pass@5": 0.9464,
+      "pass@10": 1.0
+    },
+    "medium": {
+      "pass@1": 0.3667,
+      "pass@3": 0.6657,
+      "pass@5": 0.8122,
+      "pass@10": 1.0
+    }
+  },
+  "rows": [
+    {
+      "task_id": "E01_motor_interlock",
+      "difficulty": "easy",
+      "n": 10,
+      "c_verified": 6
+    },
+    {
+      "task_id": "E02_tank_overflow",
+      "difficulty": "easy",
+      "n": 10,
+      "c_verified": 9
+    },
+    {
+      "task_id": "E03_airlock_interlock",
+      "difficulty": "easy",
+      "n": 10,
+      "c_verified": 9
+    },
+    {
+      "task_id": "E04_conveyor_permissive",
+      "difficulty": "easy",
+      "n": 10,
+      "c_verified": 10
+    },
+    {
+      "task_id": "E06_heater_overtemp",
+      "difficulty": "easy",
+      "n": 10,
+      "c_verified": 5
+    },
+    {
+      "task_id": "E07_pump_dryrun_protection",
+      "difficulty": "easy",
+      "n": 10,
+      "c_verified": 0
+    },
+    {
+      "task_id": "H02_elevator_door_interlock",
+      "difficulty": "hard",
+      "n": 10,
+      "c_verified": 4
+    },
+    {
+      "task_id": "H03_batch_reactor_sequence",
+      "difficulty": "hard",
+      "n": 10,
+      "c_verified": 3
+    },
+    {
+      "task_id": "M01_motor_startup_delay",
+      "difficulty": "medium",
+      "n": 10,
+      "c_verified": 1
+    },
+    {
+      "task_id": "M02_star_delta_starter",
+      "difficulty": "medium",
+      "n": 10,
+      "c_verified": 1
+    },
+    {
+      "task_id": "M03_pedestrian_crossing",
+      "difficulty": "medium",
+      "n": 10,
+      "c_verified": 8
+    },
+    {
+      "task_id": "M04_tank_fill_drain_cycle",
+      "difficulty": "medium",
+      "n": 10,
+      "c_verified": 2
+    },
+    {
+      "task_id": "M05_conveyor_sequence",
+      "difficulty": "medium",
+      "n": 10,
+      "c_verified": 2
+    },
+    {
+      "task_id": "M06_burner_purge_sequence",
+      "difficulty": "medium",
+      "n": 10,
+      "c_verified": 6
+    },
+    {
+      "task_id": "M08_pump_alternation",
+      "difficulty": "medium",
+      "n": 10,
+      "c_verified": 7
+    },
+    {
+      "task_id": "M09_gate_limits_obstruction",
+      "difficulty": "medium",
+      "n": 10,
+      "c_verified": 4
+    },
+    {
+      "task_id": "M10_three_conveyor_start",
+      "difficulty": "medium",
+      "n": 10,
+      "c_verified": 2
+    }
+  ]
+}

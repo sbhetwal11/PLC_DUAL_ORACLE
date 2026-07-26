@@ -1,0 +1,26 @@
+{
+  "id": "E07_pump_dryrun_protection",
+  "title": "Pump with dry-run (low-level) protection",
+  "difficulty": "easy",
+  "domain": "process control",
+  "nl_spec": "A pump runs on Demand, but must never run when the supply level is too low (LowLevel = TRUE) to avoid dry-running and damaging the pump. The low-level condition is a hard override. The pump is not latching; it follows demand each scan when it is safe to run. Write an IEC 61131-3 Structured Text PROGRAM named pump_ctrl with inputs Demand, LowLevel and output Pump.",
+  "interface": [
+    {"name": "Demand", "type": "BOOL", "direction": "input", "description": "Run demand"},
+    {"name": "LowLevel", "type": "BOOL", "direction": "input", "description": "Supply level too low (TRUE = dry)"},
+    {"name": "Pump", "type": "BOOL", "direction": "output", "description": "Pump motor"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "The pump never runs when the level is too low (dry-run protection).", "ltl": "G(LowLevel -> !Pump)"},
+    {"id": "P2", "kind": "safety", "severity": "high", "nl": "The pump only runs on demand.", "ltl": "G(Pump -> Demand)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Runs on demand when wet; off when dry",
+     "steps": [
+       {"inputs": {"Demand": true, "LowLevel": false}, "expect": {"Pump": true}},
+       {"inputs": {"Demand": true, "LowLevel": true}, "expect": {"Pump": false}},
+       {"inputs": {"Demand": false, "LowLevel": false}, "expect": {"Pump": false}}
+     ]}
+  ],
+  "tags": ["override", "dry-run", "combinational", "process"],
+  "notes": "Combinational safety override; companion to E06 heater over-temp."
+}

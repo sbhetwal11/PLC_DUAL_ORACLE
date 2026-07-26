@@ -1,0 +1,28 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:  30%|██▉       | 101/338 [00:00<00:00, 989.79it/s]Loading weights:  72%|███████▏  | 244/338 [00:00<00:00, 1219.63it/s]Loading weights: 100%|██████████| 338/338 [00:00<00:00, 1263.59it/s]
+  E01_motor_interlock              [easy  ] verified 0/10
+  E02_tank_overflow                [easy  ] verified 0/10
+  E03_airlock_interlock            [easy  ] verified 9/10
+  E04_conveyor_permissive          [easy  ] verified 3/10
+  E05_alarm_latch                  [easy  ] verified 0/10
+  E06_heater_overtemp              [easy  ] verified 10/10
+  E07_pump_dryrun_protection       [easy  ] verified 10/10
+  H01_intersection_signals         [hard  ] verified 0/10
+  H02_elevator_door_interlock      [hard  ] verified 0/10
+  H03_batch_reactor_sequence       [hard  ] verified 0/10
+  H04_parking_garage_counter       [hard  ] verified 0/10
+  M01_motor_startup_delay          [medium] verified 8/10
+  M02_star_delta_starter           [medium] verified 2/10
+  M03_pedestrian_crossing          [medium] verified 4/10
+  M04_tank_fill_drain_cycle        [medium] verified 0/10
+  M05_conveyor_sequence            [medium] verified 0/10
+  M06_burner_purge_sequence        [medium] verified 6/10
+  M07_two_hand_control             [medium] verified 6/10
+  M08_pump_alternation             [medium] verified 0/10
+  M09_gate_limits_obstruction      [medium] verified 4/10
+  M10_three_conveyor_start         [medium] verified 0/10
+  M11_dosing_counter               [medium] verified 10/10
+
+SUMMARY: {"model": "hf:Qwen/Qwen2.5-Coder-1.5B-Instruct+finetune/out/full/sft_1p5b_s2", "n_samples": 10, "temperature": 0.8, "tasks": 22, "pass@1": 0.327, "pass@3": 0.447, "pass@5": 0.484, "pass@10": 0.5}
+BY TIER: {"easy": {"pass@1": 0.457, "pass@3": 0.53, "pass@5": 0.56, "pass@10": 0.571}, "medium": {"pass@1": 0.364, "pass@3": 0.558, "pass@5": 0.612, "pass@10": 0.636}, "hard": {"pass@1": 0.0, "pass@3": 0.0, "pass@5": 0.0, "pass@10": 0.0}}
+wrote results/full/sft_1p5b_s2.json

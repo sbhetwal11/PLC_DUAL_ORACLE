@@ -1,0 +1,286 @@
+{
+ "model": "hf:Qwen/Qwen2.5-Coder-7B-Instruct",
+ "seed": 2,
+ "k": 10,
+ "repair_rounds": 5,
+ "best_of_k": {
+  "success_rate": 0.1818,
+  "mean_oracle_calls": 9.045,
+  "total_oracle_calls": 199,
+  "tasks": 22,
+  "rows": [
+   {
+    "task_id": "E01_motor_interlock",
+    "difficulty": "easy",
+    "success": false,
+    "oracle_calls": 10
+   },
+   {
+    "task_id": "E02_tank_overflow",
+    "difficulty": "easy",
+    "success": false,
+    "oracle_calls": 10
+   },
+   {
+    "task_id": "E03_airlock_interlock",
+    "difficulty": "easy",
+    "success": false,
+    "oracle_calls": 10
+   },
+   {
+    "task_id": "E04_conveyor_permissive",
+    "difficulty": "easy",
+    "success": false,
+    "oracle_calls": 10
+   },
+   {
+    "task_id": "E05_alarm_latch",
+    "difficulty": "easy",
+    "success": true,
+    "oracle_calls": 6
+   },
+   {
+    "task_id": "E06_heater_overtemp",
+    "difficulty": "easy",
+    "success": true,
+    "oracle_calls": 4
+   },
+   {
+    "task_id": "E07_pump_dryrun_protection",
+    "difficulty": "easy",
+    "success": true,
+    "oracle_calls": 4
+   },
+   {
+    "task_id": "H01_intersection_signals",
+    "difficulty": "hard",
+    "success": false,
+    "oracle_calls": 10
+   },
+   {
+    "task_id": "H02_elevator_door_interlock",
+    "difficulty": "hard",
+    "success": false,
+    "oracle_calls": 10
+   },
+   {
+    "task_id": "H03_batch_reactor_sequence",
+    "difficulty": "hard",
+    "success": false,
+    "oracle_calls": 10
+   },
+   {
+    "task_id": "H04_parking_garage_counter",
+    "difficulty": "hard",
+    "success": true,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "M01_motor_startup_delay",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 10
+   },
+   {
+    "task_id": "M02_star_delta_starter",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 10
+   },
+   {
+    "task_id": "M03_pedestrian_crossing",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 10
+   },
+   {
+    "task_id": "M04_tank_fill_drain_cycle",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 10
+   },
+   {
+    "task_id": "M05_conveyor_sequence",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 10
+   },
+   {
+    "task_id": "M06_burner_purge_sequence",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 10
+   },
+   {
+    "task_id": "M07_two_hand_control",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 10
+   },
+   {
+    "task_id": "M08_pump_alternation",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 10
+   },
+   {
+    "task_id": "M09_gate_limits_obstruction",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 10
+   },
+   {
+    "task_id": "M10_three_conveyor_start",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 10
+   },
+   {
+    "task_id": "M11_dosing_counter",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 10
+   }
+  ]
+ },
+ "repair": {
+  "success_rate": 0.0909,
+  "mean_oracle_calls": 4.955,
+  "total_oracle_calls": 109,
+  "tasks": 22,
+  "rows": [
+   {
+    "task_id": "E01_motor_interlock",
+    "difficulty": "easy",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "E02_tank_overflow",
+    "difficulty": "easy",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "E03_airlock_interlock",
+    "difficulty": "easy",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "E04_conveyor_permissive",
+    "difficulty": "easy",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "E05_alarm_latch",
+    "difficulty": "easy",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "E06_heater_overtemp",
+    "difficulty": "easy",
+    "success": true,
+    "oracle_calls": 4
+   },
+   {
+    "task_id": "E07_pump_dryrun_protection",
+    "difficulty": "easy",
+    "success": true,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "H01_intersection_signals",
+    "difficulty": "hard",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "H02_elevator_door_interlock",
+    "difficulty": "hard",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "H03_batch_reactor_sequence",
+    "difficulty": "hard",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "H04_parking_garage_counter",
+    "difficulty": "hard",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "M01_motor_startup_delay",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "M02_star_delta_starter",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "M03_pedestrian_crossing",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "M04_tank_fill_drain_cycle",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "M05_conveyor_sequence",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "M06_burner_purge_sequence",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "M07_two_hand_control",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "M08_pump_alternation",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "M09_gate_limits_obstruction",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "M10_three_conveyor_start",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 5
+   },
+   {
+    "task_id": "M11_dosing_counter",
+    "difficulty": "medium",
+    "success": false,
+    "oracle_calls": 5
+   }
+  ]
+ }
+}

@@ -1,0 +1,2 @@
+rlgated_sftlite   verified: p1=0.411±0.008 [0.241,0.586] p10=0.651  taskvalid: p1=0.292±0.015 [0.136,0.450] p10=0.424
+wrote results/exp_gated/gated_summary.json

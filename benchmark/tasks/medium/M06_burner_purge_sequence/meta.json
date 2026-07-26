@@ -1,0 +1,42 @@
+{
+  "id": "M06_burner_purge_sequence",
+  "title": "Burner startup sequence with pre-purge and flame supervision",
+  "difficulty": "medium",
+  "domain": "combustion safety",
+  "nl_spec": "Implement a burner startup sequence as a state machine: 0 = Off, 1 = Pre-purge, 2 = Ignition trial, 3 = Run. On StartPB (when healthy) begin Pre-purge: run the combustion fan only for PT_PURGE = 3 ticks to clear unburned gas. Then enter the Ignition trial for PT_IGN = 2 ticks: fan on, fuel valve open, igniter on. At the end of the trial, if a flame is detected (Flame) go to Run (fan and fuel on, igniter off); otherwise return to Off (failed ignition). In Run, if the flame is lost, immediately return to Off. StopPB or an activated emergency stop (EStop normally-closed: TRUE = healthy, FALSE = activated) returns to Off with everything de-energized. SAFETY-CRITICAL: the fuel valve must never be open unless the fan is running, and the igniter is only on with fuel present. Use an internal INT State (0..3) and two TON timers. Write an IEC 61131-3 Structured Text PROGRAM named burner with inputs StartPB, StopPB, EStop, Flame and outputs Fan, Fuel, Ignition.",
+  "interface": [
+    {"name": "StartPB", "type": "BOOL", "direction": "input", "description": "Start pushbutton"},
+    {"name": "StopPB", "type": "BOOL", "direction": "input", "description": "Stop pushbutton"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "Flame", "type": "BOOL", "direction": "input", "description": "Flame detected"},
+    {"name": "Fan", "type": "BOOL", "direction": "output", "description": "Combustion fan"},
+    {"name": "Fuel", "type": "BOOL", "direction": "output", "description": "Fuel valve"},
+    {"name": "Ignition", "type": "BOOL", "direction": "output", "description": "Igniter"},
+    {"name": "State", "type": "INT", "direction": "internal", "description": "0=Off,1=Purge,2=Ignite,3=Run", "range": [0, 3]}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "The fuel valve is never open unless the fan is running (no fuel without airflow).", "ltl": "G(Fuel -> Fan)"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "On emergency stop, fan, fuel, and igniter are all de-energized.", "ltl": "G(!EStop -> (!Fan & !Fuel & !Ignition))"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "The igniter is only on while the fuel valve is open.", "ltl": "G(Ignition -> Fuel)"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "Whenever stop is pressed, everything is de-energized.", "ltl": "G(StopPB -> (!Fan & !Fuel & !Ignition))"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Purge, ignite, flame proven, run",
+     "steps": [
+       {"inputs": {"StartPB": true, "StopPB": false, "EStop": true, "Flame": false}, "expect": {"Fan": true, "Fuel": false, "Ignition": false}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": true, "Flame": false}, "expect": {"Fan": true, "Fuel": false}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": true, "Flame": false}, "expect": {"Fan": true, "Fuel": false}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": true, "Flame": false}, "expect": {"Fan": true, "Fuel": true, "Ignition": true}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": true, "Flame": false}, "expect": {"Fan": true, "Fuel": true, "Ignition": true}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": true, "Flame": true}, "expect": {"Fan": true, "Fuel": true, "Ignition": false}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": true, "Flame": true}, "expect": {"Fan": true, "Fuel": true, "Ignition": false}}
+     ]},
+    {"id": "S2", "description": "Emergency stop de-energizes everything",
+     "steps": [
+       {"inputs": {"StartPB": true, "StopPB": false, "EStop": true, "Flame": false}, "expect": {"Fan": true}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": false, "Flame": false}, "expect": {"Fan": false, "Fuel": false, "Ignition": false}}
+     ]}
+  ],
+  "tags": ["state-machine", "CASE", "multi-timer", "TON", "combustion-safety", "sequence"],
+  "notes": "Safety-critical startup sequence; pre-purge before fuel, flame supervision, fuel-requires-fan invariant. Two timers gated by state; nested IF inside the ignition state."
+}

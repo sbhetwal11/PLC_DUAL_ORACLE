@@ -1,0 +1,54 @@
+# internal working files, not part of the public artifact
+CLAUDE.md
+memory/
+README_INTERNAL.md
+PUBLIC_REPO_README.md
+docs/00_PROJECT_OVERVIEW.md
+docs/01_PROJECT_PLAN.md
+docs/02_LITERATURE_EVIDENCE.md
+docs/03_DECISIONS_LOG.md
+docs/04_NEXT_STEPS.md
+docs/05_VASTAI_SETUP.md
+docs/06_SCOPING_FINDINGS.md
+docs/08_*.md
+docs/09_RESUME_ON_5090.md
+docs/11_SESSION_LOG_5090.md
+docs/14_VM_PLAN.md
+docs/18_CAMERA_READY_CHECKLIST.md
+docs/source/
+Review*
+DeepReview*
+
+# manuscript sources are distributed via the journal, not this repo
+paper/
+
+# nuXmv is licensed academic/non-commercial and non-redistributable;
+# download the binary from https://nuxmv.fbk.eu
+toolchain/nuXmv.tar.gz
+toolchain/nuXmv.tar.xz
+toolchain/_wsl_diag.sh
+toolchain/_matiec_diag.sh
+
+# training outputs: only the released adapters are tracked (whitelisted)
+finetune/out/*
+!finetune/out/full/
+finetune/out/full/*
+!finetune/out/full/sftlite_s0/
+!finetune/out/full/sftlite_s1/
+!finetune/out/full/sftlite_s2/
+!finetune/out/gated/
+
+# python and build junk
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+build/
+*.smv.out
+*.aux
+*.bbl
+*.blg
+*.synctex.gz
+.claude/

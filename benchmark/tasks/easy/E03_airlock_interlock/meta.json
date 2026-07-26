@@ -1,0 +1,31 @@
+{
+  "id": "E03_airlock_interlock",
+  "title": "Two-door airlock mutual-exclusion interlock",
+  "difficulty": "easy",
+  "domain": "safety interlock",
+  "nl_spec": "An airlock has two doors, A and B. For containment, the two doors must NEVER be open at the same time. Each door has an open command (OpenA_Cmd, OpenB_Cmd). A door opens only while its open command is held AND the other door is currently closed; otherwise it stays closed. If both doors are commanded open simultaneously, door A has priority and door B stays closed. Write an IEC 61131-3 Structured Text PROGRAM named airlock with inputs OpenA_Cmd, OpenB_Cmd and outputs DoorA, DoorB (TRUE = open).",
+  "interface": [
+    {"name": "OpenA_Cmd", "type": "BOOL", "direction": "input", "description": "Request to open door A"},
+    {"name": "OpenB_Cmd", "type": "BOOL", "direction": "input", "description": "Request to open door B"},
+    {"name": "DoorA", "type": "BOOL", "direction": "output", "description": "Door A open"},
+    {"name": "DoorB", "type": "BOOL", "direction": "output", "description": "Door B open"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "The two doors are never open at the same time (containment).", "ltl": "G(!(DoorA & DoorB))"},
+    {"id": "P2", "kind": "safety", "severity": "high", "nl": "Door A is open only while its open command is held.", "ltl": "G(DoorA -> OpenA_Cmd)"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "Door B is open only while its open command is held.", "ltl": "G(DoorB -> OpenB_Cmd)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "A opens, B blocked while A open",
+     "steps": [
+       {"inputs": {"OpenA_Cmd": true, "OpenB_Cmd": false}, "expect": {"DoorA": true, "DoorB": false}},
+       {"inputs": {"OpenA_Cmd": true, "OpenB_Cmd": true}, "expect": {"DoorA": true, "DoorB": false}}
+     ]},
+    {"id": "S2", "description": "B opens when A closed",
+     "steps": [
+       {"inputs": {"OpenA_Cmd": false, "OpenB_Cmd": true}, "expect": {"DoorA": false, "DoorB": true}}
+     ]}
+  ],
+  "tags": ["interlock", "mutual-exclusion", "airlock", "priority"],
+  "notes": "Classic mutual-exclusion safety interlock. Reference evaluates door A first, then gates door B on the freshly-updated DoorA, guaranteeing exclusion within a scan."
+}

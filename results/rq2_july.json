@@ -1,0 +1,786 @@
+{
+ "metric": "RQ2 inflation: safety-only (ungated nuXmv) vs compile-and-invariant (dual oracle); scenarios excluded",
+ "window": "July 2026 (retained raw completions)",
+ "per_model": {
+  "grok-4.3(grok-3 slug)": {
+   "rows": [
+    {
+     "task_id": "E01_motor_interlock",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    },
+    {
+     "task_id": "E02_tank_overflow",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 7,
+     "c_verified_stored": 7
+    },
+    {
+     "task_id": "E03_airlock_interlock",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    },
+    {
+     "task_id": "E04_conveyor_permissive",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 8,
+     "c_ci": 8,
+     "c_verified_stored": 8
+    },
+    {
+     "task_id": "E05_alarm_latch",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 9,
+     "c_verified_stored": 9
+    },
+    {
+     "task_id": "E06_heater_overtemp",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 8,
+     "c_verified_stored": 8
+    },
+    {
+     "task_id": "E07_pump_dryrun_protection",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    },
+    {
+     "task_id": "H01_intersection_signals",
+     "difficulty": "hard",
+     "n": 10,
+     "c_safety": 5,
+     "c_ci": 5,
+     "c_verified_stored": 5
+    },
+    {
+     "task_id": "H02_elevator_door_interlock",
+     "difficulty": "hard",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    },
+    {
+     "task_id": "H03_batch_reactor_sequence",
+     "difficulty": "hard",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "H04_parking_garage_counter",
+     "difficulty": "hard",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    },
+    {
+     "task_id": "M01_motor_startup_delay",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    },
+    {
+     "task_id": "M02_star_delta_starter",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 5,
+     "c_ci": 4,
+     "c_verified_stored": 4
+    },
+    {
+     "task_id": "M03_pedestrian_crossing",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 1,
+     "c_ci": 1,
+     "c_verified_stored": 1
+    },
+    {
+     "task_id": "M04_tank_fill_drain_cycle",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    },
+    {
+     "task_id": "M05_conveyor_sequence",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 5,
+     "c_ci": 4,
+     "c_verified_stored": 4
+    },
+    {
+     "task_id": "M06_burner_purge_sequence",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 5,
+     "c_ci": 4,
+     "c_verified_stored": 4
+    },
+    {
+     "task_id": "M07_two_hand_control",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 6,
+     "c_ci": 6,
+     "c_verified_stored": 6
+    },
+    {
+     "task_id": "M08_pump_alternation",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 9,
+     "c_verified_stored": 9
+    },
+    {
+     "task_id": "M09_gate_limits_obstruction",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    },
+    {
+     "task_id": "M10_three_conveyor_start",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 1,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M11_dosing_counter",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 4,
+     "c_verified_stored": 4
+    }
+   ],
+   "safety_only_pass1": 0.7545454545454546,
+   "compile_invariant_pass1": 0.6772727272727272,
+   "abs_diff_pass1": 0.07727272727272738,
+   "ratio_pass1": 1.1140939597315438,
+   "safety_only_pass10": 0.9545454545454546,
+   "compile_invariant_pass10": 0.9090909090909091,
+   "abs_diff_pass10": 0.045454545454545525,
+   "compile_invariant_pass1_stored": 0.6772727272727272
+  },
+  "claude-sonnet-4-6": {
+   "rows": [
+    {
+     "task_id": "E01_motor_interlock",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    },
+    {
+     "task_id": "E02_tank_overflow",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 9,
+     "c_verified_stored": 9
+    },
+    {
+     "task_id": "E03_airlock_interlock",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    },
+    {
+     "task_id": "E04_conveyor_permissive",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    },
+    {
+     "task_id": "E05_alarm_latch",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    },
+    {
+     "task_id": "E06_heater_overtemp",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    },
+    {
+     "task_id": "E07_pump_dryrun_protection",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    },
+    {
+     "task_id": "H01_intersection_signals",
+     "difficulty": "hard",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "H02_elevator_door_interlock",
+     "difficulty": "hard",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    },
+    {
+     "task_id": "H03_batch_reactor_sequence",
+     "difficulty": "hard",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "H04_parking_garage_counter",
+     "difficulty": "hard",
+     "n": 10,
+     "c_safety": 9,
+     "c_ci": 9,
+     "c_verified_stored": 9
+    },
+    {
+     "task_id": "M01_motor_startup_delay",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M02_star_delta_starter",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 3,
+     "c_ci": 3,
+     "c_verified_stored": 3
+    },
+    {
+     "task_id": "M03_pedestrian_crossing",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M04_tank_fill_drain_cycle",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M05_conveyor_sequence",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 1,
+     "c_ci": 1,
+     "c_verified_stored": 1
+    },
+    {
+     "task_id": "M06_burner_purge_sequence",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M07_two_hand_control",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M08_pump_alternation",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    },
+    {
+     "task_id": "M09_gate_limits_obstruction",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    },
+    {
+     "task_id": "M10_three_conveyor_start",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M11_dosing_counter",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 10,
+     "c_verified_stored": 10
+    }
+   ],
+   "safety_only_pass1": 0.5590909090909091,
+   "compile_invariant_pass1": 0.5545454545454546,
+   "abs_diff_pass1": 0.004545454545454519,
+   "ratio_pass1": 1.0081967213114753,
+   "safety_only_pass10": 0.6363636363636364,
+   "compile_invariant_pass10": 0.6363636363636364,
+   "abs_diff_pass10": 0.0,
+   "compile_invariant_pass1_stored": 0.5545454545454546
+  },
+  "gemini-2.5-flash": {
+   "rows": [
+    {
+     "task_id": "E01_motor_interlock",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 3,
+     "c_ci": 2,
+     "c_verified_stored": 2
+    },
+    {
+     "task_id": "E02_tank_overflow",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "E03_airlock_interlock",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "E04_conveyor_permissive",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "E05_alarm_latch",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 7,
+     "c_ci": 5,
+     "c_verified_stored": 5
+    },
+    {
+     "task_id": "E06_heater_overtemp",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 5,
+     "c_verified_stored": 5
+    },
+    {
+     "task_id": "E07_pump_dryrun_protection",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 5,
+     "c_verified_stored": 5
+    },
+    {
+     "task_id": "H01_intersection_signals",
+     "difficulty": "hard",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "H02_elevator_door_interlock",
+     "difficulty": "hard",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "H03_batch_reactor_sequence",
+     "difficulty": "hard",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "H04_parking_garage_counter",
+     "difficulty": "hard",
+     "n": 10,
+     "c_safety": 3,
+     "c_ci": 3,
+     "c_verified_stored": 3
+    },
+    {
+     "task_id": "M01_motor_startup_delay",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M02_star_delta_starter",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M03_pedestrian_crossing",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M04_tank_fill_drain_cycle",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M05_conveyor_sequence",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M06_burner_purge_sequence",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M07_two_hand_control",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M08_pump_alternation",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M09_gate_limits_obstruction",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M10_three_conveyor_start",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M11_dosing_counter",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 5,
+     "c_ci": 2,
+     "c_verified_stored": 2
+    }
+   ],
+   "safety_only_pass1": 0.17272727272727273,
+   "compile_invariant_pass1": 0.1,
+   "abs_diff_pass1": 0.07272727272727272,
+   "ratio_pass1": 1.7272727272727273,
+   "safety_only_pass10": 0.2727272727272727,
+   "compile_invariant_pass10": 0.2727272727272727,
+   "abs_diff_pass10": 0.0,
+   "compile_invariant_pass1_stored": 0.1
+  },
+  "gpt-4o": {
+   "rows": [
+    {
+     "task_id": "E01_motor_interlock",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 4,
+     "c_ci": 1,
+     "c_verified_stored": 1
+    },
+    {
+     "task_id": "E02_tank_overflow",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "E03_airlock_interlock",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 3,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "E04_conveyor_permissive",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 5,
+     "c_ci": 1,
+     "c_verified_stored": 1
+    },
+    {
+     "task_id": "E05_alarm_latch",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 7,
+     "c_ci": 1,
+     "c_verified_stored": 1
+    },
+    {
+     "task_id": "E06_heater_overtemp",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 6,
+     "c_verified_stored": 6
+    },
+    {
+     "task_id": "E07_pump_dryrun_protection",
+     "difficulty": "easy",
+     "n": 10,
+     "c_safety": 10,
+     "c_ci": 2,
+     "c_verified_stored": 2
+    },
+    {
+     "task_id": "H01_intersection_signals",
+     "difficulty": "hard",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "H02_elevator_door_interlock",
+     "difficulty": "hard",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "H03_batch_reactor_sequence",
+     "difficulty": "hard",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "H04_parking_garage_counter",
+     "difficulty": "hard",
+     "n": 10,
+     "c_safety": 4,
+     "c_ci": 1,
+     "c_verified_stored": 1
+    },
+    {
+     "task_id": "M01_motor_startup_delay",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M02_star_delta_starter",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M03_pedestrian_crossing",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 1,
+     "c_ci": 1,
+     "c_verified_stored": 1
+    },
+    {
+     "task_id": "M04_tank_fill_drain_cycle",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M05_conveyor_sequence",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M06_burner_purge_sequence",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M07_two_hand_control",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 2,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M08_pump_alternation",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 5,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M09_gate_limits_obstruction",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 0,
+     "c_ci": 0,
+     "c_verified_stored": 0
+    },
+    {
+     "task_id": "M10_three_conveyor_start",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 6,
+     "c_ci": 3,
+     "c_verified_stored": 3
+    },
+    {
+     "task_id": "M11_dosing_counter",
+     "difficulty": "medium",
+     "n": 10,
+     "c_safety": 8,
+     "c_ci": 8,
+     "c_verified_stored": 8
+    }
+   ],
+   "safety_only_pass1": 0.29545454545454547,
+   "compile_invariant_pass1": 0.10909090909090909,
+   "abs_diff_pass1": 0.1863636363636364,
+   "ratio_pass1": 2.7083333333333335,
+   "safety_only_pass10": 0.5454545454545454,
+   "compile_invariant_pass10": 0.4090909090909091,
+   "abs_diff_pass10": 0.1363636363636363,
+   "compile_invariant_pass1_stored": 0.10909090909090909
+  }
+ },
+ "pooled": {
+  "n_rows": 88,
+  "n_samples": 880,
+  "safety_only_pass1": 0.4454545454545455,
+  "compile_invariant_pass1": 0.36022727272727273,
+  "abs_diff_pass1": 0.08522727272727276,
+  "ratio_pass1": 1.2365930599369086,
+  "safety_only_pass10": 0.6022727272727273,
+  "compile_invariant_pass10": 0.5568181818181818
+ },
+ "june": {
+  "grok-4.3(grok-3 slug)": {
+   "safety_only": 0.745,
+   "compile_invariant": 0.645
+  },
+  "claude-sonnet-4-6": {
+   "safety_only": 0.591,
+   "compile_invariant": 0.564
+  },
+  "gemini-2.5-flash": {
+   "safety_only": 0.155,
+   "compile_invariant": 0.095
+  },
+  "gpt-4o": {
+   "safety_only": 0.295,
+   "compile_invariant": 0.091
+  }
+ }
+}

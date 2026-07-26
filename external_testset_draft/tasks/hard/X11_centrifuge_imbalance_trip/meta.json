@@ -1,0 +1,57 @@
+{
+  "id": "X11_centrifuge_imbalance_trip",
+  "title": "Centrifuge imbalance trip with coast-down lockout",
+  "difficulty": "hard",
+  "domain": "rotating machinery protection",
+  "nl_spec": "A centrifuge drive is protected against imbalance. Imbalance is a scaled vibration level; if it reaches VIB_MAX = 70 while healthy, latch a Trip that immediately stops the Drive. After a trip the rotor must coast to rest before it can be restarted (coast-down lockout): the Trip clears only when the operator presses Reset AND the zero-speed switch ZeroSpeed is TRUE AND the rotor has been at rest continuously for COAST_TIME = 3 seconds AND the imbalance has returned below VIB_MAX (system healthy). The Drive spins when healthy, the Lid interlock is closed (Lid = TRUE), StartCmd is TRUE, and no Trip is latched. A LockedOut output mirrors the Trip. EStop is normally-closed (TRUE = healthy, FALSE = activated); when activated the Drive stops. Use one TON. Write an IEC 61131-3 Structured Text PROGRAM named centrifuge with inputs StartCmd, Imbalance, ZeroSpeed, Lid, Reset, EStop and outputs Drive, Trip, LockedOut.",
+  "interface": [
+    {"name": "StartCmd", "type": "BOOL", "direction": "input", "description": "Maintained spin command"},
+    {"name": "Imbalance", "type": "INT", "direction": "input", "description": "Scaled vibration/imbalance level", "range": [0, 100]},
+    {"name": "ZeroSpeed", "type": "BOOL", "direction": "input", "description": "Zero-speed switch: TRUE = rotor at rest"},
+    {"name": "Lid", "type": "BOOL", "direction": "input", "description": "Lid interlock: TRUE = lid closed"},
+    {"name": "Reset", "type": "BOOL", "direction": "input", "description": "Trip reset"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "Drive", "type": "BOOL", "direction": "output", "description": "Centrifuge drive"},
+    {"name": "Trip", "type": "BOOL", "direction": "output", "description": "Latched imbalance trip"},
+    {"name": "LockedOut", "type": "BOOL", "direction": "output", "description": "Coast-down lockout indicator"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "On emergency stop, the drive is off.", "ltl": "G(!EStop -> !Drive)"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "With the lid open, the drive is off.", "ltl": "G(!Lid -> !Drive)"},
+    {"id": "P3", "kind": "safety", "severity": "critical", "nl": "While a trip is latched, the drive is off.", "ltl": "G(Trip -> !Drive)"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "The drive spins only on a healthy start command with lid closed and no trip.", "ltl": "G(Drive -> (StartCmd & EStop & Lid & !Trip))"},
+    {"id": "P5", "kind": "safety", "severity": "critical", "nl": "Positive obligation: an at-or-above-limit imbalance while healthy forces a trip.", "ltl": "G((Imbalance >= 70 & EStop) -> Trip)"},
+    {"id": "P6", "kind": "safety", "severity": "high", "nl": "The lockout indicator is asserted only while a trip is latched.", "ltl": "G(LockedOut -> Trip)"},
+    {"id": "P7", "kind": "safety", "severity": "high", "nl": "Positive obligation: while a trip is latched, the lockout indicator is asserted.", "ltl": "G(Trip -> LockedOut)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Normal spin below the imbalance limit",
+     "steps": [
+       {"inputs": {"StartCmd": true, "Imbalance": 10, "ZeroSpeed": false, "Lid": true, "Reset": false, "EStop": true}, "expect": {"Drive": true, "Trip": false}}
+     ]},
+    {"id": "S2", "description": "Imbalance trips and stops the drive",
+     "steps": [
+       {"inputs": {"StartCmd": true, "Imbalance": 80, "ZeroSpeed": false, "Lid": true, "Reset": false, "EStop": true}, "expect": {"Trip": true, "Drive": false, "LockedOut": true}}
+     ]},
+    {"id": "S3", "description": "Coast-down lockout: reset only takes after 3 s at rest, then restart",
+     "steps": [
+       {"inputs": {"StartCmd": true, "Imbalance": 80, "ZeroSpeed": false, "Lid": true, "Reset": false, "EStop": true}, "expect": {"Trip": true, "Drive": false}},
+       {"inputs": {"StartCmd": true, "Imbalance": 10, "ZeroSpeed": true, "Lid": true, "Reset": false, "EStop": true}, "expect": {"Trip": true}},
+       {"inputs": {"StartCmd": true, "Imbalance": 10, "ZeroSpeed": true, "Lid": true, "Reset": false, "EStop": true}, "expect": {"Trip": true}},
+       {"inputs": {"StartCmd": false, "Imbalance": 10, "ZeroSpeed": true, "Lid": true, "Reset": true, "EStop": true}, "expect": {"Trip": false, "Drive": false}},
+       {"inputs": {"StartCmd": true, "Imbalance": 10, "ZeroSpeed": true, "Lid": true, "Reset": false, "EStop": true}, "expect": {"Trip": false, "Drive": true}}
+     ]},
+    {"id": "S4", "description": "A held Reset with StartCmd still held does NOT clear the trip; releasing StartCmd then Reset clears it",
+     "steps": [
+       {"inputs": {"StartCmd": true, "Imbalance": 80, "ZeroSpeed": false, "Lid": true, "Reset": false, "EStop": true}, "expect": {"Trip": true, "Drive": false, "LockedOut": true}},
+       {"inputs": {"StartCmd": true, "Imbalance": 10, "ZeroSpeed": true, "Lid": true, "Reset": false, "EStop": true}, "expect": {"Trip": true}},
+       {"inputs": {"StartCmd": true, "Imbalance": 10, "ZeroSpeed": true, "Lid": true, "Reset": false, "EStop": true}, "expect": {"Trip": true}},
+       {"inputs": {"StartCmd": true, "Imbalance": 10, "ZeroSpeed": true, "Lid": true, "Reset": false, "EStop": true}, "expect": {"Trip": true}},
+       {"inputs": {"StartCmd": true, "Imbalance": 10, "ZeroSpeed": true, "Lid": true, "Reset": true, "EStop": true}, "expect": {"Trip": true, "Drive": false}},
+       {"inputs": {"StartCmd": true, "Imbalance": 10, "ZeroSpeed": true, "Lid": true, "Reset": true, "EStop": true}, "expect": {"Trip": true, "Drive": false}},
+       {"inputs": {"StartCmd": false, "Imbalance": 10, "ZeroSpeed": true, "Lid": true, "Reset": true, "EStop": true}, "expect": {"Trip": false, "Drive": false}}
+     ]}
+  ],
+  "tags": ["draft", "imbalance-trip", "coast-down-lockout", "latched-trip", "TON", "positive-obligation"],
+  "notes": "DRAFT - pending expert PLC review. NEW FAMILY: latched machinery-protection trip whose RESET is gated by a coast-to-rest dwell (the TON measures continuous at-rest time before a reset is permitted). Distinct from on-delay start timing and from a simple alarm latch: the timer conditions the CLEAR path, not the set path, and the positive obligation forces the trip to latch on over-limit imbalance."
+}

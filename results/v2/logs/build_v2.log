@@ -1,0 +1,371 @@
+  GEN_mguard_1_Motor             verified
+      +1 repair pair(s)
+  GEN_estop_1_Motor              verified
+      +1 repair pair(s)
+  GEN_mguard_2_Motor             verified
+      +1 repair pair(s)
+  GEN_estop_2_Motor              verified
+      +1 repair pair(s)
+  GEN_mguard_3_Motor             verified
+      +1 repair pair(s)
+  GEN_estop_3_Motor              verified
+      +1 repair pair(s)
+  GEN_mguard_4_Motor             verified
+      +1 repair pair(s)
+  GEN_estop_4_Motor              verified
+      +1 repair pair(s)
+  GEN_ondelay_1_Motor            verified
+      +1 repair pair(s)
+  GEN_ondelay_2_Motor            verified
+      +1 repair pair(s)
+  GEN_ondelay_3_Motor            verified
+      +1 repair pair(s)
+  GEN_ondelay_4_Motor            verified
+      +1 repair pair(s)
+  GEN_counter_2_Motor            verified
+  GEN_counter_3_Motor            verified
+  GEN_counter_4_Motor            verified
+  GEN_counter_5_Motor            verified
+  GEN_override_Motor_OverTemp    verified
+      +1 repair pair(s)
+  GEN_override_Motor_Fault       verified
+      +1 repair pair(s)
+  GEN_mguard_1_Drive             verified
+      +1 repair pair(s)
+  GEN_estop_1_Drive              verified
+      +1 repair pair(s)
+  GEN_mguard_2_Drive             verified
+      +1 repair pair(s)
+  GEN_estop_2_Drive              verified
+      +1 repair pair(s)
+  GEN_mguard_3_Drive             verified
+      +1 repair pair(s)
+  GEN_estop_3_Drive              verified
+      +1 repair pair(s)
+  GEN_mguard_4_Drive             verified
+      +1 repair pair(s)
+  GEN_estop_4_Drive              verified
+      +1 repair pair(s)
+  GEN_ondelay_1_Drive            verified
+      +1 repair pair(s)
+  GEN_ondelay_2_Drive            verified
+      +1 repair pair(s)
+  GEN_ondelay_3_Drive            verified
+      +1 repair pair(s)
+  GEN_ondelay_4_Drive            verified
+      +1 repair pair(s)
+  GEN_counter_2_Drive            verified
+  GEN_counter_3_Drive            verified
+  GEN_counter_4_Drive            verified
+  GEN_counter_5_Drive            verified
+  GEN_override_Drive_OverTemp    verified
+      +1 repair pair(s)
+  GEN_override_Drive_Fault       verified
+      +1 repair pair(s)
+  GEN_mguard_1_Pump              verified
+      +1 repair pair(s)
+  GEN_estop_1_Pump               verified
+      +1 repair pair(s)
+  GEN_mguard_2_Pump              verified
+      +1 repair pair(s)
+  GEN_estop_2_Pump               verified
+      +1 repair pair(s)
+  GEN_mguard_3_Pump              verified
+      +1 repair pair(s)
+  GEN_estop_3_Pump               verified
+      +1 repair pair(s)
+  GEN_mguard_4_Pump              verified
+      +1 repair pair(s)
+  GEN_estop_4_Pump               verified
+      +1 repair pair(s)
+  GEN_ondelay_1_Pump             verified
+      +1 repair pair(s)
+  GEN_ondelay_2_Pump             verified
+      +1 repair pair(s)
+  GEN_ondelay_3_Pump             verified
+      +1 repair pair(s)
+  GEN_ondelay_4_Pump             verified
+      +1 repair pair(s)
+  GEN_counter_2_Pump             verified
+  GEN_counter_3_Pump             verified
+  GEN_counter_4_Pump             verified
+  GEN_counter_5_Pump             verified
+  GEN_override_Pump_OverTemp     verified
+      +1 repair pair(s)
+  GEN_override_Pump_Fault        verified
+      +1 repair pair(s)
+  GEN_mguard_1_Fan               verified
+      +1 repair pair(s)
+  GEN_estop_1_Fan                verified
+      +1 repair pair(s)
+  GEN_mguard_2_Fan               verified
+      +1 repair pair(s)
+  GEN_estop_2_Fan                verified
+      +1 repair pair(s)
+  GEN_mguard_3_Fan               verified
+      +1 repair pair(s)
+  GEN_estop_3_Fan                verified
+      +1 repair pair(s)
+  GEN_mguard_4_Fan               verified
+      +1 repair pair(s)
+  GEN_estop_4_Fan                verified
+      +1 repair pair(s)
+  GEN_ondelay_1_Fan              verified
+      +1 repair pair(s)
+  GEN_ondelay_2_Fan              verified
+      +1 repair pair(s)
+  GEN_ondelay_3_Fan              verified
+      +1 repair pair(s)
+  GEN_ondelay_4_Fan              verified
+      +1 repair pair(s)
+  GEN_counter_2_Fan              verified
+  GEN_counter_3_Fan              verified
+  GEN_counter_4_Fan              verified
+  GEN_counter_5_Fan              verified
+  GEN_override_Fan_OverTemp      verified
+      +1 repair pair(s)
+  GEN_override_Fan_Fault         verified
+      +1 repair pair(s)
+  GEN_mguard_1_Mixer             verified
+      +1 repair pair(s)
+  GEN_estop_1_Mixer              verified
+      +1 repair pair(s)
+  GEN_mguard_2_Mixer             verified
+      +1 repair pair(s)
+  GEN_estop_2_Mixer              verified
+      +1 repair pair(s)
+  GEN_mguard_3_Mixer             verified
+      +1 repair pair(s)
+  GEN_estop_3_Mixer              verified
+      +1 repair pair(s)
+  GEN_mguard_4_Mixer             verified
+      +1 repair pair(s)
+  GEN_estop_4_Mixer              verified
+      +1 repair pair(s)
+  GEN_ondelay_1_Mixer            verified
+      +1 repair pair(s)
+  GEN_ondelay_2_Mixer            verified
+      +1 repair pair(s)
+  GEN_ondelay_3_Mixer            verified
+      +1 repair pair(s)
+  GEN_ondelay_4_Mixer            verified
+      +1 repair pair(s)
+  GEN_counter_2_Mixer            verified
+  GEN_counter_3_Mixer            verified
+  GEN_counter_4_Mixer            verified
+  GEN_counter_5_Mixer            verified
+  GEN_override_Mixer_OverTemp    verified
+      +1 repair pair(s)
+  GEN_override_Mixer_Fault       verified
+      +1 repair pair(s)
+  GEN_mguard_1_Blower            verified
+      +1 repair pair(s)
+  GEN_estop_1_Blower             verified
+      +1 repair pair(s)
+  GEN_mguard_2_Blower            verified
+      +1 repair pair(s)
+  GEN_estop_2_Blower             verified
+      +1 repair pair(s)
+  GEN_mguard_3_Blower            verified
+      +1 repair pair(s)
+  GEN_estop_3_Blower             verified
+      +1 repair pair(s)
+  GEN_mguard_4_Blower            verified
+      +1 repair pair(s)
+  GEN_estop_4_Blower             verified
+      +1 repair pair(s)
+  GEN_ondelay_1_Blower           verified
+      +1 repair pair(s)
+  GEN_ondelay_2_Blower           verified
+      +1 repair pair(s)
+  GEN_ondelay_3_Blower           verified
+      +1 repair pair(s)
+  GEN_ondelay_4_Blower           verified
+      +1 repair pair(s)
+  GEN_counter_2_Blower           verified
+  GEN_counter_3_Blower           verified
+  GEN_counter_4_Blower           verified
+  GEN_counter_5_Blower           verified
+  GEN_override_Blower_OverTemp   verified
+      +1 repair pair(s)
+  GEN_override_Blower_Fault      verified
+      +1 repair pair(s)
+  GEN_mguard_1_Spindle           verified
+      +1 repair pair(s)
+  GEN_estop_1_Spindle            verified
+      +1 repair pair(s)
+  GEN_mguard_2_Spindle           verified
+      +1 repair pair(s)
+  GEN_estop_2_Spindle            verified
+      +1 repair pair(s)
+  GEN_mguard_3_Spindle           verified
+      +1 repair pair(s)
+  GEN_estop_3_Spindle            verified
+      +1 repair pair(s)
+  GEN_mguard_4_Spindle           verified
+      +1 repair pair(s)
+  GEN_estop_4_Spindle            verified
+      +1 repair pair(s)
+  GEN_ondelay_1_Spindle          verified
+      +1 repair pair(s)
+  GEN_ondelay_2_Spindle          verified
+      +1 repair pair(s)
+  GEN_ondelay_3_Spindle          verified
+      +1 repair pair(s)
+  GEN_ondelay_4_Spindle          verified
+      +1 repair pair(s)
+  GEN_counter_2_Spindle          verified
+  GEN_counter_3_Spindle          verified
+  GEN_counter_4_Spindle          verified
+  GEN_counter_5_Spindle          verified
+  GEN_override_Spindle_OverTemp  verified
+      +1 repair pair(s)
+  GEN_override_Spindle_Fault     verified
+      +1 repair pair(s)
+  GEN_mguard_1_Auger             verified
+      +1 repair pair(s)
+  GEN_estop_1_Auger              verified
+      +1 repair pair(s)
+  GEN_mguard_2_Auger             verified
+      +1 repair pair(s)
+  GEN_estop_2_Auger              verified
+      +1 repair pair(s)
+  GEN_mguard_3_Auger             verified
+      +1 repair pair(s)
+  GEN_estop_3_Auger              verified
+      +1 repair pair(s)
+  GEN_mguard_4_Auger             verified
+      +1 repair pair(s)
+  GEN_estop_4_Auger              verified
+      +1 repair pair(s)
+  GEN_ondelay_1_Auger            verified
+      +1 repair pair(s)
+  GEN_ondelay_2_Auger            verified
+      +1 repair pair(s)
+  GEN_ondelay_3_Auger            verified
+      +1 repair pair(s)
+  GEN_ondelay_4_Auger            verified
+      +1 repair pair(s)
+  GEN_counter_2_Auger            verified
+  GEN_counter_3_Auger            verified
+  GEN_counter_4_Auger            verified
+  GEN_counter_5_Auger            verified
+  GEN_override_Auger_OverTemp    verified
+      +1 repair pair(s)
+  GEN_override_Auger_Fault       verified
+      +1 repair pair(s)
+  GEN_hyst_5_70                  verified
+      +1 repair pair(s)
+  GEN_hyst_10_70                 verified
+      +1 repair pair(s)
+  GEN_hyst_20_70                 verified
+      +1 repair pair(s)
+  GEN_hyst_5_80                  verified
+      +1 repair pair(s)
+  GEN_hyst_10_80                 verified
+      +1 repair pair(s)
+  GEN_hyst_20_80                 verified
+      +1 repair pair(s)
+  GEN_hyst_5_90                  verified
+      +1 repair pair(s)
+  GEN_hyst_10_90                 verified
+      +1 repair pair(s)
+  GEN_hyst_20_90                 verified
+      +1 repair pair(s)
+  GEN_excl_DoorA_DoorB           verified
+      +1 repair pair(s)
+  GEN_excl_ValveX_ValveY         verified
+      +1 repair pair(s)
+  GEN_excl_Heat_Cool             verified
+      +1 repair pair(s)
+  GEN_excl_FwdK_RevK             verified
+      +1 repair pair(s)
+  GEN_excl_StarK_DeltaK          verified
+      +1 repair pair(s)
+  GEN_chain_1e2g_Motor           verified
+      +1 repair pair(s)
+  GEN_chain_2e1g_Motor           verified
+      +1 repair pair(s)
+  GEN_chain_2e2g_Motor           verified
+      +1 repair pair(s)
+  GEN_chain_3e2g_Motor           verified
+      +1 repair pair(s)
+  GEN_twospeed_Motor             verified
+      +1 repair pair(s)
+  GEN_chain_1e2g_Drive           verified
+      +1 repair pair(s)
+  GEN_chain_2e1g_Drive           verified
+      +1 repair pair(s)
+  GEN_chain_2e2g_Drive           verified
+      +1 repair pair(s)
+  GEN_chain_3e2g_Drive           verified
+      +1 repair pair(s)
+  GEN_twospeed_Drive             verified
+      +1 repair pair(s)
+  GEN_chain_1e2g_Pump            verified
+      +1 repair pair(s)
+  GEN_chain_2e1g_Pump            verified
+      +1 repair pair(s)
+  GEN_chain_2e2g_Pump            verified
+      +1 repair pair(s)
+  GEN_chain_3e2g_Pump            verified
+      +1 repair pair(s)
+  GEN_twospeed_Pump              verified
+      +1 repair pair(s)
+  GEN_chain_1e2g_Conveyor        verified
+      +1 repair pair(s)
+  GEN_chain_2e1g_Conveyor        verified
+      +1 repair pair(s)
+  GEN_chain_2e2g_Conveyor        verified
+      +1 repair pair(s)
+  GEN_chain_3e2g_Conveyor        verified
+      +1 repair pair(s)
+  GEN_twospeed_Conveyor          verified
+      +1 repair pair(s)
+  GEN_chain_1e2g_Mixer           verified
+      +1 repair pair(s)
+  GEN_chain_2e1g_Mixer           verified
+      +1 repair pair(s)
+  GEN_chain_2e2g_Mixer           verified
+      +1 repair pair(s)
+  GEN_chain_3e2g_Mixer           verified
+      +1 repair pair(s)
+  GEN_twospeed_Mixer             verified
+      +1 repair pair(s)
+  GEN_chain_1e2g_Hoist           verified
+      +1 repair pair(s)
+  GEN_chain_2e1g_Hoist           verified
+      +1 repair pair(s)
+  GEN_chain_2e2g_Hoist           verified
+      +1 repair pair(s)
+  GEN_chain_3e2g_Hoist           verified
+      +1 repair pair(s)
+  GEN_twospeed_Hoist             verified
+      +1 repair pair(s)
+  GEN_updown_2_Bay               verified
+  GEN_updown_2_Slot              verified
+  GEN_updown_2_Buffer            verified
+  GEN_updown_3_Bay               verified
+  GEN_updown_3_Slot              verified
+  GEN_updown_3_Buffer            verified
+  GEN_updown_4_Bay               verified
+  GEN_updown_4_Slot              verified
+  GEN_updown_4_Buffer            verified
+  GEN_updown_5_Bay               verified
+  GEN_updown_5_Slot              verified
+  GEN_updown_5_Buffer            verified
+  GEN_updown_6_Bay               verified
+  GEN_updown_6_Slot              verified
+  GEN_updown_6_Buffer            verified
+  GEN_ordered_Feed_Mix           verified
+      +1 repair pair(s)
+  GEN_ordered_Pump_Heat          verified
+      +1 repair pair(s)
+  GEN_ordered_Conv1_Conv2        verified
+      +1 repair pair(s)
+  GEN_ordered_Lube_Spindle       verified
+      +1 repair pair(s)
+  GEN_ordered_Charge_Run         verified
+      +1 repair pair(s)
+
+SFT: kept 208/208 verified zeroshot pairs + 161 repair pairs -> finetune/data/sft_v2.jsonl

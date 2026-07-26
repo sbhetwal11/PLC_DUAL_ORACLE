@@ -1,0 +1,25 @@
+{
+ "composition": {
+  "total": 158,
+  "compile_pass": 158,
+  "invariant_pass": 158,
+  "scenario_pass": 158,
+  "dual_pass": 158,
+  "taskvalid_pass": 158,
+  "reject_total": 0,
+  "reject_compile_only": 0,
+  "reject_invariant_only": 0,
+  "reject_both": 0,
+  "reject_rate": 0.0
+ },
+ "dataset_sizes": {
+  "all": 158,
+  "matiec_only": 158,
+  "property_only": 158,
+  "dual": 158,
+  "random_sizematched": 158
+ },
+ "pool": "finetune/data/pool.jsonl",
+ "outdir": "finetune/data/ablation",
+ "seed": 0
+}

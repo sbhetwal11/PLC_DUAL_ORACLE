@@ -1,0 +1,48 @@
+{
+  "id": "X09_compressor_load_unload",
+  "title": "Reciprocating air compressor load/unload with minimum run and rest times",
+  "difficulty": "medium",
+  "domain": "compressed air",
+  "nl_spec": "A reciprocating air compressor is controlled to protect it from short-cycling. Demand exists while receiver Pressure is below the setpoint P_SET = 100 psi (a single threshold - deliberately no separate on/off band). Anti-short-cycle constraints: once the compressor motor starts, it must run for at least MIN_RUN = 3 seconds before it may stop even if demand disappears; once it stops, it must remain off for at least MIN_REST = 3 seconds before it may restart even if demand returns. The LoadValve is loaded (TRUE) exactly while the motor runs. The station runs only while Enable is TRUE. EStop is normally-closed (TRUE = healthy, FALSE = activated) and, when activated, stops the motor immediately overriding the minimum-run timer. Use two TON instances. Write an IEC 61131-3 Structured Text PROGRAM named air_compressor with inputs Pressure, Enable, EStop and outputs Motor, LoadValve.",
+  "interface": [
+    {"name": "Pressure", "type": "INT", "direction": "input", "description": "Receiver pressure in psi", "range": [0, 150]},
+    {"name": "Enable", "type": "BOOL", "direction": "input", "description": "Station enable"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "Motor", "type": "BOOL", "direction": "output", "description": "Compressor motor (also the running state)"},
+    {"name": "LoadValve", "type": "BOOL", "direction": "output", "description": "Load/unload valve (loaded = TRUE)"},
+    {"name": "Demand", "type": "BOOL", "direction": "internal", "description": "Pressure below setpoint"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "On emergency stop, the motor is off (overriding minimum-run).", "ltl": "G(!EStop -> !Motor)"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "On emergency stop, the compressor is unloaded.", "ltl": "G(!EStop -> !LoadValve)"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "The load valve is loaded only while the motor runs.", "ltl": "G(LoadValve -> Motor)"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "When the station is disabled, the motor is off.", "ltl": "G(!Enable -> !Motor)"},
+    {"id": "P5", "kind": "safety", "severity": "high", "nl": "Positive obligation: whenever the motor runs, the compressor is loaded.", "ltl": "G(Motor -> LoadValve)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Minimum rest delays the first start by 3 s",
+     "steps": [
+       {"inputs": {"Pressure": 80, "Enable": true, "EStop": true}, "expect": {"Motor": false}},
+       {"inputs": {"Pressure": 80, "Enable": true, "EStop": true}, "expect": {"Motor": false}},
+       {"inputs": {"Pressure": 80, "Enable": true, "EStop": true}, "expect": {"Motor": true, "LoadValve": true}}
+     ]},
+    {"id": "S2", "description": "Minimum run holds the motor on for 3 s after demand disappears",
+     "steps": [
+       {"inputs": {"Pressure": 80, "Enable": true, "EStop": true}, "expect": {"Motor": false}},
+       {"inputs": {"Pressure": 80, "Enable": true, "EStop": true}, "expect": {"Motor": false}},
+       {"inputs": {"Pressure": 80, "Enable": true, "EStop": true}, "expect": {"Motor": true}},
+       {"inputs": {"Pressure": 130, "Enable": true, "EStop": true}, "expect": {"Motor": true}},
+       {"inputs": {"Pressure": 130, "Enable": true, "EStop": true}, "expect": {"Motor": true}},
+       {"inputs": {"Pressure": 130, "Enable": true, "EStop": true}, "expect": {"Motor": false}}
+     ]},
+    {"id": "S3", "description": "Emergency stop overrides minimum run",
+     "steps": [
+       {"inputs": {"Pressure": 80, "Enable": true, "EStop": true}, "expect": {"Motor": false}},
+       {"inputs": {"Pressure": 80, "Enable": true, "EStop": true}, "expect": {"Motor": false}},
+       {"inputs": {"Pressure": 80, "Enable": true, "EStop": true}, "expect": {"Motor": true}},
+       {"inputs": {"Pressure": 80, "Enable": true, "EStop": false}, "expect": {"Motor": false, "LoadValve": false}}
+     ]}
+  ],
+  "tags": ["draft", "load-unload", "minimum-run", "minimum-rest", "anti-short-cycle", "TON"],
+  "notes": "DRAFT - pending expert PLC review. NEW FAMILY: minimum run / minimum rest anti-short-cycle timing using two TONs that gate a running-state latch. Uses a SINGLE demand threshold (no hysteresis band) so the anti-cycle behaviour comes from the timers, not a deadband. Distinct from on-delay start timing (that is one timer permitting a start; here two timers constrain BOTH turn-off and turn-on). DOC (reviewer notes applied): from a COLD START the min-rest timer imposes a MIN_REST delay before the first start (the rest timer begins satisfied only after MIN_REST elapses) - this is a modelling artifact of not pre-loading the rest timer on power-up, documented rather than changed. DOC: this scheme is a start/stop anti-short-cycle control (the motor cycles on/off with LoadValve tracking the motor), not a true continuous-run load/unload valve scheme where the motor runs continuously and only the load valve modulates."
+}

@@ -1,0 +1,35 @@
+{
+  "id": "M07_two_hand_control",
+  "title": "Two-hand control with anti-tie-down",
+  "difficulty": "medium",
+  "domain": "machine safety",
+  "nl_spec": "A press actuator (Actuator) may only run while BOTH operator buttons (LH and RH) are pressed, to keep both hands out of the danger zone. To prevent defeating the device by tying one button down (anti-tie-down), the control becomes 'armed' only after BOTH buttons are released together; if exactly one button is pressed, the arming is lost and both buttons must be released again before the actuator can run. The actuator runs only while both buttons are pressed AND the control is armed. Use an internal BOOL Armed. Write an IEC 61131-3 Structured Text PROGRAM named two_hand with inputs LH, RH and output Actuator.",
+  "interface": [
+    {"name": "LH", "type": "BOOL", "direction": "input", "description": "Left-hand button"},
+    {"name": "RH", "type": "BOOL", "direction": "input", "description": "Right-hand button"},
+    {"name": "Actuator", "type": "BOOL", "direction": "output", "description": "Press actuator"},
+    {"name": "Armed", "type": "BOOL", "direction": "internal", "description": "Anti-tie-down armed flag"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "The actuator only runs while both buttons are pressed.", "ltl": "G(Actuator -> (LH & RH))"},
+    {"id": "P2", "kind": "safety", "severity": "high", "nl": "The actuator only runs while the control is armed (anti-tie-down).", "ltl": "G(Actuator -> Armed)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Normal: release both, press both, actuate; release one, stop",
+     "steps": [
+       {"inputs": {"LH": false, "RH": false}, "expect": {"Actuator": false}},
+       {"inputs": {"LH": true, "RH": true}, "expect": {"Actuator": true}},
+       {"inputs": {"LH": true, "RH": false}, "expect": {"Actuator": false}}
+     ]},
+    {"id": "S2", "description": "Anti-tie-down: holding one then pressing both does NOT actuate until both released",
+     "steps": [
+       {"inputs": {"LH": false, "RH": false}, "expect": {"Actuator": false}},
+       {"inputs": {"LH": true, "RH": false}, "expect": {"Actuator": false}},
+       {"inputs": {"LH": true, "RH": true}, "expect": {"Actuator": false}},
+       {"inputs": {"LH": false, "RH": false}, "expect": {"Actuator": false}},
+       {"inputs": {"LH": true, "RH": true}, "expect": {"Actuator": true}}
+     ]}
+  ],
+  "tags": ["safety", "two-hand", "anti-tie-down", "interlock", "latch"],
+  "notes": "Armed is set only when both released, cleared when exactly one is pressed, held otherwise. Actuator = LH AND RH AND Armed."
+}

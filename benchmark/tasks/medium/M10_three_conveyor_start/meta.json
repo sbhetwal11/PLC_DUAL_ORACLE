@@ -1,0 +1,39 @@
+{
+  "id": "M10_three_conveyor_start",
+  "title": "Three-conveyor sequenced start (anti-pileup, two delays)",
+  "difficulty": "medium",
+  "domain": "material handling",
+  "nl_spec": "Three conveyors feed one another in series: C1 -> C2 -> C3 (C3 is the most downstream). To avoid pile-ups, on start they must come up most-downstream first: C3 starts, then C2 after PT_SEQ = 2 ticks, then C1 after a further PT_SEQ = 2 ticks. Model as a state machine: 0 = Off, 1 = C3 only, 2 = C3+C2, 3 = all three. StopPB or an activated emergency stop (EStop normally-closed: TRUE = healthy, FALSE = activated) stops all three immediately. SAFETY-CRITICAL: C1 must never run unless C2 runs, and C2 must never run unless C3 runs. Use an internal INT State (0..3) and two TON timers. Write an IEC 61131-3 Structured Text PROGRAM named conveyor3 with inputs StartPB, StopPB, EStop and outputs C1, C2, C3.",
+  "interface": [
+    {"name": "StartPB", "type": "BOOL", "direction": "input", "description": "Start pushbutton"},
+    {"name": "StopPB", "type": "BOOL", "direction": "input", "description": "Stop pushbutton"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "C1", "type": "BOOL", "direction": "output", "description": "Upstream conveyor"},
+    {"name": "C2", "type": "BOOL", "direction": "output", "description": "Middle conveyor"},
+    {"name": "C3", "type": "BOOL", "direction": "output", "description": "Downstream conveyor"},
+    {"name": "State", "type": "INT", "direction": "internal", "description": "0=Off,1=C3,2=C3+C2,3=all", "range": [0, 3]}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "C1 never runs unless C2 runs.", "ltl": "G(C1 -> C2)"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "C2 never runs unless C3 runs.", "ltl": "G(C2 -> C3)"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "On emergency stop, all conveyors stop.", "ltl": "G(!EStop -> (!C1 & !C2 & !C3))"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "Whenever stop is pressed, all conveyors stop.", "ltl": "G(StopPB -> (!C1 & !C2 & !C3))"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Staged downstream-first start",
+     "steps": [
+       {"inputs": {"StartPB": true, "StopPB": false, "EStop": true}, "expect": {"C1": false, "C2": false, "C3": true}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": true}, "expect": {"C2": false, "C3": true}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": true}, "expect": {"C1": false, "C2": true, "C3": true}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": true}, "expect": {"C2": true, "C3": true}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": true}, "expect": {"C1": true, "C2": true, "C3": true}}
+     ]},
+    {"id": "S2", "description": "Stop halts all",
+     "steps": [
+       {"inputs": {"StartPB": true, "StopPB": false, "EStop": true}, "expect": {"C3": true}},
+       {"inputs": {"StartPB": false, "StopPB": true, "EStop": true}, "expect": {"C1": false, "C2": false, "C3": false}}
+     ]}
+  ],
+  "tags": ["state-machine", "CASE", "multi-timer", "TON", "sequencing", "ordering"],
+  "notes": "Two staged delays; ordering invariants C1->C2 and C2->C3 are the safety-critical chain."
+}

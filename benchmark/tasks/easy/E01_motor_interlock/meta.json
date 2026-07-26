@@ -1,0 +1,31 @@
+{
+  "id": "E01_motor_interlock",
+  "title": "Latching motor control with emergency-stop interlock",
+  "difficulty": "easy",
+  "domain": "motor control",
+  "nl_spec": "A motor is controlled by momentary Start and Stop pushbuttons and an emergency stop. The motor latches ON when Start is pressed and latches OFF when Stop is pressed; Stop has priority over Start. The emergency stop input EStop is wired normally-closed, so EStop = TRUE means healthy and EStop = FALSE means the emergency stop is ACTIVATED. When the emergency stop is activated it must immediately and unconditionally de-energize the motor, and the motor must not be able to start while it remains activated. Write an IEC 61131-3 Structured Text PROGRAM named motor_interlock with inputs Start, Stop, EStop and output Motor.",
+  "interface": [
+    {"name": "Start", "type": "BOOL", "direction": "input", "description": "Momentary start pushbutton"},
+    {"name": "Stop", "type": "BOOL", "direction": "input", "description": "Momentary stop pushbutton"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "Motor", "type": "BOOL", "direction": "output", "description": "Motor contactor"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "When the emergency stop is activated (EStop = FALSE), the motor is always off.", "ltl": "G(!EStop -> !Motor)"},
+    {"id": "P2", "kind": "safety", "severity": "high", "nl": "Whenever the Stop button is pressed, the motor is off (Stop has priority over Start).", "ltl": "G(Stop -> !Motor)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Start latches motor on, Stop turns it off",
+     "steps": [
+       {"inputs": {"Start": true, "Stop": false, "EStop": true}, "expect": {"Motor": true}},
+       {"inputs": {"Start": false, "Stop": false, "EStop": true}, "expect": {"Motor": true}},
+       {"inputs": {"Start": false, "Stop": true, "EStop": true}, "expect": {"Motor": false}}
+     ]},
+    {"id": "S2", "description": "Emergency stop overrides start",
+     "steps": [
+       {"inputs": {"Start": true, "Stop": false, "EStop": false}, "expect": {"Motor": false}}
+     ]}
+  ],
+  "tags": ["latch", "interlock", "emergency-stop", "priority"],
+  "notes": "Classic seal-in/latch with safety override. Reference uses an ELSIF priority chain so Motor holds its value when no button is pressed."
+}

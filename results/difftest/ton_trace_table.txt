@@ -1,0 +1,53 @@
+REPO=/mnt/c/Users/ragas/Videos/claude/ResearchPaper2/PLCCodeGenResearch_5090/PLCCodeGenResearch
+NUXMV_BIN=/home/ragas/nuxmv/usr/local/bin/nuXmv
+MATIEC_IEC2C=/home/ragas/matiec/iec2c
+PYBIN=/home/ragas/plcvenv/bin/python
+----
+# TON trace tables (unchanged literal source; driver clock = scan index,
+# set BEFORE the FB call; dt = 1 s per scan). SMV counter == interpreter
+# counter by shared recurrence (proven per-program by the SMV trace leg).
+
+## PT = T#1s
+scan IN | C.START C.ET C.Q | interp.ET interp.Q(=SMV)
+   1  1 |       1    0   0 |         1        1
+   2  1 |       1    1   1 |         1        1
+   3  1 |       1    1   1 |         1        1
+   4  1 |       1    1   1 |         1        1
+   5  1 |       1    1   1 |         1        1
+   6  1 |       1    1   1 |         1        1
+   7  0 |       1    0   0 |         0        0
+   8  0 |       1    0   0 |         0        0
+   9  1 |       9    0   0 |         1        1
+  10  1 |       9    1   1 |         1        1
+   -> Q first true: C scan 2, interpreter/SMV scan 1
+
+## PT = T#2s
+scan IN | C.START C.ET C.Q | interp.ET interp.Q(=SMV)
+   1  1 |       1    0   0 |         1        0
+   2  1 |       1    1   0 |         2        1
+   3  1 |       1    2   1 |         2        1
+   4  1 |       1    2   1 |         2        1
+   5  1 |       1    2   1 |         2        1
+   6  1 |       1    2   1 |         2        1
+   7  0 |       1    0   0 |         0        0
+   8  0 |       1    0   0 |         0        0
+   9  1 |       9    0   0 |         1        0
+  10  1 |       9    1   0 |         2        1
+   -> Q first true: C scan 3, interpreter/SMV scan 2
+
+## PT = T#3s
+scan IN | C.START C.ET C.Q | interp.ET interp.Q(=SMV)
+   1  1 |       1    0   0 |         1        0
+   2  1 |       1    1   0 |         2        0
+   3  1 |       1    2   0 |         3        1
+   4  1 |       1    3   1 |         3        1
+   5  1 |       1    3   1 |         3        1
+   6  1 |       1    3   1 |         3        1
+   7  0 |       1    0   0 |         0        0
+   8  0 |       1    0   0 |         0        0
+   9  1 |       9    0   0 |         1        0
+  10  1 |       9    1   0 |         2        0
+   -> Q first true: C scan 4, interpreter/SMV scan 3
+
+## H01 propositional G-invariants evaluated on MATIEC-C traces
+scans checked: 200; violations per property: {'P1': 0, 'P2': 0, 'P3': 0, 'P4': 0}

@@ -1,0 +1,49 @@
+REPO=/mnt/c/Users/ragas/Videos/claude/ResearchPaper2/PLCCodeGenResearch_5090/PLCCodeGenResearch
+NUXMV_BIN=/home/ragas/nuxmv/usr/local/bin/nuXmv
+MATIEC_IEC2C=/home/ragas/matiec/iec2c
+PYBIN=/home/ragas/plcvenv/bin/python
+----
+n=10 temp=0.8 tasks=22 models=['grok:grok-3', 'anthropic:claude-sonnet-4-6', 'gemini:gemini-2.5-flash', 'openai:gpt-4o']
+==== grok:grok-3 ====
+  grok:grok-3 E01_motor_interlock: compile 10/10 inv 10/10 scen 10/10 TV 10/10 err 0 (19s)
+  grok:grok-3 E02_tank_overflow: compile 7/10 inv 7/10 scen 10/10 TV 7/10 err 0 (33s)
+  grok:grok-3 E03_airlock_interlock: compile 10/10 inv 10/10 scen 10/10 TV 10/10 err 0 (52s)
+  grok:grok-3 E04_conveyor_permissive: compile 10/10 inv 8/10 scen 10/10 TV 8/10 err 0 (30s)
+  grok:grok-3 E05_alarm_latch: compile 9/10 inv 9/10 scen 10/10 TV 9/10 err 0 (28s)
+  grok:grok-3 E06_heater_overtemp: compile 8/10 inv 8/10 scen 10/10 TV 8/10 err 0 (16s)
+  grok:grok-3 E07_pump_dryrun_protection: compile 10/10 inv 10/10 scen 10/10 TV 10/10 err 0 (16s)
+  grok:grok-3 H01_intersection_signals: compile 10/10 inv 5/10 scen 5/10 TV 5/10 err 0 (52s)
+  grok:grok-3 H02_elevator_door_interlock: compile 10/10 inv 10/10 scen 4/10 TV 4/10 err 0 (46s)
+  grok:grok-3 H03_batch_reactor_sequence: compile 10/10 inv 0/10 scen 0/10 TV 0/10 err 0 (40s)
+  grok:grok-3 H04_parking_garage_counter: compile 10/10 inv 10/10 scen 10/10 TV 10/10 err 0 (28s)
+  grok:grok-3 M01_motor_startup_delay: compile 10/10 inv 10/10 scen 10/10 TV 10/10 err 0 (30s)
+  grok:grok-3 M02_star_delta_starter: compile 7/10 inv 4/10 scen 3/10 TV 3/10 err 0 (44s)
+  grok:grok-3 M03_pedestrian_crossing: compile 10/10 inv 1/10 scen 1/10 TV 1/10 err 0 (44s)
+  grok:grok-3 M04_tank_fill_drain_cycle: compile 10/10 inv 10/10 scen 4/10 TV 4/10 err 0 (43s)
+  grok:grok-3 M05_conveyor_sequence: compile 7/10 inv 4/10 scen 4/10 TV 3/10 err 0 (44s)
+  grok:grok-3 M06_burner_purge_sequence: compile 9/10 inv 4/10 scen 5/10 TV 3/10 err 0 (42s)
+  grok:grok-3 M07_two_hand_control: compile 10/10 inv 6/10 scen 6/10 TV 6/10 err 0 (35s)
+  grok:grok-3 M08_pump_alternation: compile 9/10 inv 9/10 scen 10/10 TV 9/10 err 0 (42s)
+  grok:grok-3 M09_gate_limits_obstruction: compile 10/10 inv 10/10 scen 6/10 TV 6/10 err 0 (41s)
+  grok:grok-3 M10_three_conveyor_start: compile 7/10 inv 0/10 scen 0/10 TV 0/10 err 0 (56s)
+  grok:grok-3 M11_dosing_counter: compile 4/10 inv 4/10 scen 10/10 TV 4/10 err 0 (34s)
+DONE grok:grok-3 -> results/frontier_n10/grok_grok-3.json
+==== anthropic:claude-sonnet-4-6 ====
+  anthropic:claude-sonnet-4-6 E01_motor_interlock: compile 10/10 inv 10/10 scen 10/10 TV 10/10 err 0 (12s)
+  anthropic:claude-sonnet-4-6 E02_tank_overflow: compile 9/10 inv 9/10 scen 10/10 TV 9/10 err 0 (13s)
+  anthropic:claude-sonnet-4-6 E03_airlock_interlock: compile 10/10 inv 10/10 scen 10/10 TV 10/10 err 0 (15s)
+  anthropic:claude-sonnet-4-6 E04_conveyor_permissive: compile 10/10 inv 10/10 scen 10/10 TV 10/10 err 0 (14s)
+  anthropic:claude-sonnet-4-6 E05_alarm_latch: compile 10/10 inv 10/10 scen 10/10 TV 10/10 err 0 (11s)
+  anthropic:claude-sonnet-4-6 E06_heater_overtemp: compile 10/10 inv 10/10 scen 10/10 TV 10/10 err 0 (11s)
+  anthropic:claude-sonnet-4-6 E07_pump_dryrun_protection: compile 10/10 inv 10/10 scen 10/10 TV 10/10 err 0 (12s)
+  anthropic:claude-sonnet-4-6 H01_intersection_signals: compile 7/10 inv 0/10 scen 0/10 TV 0/10 err 0 (29s)
+  anthropic:claude-sonnet-4-6 H02_elevator_door_interlock: compile 10/10 inv 10/10 scen 0/10 TV 0/10 err 0 (30s)
+  anthropic:claude-sonnet-4-6 H03_batch_reactor_sequence: compile 10/10 inv 0/10 scen 0/10 TV 0/10 err 0 (39s)
+  anthropic:claude-sonnet-4-6 H04_parking_garage_counter: compile 10/10 inv 9/10 scen 10/10 TV 9/10 err 0 (21s)
+  anthropic:claude-sonnet-4-6 M01_motor_startup_delay: compile 10/10 inv 0/10 scen 0/10 TV 0/10 err 0 (14s)
+  anthropic:claude-sonnet-4-6 M02_star_delta_starter: compile 5/10 inv 3/10 scen 3/10 TV 3/10 err 0 (26s)
+  anthropic:claude-sonnet-4-6 M03_pedestrian_crossing: compile 10/10 inv 0/10 scen 0/10 TV 0/10 err 0 (19s)
+  anthropic:claude-sonnet-4-6 M04_tank_fill_drain_cycle: compile 10/10 inv 0/10 scen 0/10 TV 0/10 err 0 (21s)
+  anthropic:claude-sonnet-4-6 M05_conveyor_sequence: compile 3/10 inv 1/10 scen 0/10 TV 0/10 err 0 (17s)
+  anthropic:claude-sonnet-4-6 M06_burner_purge_sequence: compile 8/10 inv 0/10 scen 2/10 TV 0/10 err 2 (96s)
+  anthropic:claude-sonnet-4-6 M07_two_hand_control: compile 0/10 inv 0/10 scen 0/10 TV 0/10 err 10 (228s)

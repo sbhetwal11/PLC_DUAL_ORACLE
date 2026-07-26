@@ -1,0 +1,398 @@
+[
+ {
+  "task": "E01_motor_interlock",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.8
+ },
+ {
+  "task": "E01_motor_interlock",
+  "mode": "all-on",
+  "eq2": 0.3,
+  "eq3": 0.2
+ },
+ {
+  "task": "E01_motor_interlock",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "E02_tank_overflow",
+  "mode": "all-off",
+  "eq2": 0.7667,
+  "eq3": 0.4667
+ },
+ {
+  "task": "E02_tank_overflow",
+  "mode": "all-on",
+  "eq2": 0.5333,
+  "eq3": 0.3333
+ },
+ {
+  "task": "E02_tank_overflow",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "E03_airlock_interlock",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.6
+ },
+ {
+  "task": "E03_airlock_interlock",
+  "mode": "all-on",
+  "eq2": 0.3,
+  "eq3": 0.2
+ },
+ {
+  "task": "E03_airlock_interlock",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "E04_conveyor_permissive",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.6
+ },
+ {
+  "task": "E04_conveyor_permissive",
+  "mode": "all-on",
+  "eq2": 0.3,
+  "eq3": 0.2
+ },
+ {
+  "task": "E04_conveyor_permissive",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "E05_alarm_latch",
+  "mode": "all-off",
+  "eq2": 0.65,
+  "eq3": 0.4
+ },
+ {
+  "task": "E05_alarm_latch",
+  "mode": "all-on",
+  "eq2": 1.0,
+  "eq3": 0.8
+ },
+ {
+  "task": "E05_alarm_latch",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "E06_heater_overtemp",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.8
+ },
+ {
+  "task": "E06_heater_overtemp",
+  "mode": "all-on",
+  "eq2": 0.3,
+  "eq3": 0.2
+ },
+ {
+  "task": "E06_heater_overtemp",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "E07_pump_dryrun_protection",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.6
+ },
+ {
+  "task": "E07_pump_dryrun_protection",
+  "mode": "all-on",
+  "eq2": 0.3,
+  "eq3": 0.2
+ },
+ {
+  "task": "E07_pump_dryrun_protection",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "H01_intersection_signals",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.6
+ },
+ {
+  "task": "H01_intersection_signals",
+  "mode": "all-on",
+  "eq2": 0.65,
+  "eq3": 0.4
+ },
+ {
+  "task": "H01_intersection_signals",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "H02_elevator_door_interlock",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.7333
+ },
+ {
+  "task": "H02_elevator_door_interlock",
+  "mode": "all-on",
+  "eq2": 0.3,
+  "eq3": 0.2
+ },
+ {
+  "task": "H02_elevator_door_interlock",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "H03_batch_reactor_sequence",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.6
+ },
+ {
+  "task": "H03_batch_reactor_sequence",
+  "mode": "all-on",
+  "eq2": 0.3,
+  "eq3": 0.2
+ },
+ {
+  "task": "H03_batch_reactor_sequence",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "H04_parking_garage_counter",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.6
+ },
+ {
+  "task": "H04_parking_garage_counter",
+  "mode": "all-on",
+  "eq2": 0.475,
+  "eq3": 0.3
+ },
+ {
+  "task": "H04_parking_garage_counter",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "M01_motor_startup_delay",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.8667
+ },
+ {
+  "task": "M01_motor_startup_delay",
+  "mode": "all-on",
+  "eq2": 0.3,
+  "eq3": 0.2
+ },
+ {
+  "task": "M01_motor_startup_delay",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "M02_star_delta_starter",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.6
+ },
+ {
+  "task": "M02_star_delta_starter",
+  "mode": "all-on",
+  "eq2": 0.475,
+  "eq3": 0.3
+ },
+ {
+  "task": "M02_star_delta_starter",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "M03_pedestrian_crossing",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.6
+ },
+ {
+  "task": "M03_pedestrian_crossing",
+  "mode": "all-on",
+  "eq2": 0.475,
+  "eq3": 0.5
+ },
+ {
+  "task": "M03_pedestrian_crossing",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "M04_tank_fill_drain_cycle",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.7333
+ },
+ {
+  "task": "M04_tank_fill_drain_cycle",
+  "mode": "all-on",
+  "eq2": 0.3,
+  "eq3": 0.2
+ },
+ {
+  "task": "M04_tank_fill_drain_cycle",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "M05_conveyor_sequence",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.6
+ },
+ {
+  "task": "M05_conveyor_sequence",
+  "mode": "all-on",
+  "eq2": 0.5333,
+  "eq3": 0.3333
+ },
+ {
+  "task": "M05_conveyor_sequence",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "M06_burner_purge_sequence",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.6
+ },
+ {
+  "task": "M06_burner_purge_sequence",
+  "mode": "all-on",
+  "eq2": 0.65,
+  "eq3": 0.4
+ },
+ {
+  "task": "M06_burner_purge_sequence",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "M07_two_hand_control",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.6
+ },
+ {
+  "task": "M07_two_hand_control",
+  "mode": "all-on",
+  "eq2": 0.3,
+  "eq3": 0.2
+ },
+ {
+  "task": "M07_two_hand_control",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "M08_pump_alternation",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.6
+ },
+ {
+  "task": "M08_pump_alternation",
+  "mode": "all-on",
+  "eq2": 0.3,
+  "eq3": 0.2
+ },
+ {
+  "task": "M08_pump_alternation",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "M09_gate_limits_obstruction",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.7333
+ },
+ {
+  "task": "M09_gate_limits_obstruction",
+  "mode": "all-on",
+  "eq2": 0.3,
+  "eq3": 0.2
+ },
+ {
+  "task": "M09_gate_limits_obstruction",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "M10_three_conveyor_start",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.6
+ },
+ {
+  "task": "M10_three_conveyor_start",
+  "mode": "all-on",
+  "eq2": 0.65,
+  "eq3": 0.4
+ },
+ {
+  "task": "M10_three_conveyor_start",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ },
+ {
+  "task": "M11_dosing_counter",
+  "mode": "all-off",
+  "eq2": 1.0,
+  "eq3": 0.8
+ },
+ {
+  "task": "M11_dosing_counter",
+  "mode": "all-on",
+  "eq2": 0.65,
+  "eq3": 0.4
+ },
+ {
+  "task": "M11_dosing_counter",
+  "mode": "empty-body",
+  "eq2": 0.1,
+  "eq3": 0.1
+ }
+]

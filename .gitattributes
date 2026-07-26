@@ -1,0 +1,7 @@
+# Keep line endings LF everywhere (repo runs on the Linux 5090 box + WSL).
+* text=auto eol=lf
+*.sh text eol=lf
+Dockerfile text eol=lf
+*.tar.xz binary
+*.tar.gz binary
+*.pdf binary

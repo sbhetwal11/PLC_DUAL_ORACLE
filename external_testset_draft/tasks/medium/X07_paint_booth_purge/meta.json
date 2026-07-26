@@ -1,0 +1,53 @@
+{
+  "id": "X07_paint_booth_purge",
+  "title": "Paint-booth airflow interlock with purge dwell",
+  "difficulty": "medium",
+  "domain": "finishing / process safety",
+  "nl_spec": "A spray paint booth must prove exhaust airflow before spraying is allowed. The exhaust fan runs whenever the operator commands it (FanCmd) and the system is healthy. AirflowProven is a differential-pressure switch (TRUE = airflow proven). Spraying may be enabled only after the exhaust fan has been running with airflow proven continuously for a purge dwell PURGE_TIME = 4 seconds, and only while SprayRequest, the exhaust fan and airflow are all present. SprayEnable must never be asserted without the exhaust fan running and airflow proven. EStop is normally-closed (TRUE = healthy, FALSE = activated); when activated the exhaust fan and spray enable both drop. Use one TON. Write an IEC 61131-3 Structured Text PROGRAM named paint_booth with inputs SprayRequest, FanCmd, AirflowProven, EStop and outputs ExhaustFan, SprayEnable.",
+  "interface": [
+    {"name": "SprayRequest", "type": "BOOL", "direction": "input", "description": "Spray-gun trigger request"},
+    {"name": "FanCmd", "type": "BOOL", "direction": "input", "description": "Operator exhaust-fan command"},
+    {"name": "AirflowProven", "type": "BOOL", "direction": "input", "description": "Differential-pressure switch: TRUE = airflow proven"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "ExhaustFan", "type": "BOOL", "direction": "output", "description": "Exhaust fan contactor"},
+    {"name": "SprayEnable", "type": "BOOL", "direction": "output", "description": "Spray-gun enable"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "On emergency stop, both the exhaust fan and spray enable are off.", "ltl": "G(!EStop -> (!SprayEnable & !ExhaustFan))"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "Spray is never enabled without the exhaust fan running.", "ltl": "G(SprayEnable -> ExhaustFan)"},
+    {"id": "P3", "kind": "safety", "severity": "critical", "nl": "Spray is never enabled without proven airflow.", "ltl": "G(SprayEnable -> AirflowProven)"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "Positive obligation: while healthy and commanded, the exhaust fan runs.", "ltl": "G((FanCmd & EStop) -> ExhaustFan)"},
+    {"id": "P5", "kind": "safety", "severity": "high", "nl": "Spray is never enabled without an active spray request.", "ltl": "G(SprayEnable -> SprayRequest)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Purge dwell then spray enabled on the 4th second",
+     "steps": [
+       {"inputs": {"SprayRequest": true, "FanCmd": true, "AirflowProven": true, "EStop": true}, "expect": {"ExhaustFan": true, "SprayEnable": false}},
+       {"inputs": {"SprayRequest": true, "FanCmd": true, "AirflowProven": true, "EStop": true}, "expect": {"ExhaustFan": true, "SprayEnable": false}},
+       {"inputs": {"SprayRequest": true, "FanCmd": true, "AirflowProven": true, "EStop": true}, "expect": {"SprayEnable": false}},
+       {"inputs": {"SprayRequest": true, "FanCmd": true, "AirflowProven": true, "EStop": true}, "expect": {"ExhaustFan": true, "SprayEnable": true}}
+     ]},
+    {"id": "S2", "description": "Loss of airflow immediately disables spraying",
+     "steps": [
+       {"inputs": {"SprayRequest": true, "FanCmd": true, "AirflowProven": true, "EStop": true}, "expect": {"SprayEnable": false}},
+       {"inputs": {"SprayRequest": true, "FanCmd": true, "AirflowProven": true, "EStop": true}, "expect": {"SprayEnable": false}},
+       {"inputs": {"SprayRequest": true, "FanCmd": true, "AirflowProven": true, "EStop": true}, "expect": {"SprayEnable": false}},
+       {"inputs": {"SprayRequest": true, "FanCmd": true, "AirflowProven": true, "EStop": true}, "expect": {"SprayEnable": true}},
+       {"inputs": {"SprayRequest": true, "FanCmd": true, "AirflowProven": false, "EStop": true}, "expect": {"SprayEnable": false, "ExhaustFan": true}}
+     ]},
+    {"id": "S3", "description": "Emergency stop drops fan and spray enable",
+     "steps": [
+       {"inputs": {"SprayRequest": true, "FanCmd": true, "AirflowProven": true, "EStop": false}, "expect": {"ExhaustFan": false, "SprayEnable": false}}
+     ]},
+    {"id": "S4", "description": "After the purge dwell, dropping the spray request revokes spray enable while the exhaust fan keeps running",
+     "steps": [
+       {"inputs": {"SprayRequest": true, "FanCmd": true, "AirflowProven": true, "EStop": true}, "expect": {"ExhaustFan": true, "SprayEnable": false}},
+       {"inputs": {"SprayRequest": true, "FanCmd": true, "AirflowProven": true, "EStop": true}, "expect": {"SprayEnable": false}},
+       {"inputs": {"SprayRequest": true, "FanCmd": true, "AirflowProven": true, "EStop": true}, "expect": {"SprayEnable": false}},
+       {"inputs": {"SprayRequest": true, "FanCmd": true, "AirflowProven": true, "EStop": true}, "expect": {"ExhaustFan": true, "SprayEnable": true}},
+       {"inputs": {"SprayRequest": false, "FanCmd": true, "AirflowProven": true, "EStop": true}, "expect": {"SprayEnable": false, "ExhaustFan": true}}
+     ]}
+  ],
+  "tags": ["draft", "airflow-interlock", "purge-dwell", "TON", "positive-obligation"],
+  "notes": "DRAFT - pending expert PLC review. NEW FAMILY: prove-airflow-before-permit with a continuous purge dwell. Distinct from the existing burner-purge task, which is a one-shot ignition SEQUENCE (CASE state machine) - here the TON is a continuous permissive that must be re-satisfied every scan (losing airflow instantly revokes the enable), plus an exhaust-fan run obligation. Not an on-delay motor start. DOC (reviewer notes applied): PURGE_TIME = 4 means 4 verification ticks under the discrete-time abstraction (1 scan tick = 1 s), not a wall-clock guarantee on a real PLC. DOC: the modeled policy of dropping the exhaust fan on E-stop is a deliberate simplification - plant practice often keeps booth ventilation energized on a circuit that survives a machine E-stop."
+}

@@ -1,0 +1,188 @@
+{
+ "per_task": {
+  "E01_motor_interlock": {
+   "n_mut": 14,
+   "compiling": 11,
+   "killed_inv": 4,
+   "killed_scen": 6,
+   "inv_blind": 2,
+   "survived": 5
+  },
+  "E02_tank_overflow": {
+   "n_mut": 14,
+   "compiling": 10,
+   "killed_inv": 5,
+   "killed_scen": 10,
+   "inv_blind": 5,
+   "survived": 0
+  },
+  "E03_airlock_interlock": {
+   "n_mut": 12,
+   "compiling": 8,
+   "killed_inv": 6,
+   "killed_scen": 8,
+   "inv_blind": 2,
+   "survived": 0
+  },
+  "E04_conveyor_permissive": {
+   "n_mut": 10,
+   "compiling": 8,
+   "killed_inv": 4,
+   "killed_scen": 6,
+   "inv_blind": 2,
+   "survived": 2
+  },
+  "E05_alarm_latch": {
+   "n_mut": 6,
+   "compiling": 4,
+   "killed_inv": 3,
+   "killed_scen": 4,
+   "inv_blind": 1,
+   "survived": 0
+  },
+  "E06_heater_overtemp": {
+   "n_mut": 9,
+   "compiling": 6,
+   "killed_inv": 5,
+   "killed_scen": 6,
+   "inv_blind": 1,
+   "survived": 0
+  },
+  "E07_pump_dryrun_protection": {
+   "n_mut": 8,
+   "compiling": 5,
+   "killed_inv": 4,
+   "killed_scen": 5,
+   "inv_blind": 1,
+   "survived": 0
+  },
+  "H01_intersection_signals": {
+   "n_mut": 60,
+   "compiling": 60,
+   "killed_inv": 12,
+   "killed_scen": 26,
+   "inv_blind": 22,
+   "survived": 26
+  },
+  "H02_elevator_door_interlock": {
+   "n_mut": 16,
+   "compiling": 16,
+   "killed_inv": 9,
+   "killed_scen": 9,
+   "inv_blind": 2,
+   "survived": 5
+  },
+  "H03_batch_reactor_sequence": {
+   "n_mut": 39,
+   "compiling": 38,
+   "killed_inv": 18,
+   "killed_scen": 18,
+   "inv_blind": 7,
+   "survived": 13
+  },
+  "H04_parking_garage_counter": {
+   "n_mut": 17,
+   "compiling": 15,
+   "killed_inv": 8,
+   "killed_scen": 11,
+   "inv_blind": 4,
+   "survived": 3
+  },
+  "M01_motor_startup_delay": {
+   "n_mut": 13,
+   "compiling": 10,
+   "killed_inv": 4,
+   "killed_scen": 7,
+   "inv_blind": 3,
+   "survived": 3
+  },
+  "M02_star_delta_starter": {
+   "n_mut": 23,
+   "compiling": 20,
+   "killed_inv": 11,
+   "killed_scen": 16,
+   "inv_blind": 5,
+   "survived": 4
+  },
+  "M03_pedestrian_crossing": {
+   "n_mut": 25,
+   "compiling": 22,
+   "killed_inv": 8,
+   "killed_scen": 16,
+   "inv_blind": 11,
+   "survived": 3
+  },
+  "M04_tank_fill_drain_cycle": {
+   "n_mut": 23,
+   "compiling": 19,
+   "killed_inv": 14,
+   "killed_scen": 17,
+   "inv_blind": 3,
+   "survived": 2
+  },
+  "M05_conveyor_sequence": {
+   "n_mut": 20,
+   "compiling": 17,
+   "killed_inv": 6,
+   "killed_scen": 12,
+   "inv_blind": 7,
+   "survived": 4
+  },
+  "M06_burner_purge_sequence": {
+   "n_mut": 33,
+   "compiling": 27,
+   "killed_inv": 10,
+   "killed_scen": 23,
+   "inv_blind": 13,
+   "survived": 4
+  },
+  "M07_two_hand_control": {
+   "n_mut": 13,
+   "compiling": 11,
+   "killed_inv": 2,
+   "killed_scen": 11,
+   "inv_blind": 9,
+   "survived": 0
+  },
+  "M08_pump_alternation": {
+   "n_mut": 25,
+   "compiling": 23,
+   "killed_inv": 12,
+   "killed_scen": 17,
+   "inv_blind": 6,
+   "survived": 5
+  },
+  "M09_gate_limits_obstruction": {
+   "n_mut": 23,
+   "compiling": 18,
+   "killed_inv": 13,
+   "killed_scen": 15,
+   "inv_blind": 3,
+   "survived": 2
+  },
+  "M10_three_conveyor_start": {
+   "n_mut": 29,
+   "compiling": 28,
+   "killed_inv": 10,
+   "killed_scen": 19,
+   "inv_blind": 10,
+   "survived": 8
+  },
+  "M11_dosing_counter": {
+   "n_mut": 10,
+   "compiling": 8,
+   "killed_inv": 4,
+   "killed_scen": 6,
+   "inv_blind": 3,
+   "survived": 1
+  }
+ },
+ "totals": {
+  "n_mut": 442,
+  "compiling": 384,
+  "killed_inv": 172,
+  "killed_scen": 268,
+  "inv_blind": 122,
+  "survived": 90
+ }
+}

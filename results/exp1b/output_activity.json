@@ -1,0 +1,11 @@
+{
+ "rlfunc_sftlite": {
+  "n_samples": 220.0,
+  "n_parsed": 143.6667,
+  "scenario_pass_rate": 0.3182,
+  "activation_freq": 0.8875,
+  "alloff_equiv_frac": 0.1125,
+  "allon_equiv_frac": 0.0,
+  "constant_output_frac": 0.1148
+ }
+}

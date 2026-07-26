@@ -1,0 +1,1553 @@
+{
+ "window": "July 2026 (retained raw completions, results/frontier_n10/*)",
+ "n_per_task": 10,
+ "n_tasks": 22,
+ "tiers": {
+  "easy": 7,
+  "medium": 11,
+  "hard": 4
+ },
+ "estimator": "unbiased Chen et al. pass@k, averaged over tasks",
+ "field_semantics": {
+  "compile_and_invariant": "c_verified (per-sample 'invariant' = harness.verified)",
+  "all_checks_pass": "c_taskvalid (compile AND invariant AND scenario)"
+ },
+ "models": {
+  "grok": {
+   "display": "grok-4.3 (grok-3 slug)",
+   "source_file": "grok_grok-3.json",
+   "compile_and_invariant": {
+    "overall": {
+     "pass@1": 0.6772727272727272,
+     "pass@10": 0.9090909090909091
+    },
+    "easy": {
+     "n_tasks": 7,
+     "pass@1": 0.8857142857142858,
+     "pass@10": 1.0
+    },
+    "medium": {
+     "n_tasks": 11,
+     "pass@1": 0.5636363636363636,
+     "pass@10": 0.9090909090909091
+    },
+    "hard": {
+     "n_tasks": 4,
+     "pass@1": 0.625,
+     "pass@10": 0.75
+    }
+   },
+   "all_checks_pass": {
+    "overall": {
+     "pass@1": 0.5909090909090909,
+     "pass@10": 0.9090909090909091
+    },
+    "easy": {
+     "n_tasks": 7,
+     "pass@1": 0.8857142857142858,
+     "pass@10": 1.0
+    },
+    "medium": {
+     "n_tasks": 11,
+     "pass@1": 0.4454545454545455,
+     "pass@10": 0.9090909090909091
+    },
+    "hard": {
+     "n_tasks": 4,
+     "pass@1": 0.475,
+     "pass@10": 0.75
+    }
+   },
+   "matiec_accepted": {
+    "overall": {
+     "pass@1": 0.8954545454545454,
+     "pass@10": 1.0
+    },
+    "easy": {
+     "n_tasks": 7,
+     "pass@1": 0.9142857142857144,
+     "pass@10": 1.0
+    },
+    "medium": {
+     "n_tasks": 11,
+     "pass@1": 0.8454545454545456,
+     "pass@10": 1.0
+    },
+    "hard": {
+     "n_tasks": 4,
+     "pass@1": 1.0,
+     "pass@10": 1.0
+    }
+   },
+   "scenario": {
+    "overall": {
+     "pass@1": 0.6727272727272727,
+     "pass@10": 0.9090909090909091
+    },
+    "easy": {
+     "n_tasks": 7,
+     "pass@1": 1.0,
+     "pass@10": 1.0
+    },
+    "medium": {
+     "n_tasks": 11,
+     "pass@1": 0.5363636363636364,
+     "pass@10": 0.9090909090909091
+    },
+    "hard": {
+     "n_tasks": 4,
+     "pass@1": 0.475,
+     "pass@10": 0.75
+    }
+   },
+   "per_task_matrix": [
+    {
+     "task_id": "E01_motor_interlock",
+     "tier": "easy",
+     "c_verified": 10,
+     "c_taskvalid": 10,
+     "c_compile": 10,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "E02_tank_overflow",
+     "tier": "easy",
+     "c_verified": 7,
+     "c_taskvalid": 7,
+     "c_compile": 7,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "E03_airlock_interlock",
+     "tier": "easy",
+     "c_verified": 10,
+     "c_taskvalid": 10,
+     "c_compile": 10,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "E04_conveyor_permissive",
+     "tier": "easy",
+     "c_verified": 8,
+     "c_taskvalid": 8,
+     "c_compile": 10,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "E05_alarm_latch",
+     "tier": "easy",
+     "c_verified": 9,
+     "c_taskvalid": 9,
+     "c_compile": 9,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "E06_heater_overtemp",
+     "tier": "easy",
+     "c_verified": 8,
+     "c_taskvalid": 8,
+     "c_compile": 8,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "E07_pump_dryrun_protection",
+     "tier": "easy",
+     "c_verified": 10,
+     "c_taskvalid": 10,
+     "c_compile": 10,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "H01_intersection_signals",
+     "tier": "hard",
+     "c_verified": 5,
+     "c_taskvalid": 5,
+     "c_compile": 10,
+     "c_scenario": 5
+    },
+    {
+     "task_id": "H02_elevator_door_interlock",
+     "tier": "hard",
+     "c_verified": 10,
+     "c_taskvalid": 4,
+     "c_compile": 10,
+     "c_scenario": 4
+    },
+    {
+     "task_id": "H03_batch_reactor_sequence",
+     "tier": "hard",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 10,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "H04_parking_garage_counter",
+     "tier": "hard",
+     "c_verified": 10,
+     "c_taskvalid": 10,
+     "c_compile": 10,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "M01_motor_startup_delay",
+     "tier": "medium",
+     "c_verified": 10,
+     "c_taskvalid": 10,
+     "c_compile": 10,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "M02_star_delta_starter",
+     "tier": "medium",
+     "c_verified": 4,
+     "c_taskvalid": 3,
+     "c_compile": 7,
+     "c_scenario": 3
+    },
+    {
+     "task_id": "M03_pedestrian_crossing",
+     "tier": "medium",
+     "c_verified": 1,
+     "c_taskvalid": 1,
+     "c_compile": 10,
+     "c_scenario": 1
+    },
+    {
+     "task_id": "M04_tank_fill_drain_cycle",
+     "tier": "medium",
+     "c_verified": 10,
+     "c_taskvalid": 4,
+     "c_compile": 10,
+     "c_scenario": 4
+    },
+    {
+     "task_id": "M05_conveyor_sequence",
+     "tier": "medium",
+     "c_verified": 4,
+     "c_taskvalid": 3,
+     "c_compile": 7,
+     "c_scenario": 4
+    },
+    {
+     "task_id": "M06_burner_purge_sequence",
+     "tier": "medium",
+     "c_verified": 4,
+     "c_taskvalid": 3,
+     "c_compile": 9,
+     "c_scenario": 5
+    },
+    {
+     "task_id": "M07_two_hand_control",
+     "tier": "medium",
+     "c_verified": 6,
+     "c_taskvalid": 6,
+     "c_compile": 10,
+     "c_scenario": 6
+    },
+    {
+     "task_id": "M08_pump_alternation",
+     "tier": "medium",
+     "c_verified": 9,
+     "c_taskvalid": 9,
+     "c_compile": 9,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "M09_gate_limits_obstruction",
+     "tier": "medium",
+     "c_verified": 10,
+     "c_taskvalid": 6,
+     "c_compile": 10,
+     "c_scenario": 6
+    },
+    {
+     "task_id": "M10_three_conveyor_start",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 7,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M11_dosing_counter",
+     "tier": "medium",
+     "c_verified": 4,
+     "c_taskvalid": 4,
+     "c_compile": 4,
+     "c_scenario": 10
+    }
+   ],
+   "rq3_ci_pass1_by_tier": {
+    "easy": 0.8857142857142858,
+    "medium": 0.5636363636363636,
+    "hard": 0.625
+   },
+   "failure_taxonomy": {
+    "total_samples": 220,
+    "categories": {
+     "verified": 149,
+     "compile_error": 17,
+     "unsafe": 2,
+     "parse_error": 40,
+     "translate_error": 12
+    },
+    "unsafe_count": 2,
+    "unsafe_detail": [
+     {
+      "task_id": "E04_conveyor_permissive",
+      "tier": "easy",
+      "i": 4,
+      "n_props": 3,
+      "n_fail": 1,
+      "n_pass": 2
+     },
+     {
+      "task_id": "E04_conveyor_permissive",
+      "tier": "easy",
+      "i": 9,
+      "n_props": 3,
+      "n_fail": 1,
+      "n_pass": 2
+     }
+    ],
+    "recomputed_verified": 149,
+    "stored_c_verified": 149,
+    "verified_matches_stored": true
+   }
+  },
+  "claude": {
+   "display": "claude-sonnet-4-6",
+   "source_file": "anthropic_claude-sonnet-4-6.json",
+   "compile_and_invariant": {
+    "overall": {
+     "pass@1": 0.5545454545454546,
+     "pass@10": 0.6363636363636364
+    },
+    "easy": {
+     "n_tasks": 7,
+     "pass@1": 0.9857142857142858,
+     "pass@10": 1.0
+    },
+    "medium": {
+     "n_tasks": 11,
+     "pass@1": 0.3090909090909091,
+     "pass@10": 0.45454545454545453
+    },
+    "hard": {
+     "n_tasks": 4,
+     "pass@1": 0.475,
+     "pass@10": 0.5
+    }
+   },
+   "all_checks_pass": {
+    "overall": {
+     "pass@1": 0.45909090909090905,
+     "pass@10": 0.5
+    },
+    "easy": {
+     "n_tasks": 7,
+     "pass@1": 0.9857142857142858,
+     "pass@10": 1.0
+    },
+    "medium": {
+     "n_tasks": 11,
+     "pass@1": 0.20909090909090908,
+     "pass@10": 0.2727272727272727
+    },
+    "hard": {
+     "n_tasks": 4,
+     "pass@1": 0.225,
+     "pass@10": 0.25
+    }
+   },
+   "matiec_accepted": {
+    "overall": {
+     "pass@1": 0.9227272727272727,
+     "pass@10": 1.0
+    },
+    "easy": {
+     "n_tasks": 7,
+     "pass@1": 0.9857142857142858,
+     "pass@10": 1.0
+    },
+    "medium": {
+     "n_tasks": 11,
+     "pass@1": 0.8818181818181817,
+     "pass@10": 1.0
+    },
+    "hard": {
+     "n_tasks": 4,
+     "pass@1": 0.925,
+     "pass@10": 1.0
+    }
+   },
+   "scenario": {
+    "overall": {
+     "pass@1": 0.4727272727272727,
+     "pass@10": 0.5454545454545454
+    },
+    "easy": {
+     "n_tasks": 7,
+     "pass@1": 1.0,
+     "pass@10": 1.0
+    },
+    "medium": {
+     "n_tasks": 11,
+     "pass@1": 0.21818181818181817,
+     "pass@10": 0.36363636363636365
+    },
+    "hard": {
+     "n_tasks": 4,
+     "pass@1": 0.25,
+     "pass@10": 0.25
+    }
+   },
+   "per_task_matrix": [
+    {
+     "task_id": "E01_motor_interlock",
+     "tier": "easy",
+     "c_verified": 10,
+     "c_taskvalid": 10,
+     "c_compile": 10,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "E02_tank_overflow",
+     "tier": "easy",
+     "c_verified": 9,
+     "c_taskvalid": 9,
+     "c_compile": 9,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "E03_airlock_interlock",
+     "tier": "easy",
+     "c_verified": 10,
+     "c_taskvalid": 10,
+     "c_compile": 10,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "E04_conveyor_permissive",
+     "tier": "easy",
+     "c_verified": 10,
+     "c_taskvalid": 10,
+     "c_compile": 10,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "E05_alarm_latch",
+     "tier": "easy",
+     "c_verified": 10,
+     "c_taskvalid": 10,
+     "c_compile": 10,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "E06_heater_overtemp",
+     "tier": "easy",
+     "c_verified": 10,
+     "c_taskvalid": 10,
+     "c_compile": 10,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "E07_pump_dryrun_protection",
+     "tier": "easy",
+     "c_verified": 10,
+     "c_taskvalid": 10,
+     "c_compile": 10,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "H01_intersection_signals",
+     "tier": "hard",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 7,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "H02_elevator_door_interlock",
+     "tier": "hard",
+     "c_verified": 10,
+     "c_taskvalid": 0,
+     "c_compile": 10,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "H03_batch_reactor_sequence",
+     "tier": "hard",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 10,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "H04_parking_garage_counter",
+     "tier": "hard",
+     "c_verified": 9,
+     "c_taskvalid": 9,
+     "c_compile": 10,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "M01_motor_startup_delay",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 10,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M02_star_delta_starter",
+     "tier": "medium",
+     "c_verified": 3,
+     "c_taskvalid": 3,
+     "c_compile": 5,
+     "c_scenario": 3
+    },
+    {
+     "task_id": "M03_pedestrian_crossing",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 10,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M04_tank_fill_drain_cycle",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 10,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M05_conveyor_sequence",
+     "tier": "medium",
+     "c_verified": 1,
+     "c_taskvalid": 0,
+     "c_compile": 3,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M06_burner_purge_sequence",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 10,
+     "c_scenario": 1
+    },
+    {
+     "task_id": "M07_two_hand_control",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 10,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M08_pump_alternation",
+     "tier": "medium",
+     "c_verified": 10,
+     "c_taskvalid": 10,
+     "c_compile": 10,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "M09_gate_limits_obstruction",
+     "tier": "medium",
+     "c_verified": 10,
+     "c_taskvalid": 0,
+     "c_compile": 10,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M10_three_conveyor_start",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 9,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M11_dosing_counter",
+     "tier": "medium",
+     "c_verified": 10,
+     "c_taskvalid": 10,
+     "c_compile": 10,
+     "c_scenario": 10
+    }
+   ],
+   "rq3_ci_pass1_by_tier": {
+    "easy": 0.9857142857142858,
+    "medium": 0.3090909090909091,
+    "hard": 0.475
+   },
+   "failure_taxonomy": {
+    "total_samples": 220,
+    "categories": {
+     "verified": 122,
+     "compile_error": 1,
+     "parse_error": 74,
+     "translate_error": 22,
+     "unsafe": 1
+    },
+    "unsafe_count": 1,
+    "unsafe_detail": [
+     {
+      "task_id": "M05_conveyor_sequence",
+      "tier": "medium",
+      "i": 5,
+      "n_props": 3,
+      "n_fail": 2,
+      "n_pass": 1
+     }
+    ],
+    "recomputed_verified": 122,
+    "stored_c_verified": 122,
+    "verified_matches_stored": true
+   }
+  },
+  "gemini": {
+   "display": "gemini-2.5-flash",
+   "source_file": "gemini_gemini-2.5-flash.json",
+   "compile_and_invariant": {
+    "overall": {
+     "pass@1": 0.1,
+     "pass@10": 0.2727272727272727
+    },
+    "easy": {
+     "n_tasks": 7,
+     "pass@1": 0.24285714285714285,
+     "pass@10": 0.5714285714285714
+    },
+    "medium": {
+     "n_tasks": 11,
+     "pass@1": 0.018181818181818177,
+     "pass@10": 0.09090909090909091
+    },
+    "hard": {
+     "n_tasks": 4,
+     "pass@1": 0.07500000000000001,
+     "pass@10": 0.25
+    }
+   },
+   "all_checks_pass": {
+    "overall": {
+     "pass@1": 0.1,
+     "pass@10": 0.2727272727272727
+    },
+    "easy": {
+     "n_tasks": 7,
+     "pass@1": 0.24285714285714285,
+     "pass@10": 0.5714285714285714
+    },
+    "medium": {
+     "n_tasks": 11,
+     "pass@1": 0.018181818181818177,
+     "pass@10": 0.09090909090909091
+    },
+    "hard": {
+     "n_tasks": 4,
+     "pass@1": 0.07500000000000001,
+     "pass@10": 0.25
+    }
+   },
+   "matiec_accepted": {
+    "overall": {
+     "pass@1": 0.12727272727272726,
+     "pass@10": 0.2727272727272727
+    },
+    "easy": {
+     "n_tasks": 7,
+     "pass@1": 0.24285714285714285,
+     "pass@10": 0.5714285714285714
+    },
+    "medium": {
+     "n_tasks": 11,
+     "pass@1": 0.018181818181818177,
+     "pass@10": 0.09090909090909091
+    },
+    "hard": {
+     "n_tasks": 4,
+     "pass@1": 0.225,
+     "pass@10": 0.25
+    }
+   },
+   "scenario": {
+    "overall": {
+     "pass@1": 0.2,
+     "pass@10": 0.2727272727272727
+    },
+    "easy": {
+     "n_tasks": 7,
+     "pass@1": 0.42857142857142855,
+     "pass@10": 0.5714285714285714
+    },
+    "medium": {
+     "n_tasks": 11,
+     "pass@1": 0.045454545454545456,
+     "pass@10": 0.09090909090909091
+    },
+    "hard": {
+     "n_tasks": 4,
+     "pass@1": 0.225,
+     "pass@10": 0.25
+    }
+   },
+   "per_task_matrix": [
+    {
+     "task_id": "E01_motor_interlock",
+     "tier": "easy",
+     "c_verified": 2,
+     "c_taskvalid": 2,
+     "c_compile": 2,
+     "c_scenario": 3
+    },
+    {
+     "task_id": "E02_tank_overflow",
+     "tier": "easy",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "E03_airlock_interlock",
+     "tier": "easy",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "E04_conveyor_permissive",
+     "tier": "easy",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "E05_alarm_latch",
+     "tier": "easy",
+     "c_verified": 5,
+     "c_taskvalid": 5,
+     "c_compile": 5,
+     "c_scenario": 7
+    },
+    {
+     "task_id": "E06_heater_overtemp",
+     "tier": "easy",
+     "c_verified": 5,
+     "c_taskvalid": 5,
+     "c_compile": 5,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "E07_pump_dryrun_protection",
+     "tier": "easy",
+     "c_verified": 5,
+     "c_taskvalid": 5,
+     "c_compile": 5,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "H01_intersection_signals",
+     "tier": "hard",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "H02_elevator_door_interlock",
+     "tier": "hard",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "H03_batch_reactor_sequence",
+     "tier": "hard",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "H04_parking_garage_counter",
+     "tier": "hard",
+     "c_verified": 3,
+     "c_taskvalid": 3,
+     "c_compile": 9,
+     "c_scenario": 9
+    },
+    {
+     "task_id": "M01_motor_startup_delay",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M02_star_delta_starter",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M03_pedestrian_crossing",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M04_tank_fill_drain_cycle",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M05_conveyor_sequence",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M06_burner_purge_sequence",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M07_two_hand_control",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M08_pump_alternation",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M09_gate_limits_obstruction",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M10_three_conveyor_start",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M11_dosing_counter",
+     "tier": "medium",
+     "c_verified": 2,
+     "c_taskvalid": 2,
+     "c_compile": 2,
+     "c_scenario": 5
+    }
+   ],
+   "rq3_ci_pass1_by_tier": {
+    "easy": 0.24285714285714285,
+    "medium": 0.018181818181818177,
+    "hard": 0.07500000000000001
+   },
+   "failure_taxonomy": {
+    "total_samples": 220,
+    "categories": {
+     "parse_error": 176,
+     "verified": 22,
+     "compile_error": 16,
+     "translate_error": 6
+    },
+    "unsafe_count": 0,
+    "unsafe_detail": [],
+    "recomputed_verified": 22,
+    "stored_c_verified": 22,
+    "verified_matches_stored": true
+   }
+  },
+  "gpt-4o": {
+   "display": "gpt-4o",
+   "source_file": "openai_gpt-4o.json",
+   "compile_and_invariant": {
+    "overall": {
+     "pass@1": 0.10909090909090909,
+     "pass@10": 0.4090909090909091
+    },
+    "easy": {
+     "n_tasks": 7,
+     "pass@1": 0.1571428571428571,
+     "pass@10": 0.7142857142857143
+    },
+    "medium": {
+     "n_tasks": 11,
+     "pass@1": 0.10909090909090911,
+     "pass@10": 0.2727272727272727
+    },
+    "hard": {
+     "n_tasks": 4,
+     "pass@1": 0.024999999999999994,
+     "pass@10": 0.25
+    }
+   },
+   "all_checks_pass": {
+    "overall": {
+     "pass@1": 0.09545454545454544,
+     "pass@10": 0.36363636363636365
+    },
+    "easy": {
+     "n_tasks": 7,
+     "pass@1": 0.1571428571428571,
+     "pass@10": 0.7142857142857143
+    },
+    "medium": {
+     "n_tasks": 11,
+     "pass@1": 0.08181818181818182,
+     "pass@10": 0.18181818181818182
+    },
+    "hard": {
+     "n_tasks": 4,
+     "pass@1": 0.024999999999999994,
+     "pass@10": 0.25
+    }
+   },
+   "matiec_accepted": {
+    "overall": {
+     "pass@1": 0.1409090909090909,
+     "pass@10": 0.5454545454545454
+    },
+    "easy": {
+     "n_tasks": 7,
+     "pass@1": 0.1571428571428571,
+     "pass@10": 0.7142857142857143
+    },
+    "medium": {
+     "n_tasks": 11,
+     "pass@1": 0.17272727272727273,
+     "pass@10": 0.5454545454545454
+    },
+    "hard": {
+     "n_tasks": 4,
+     "pass@1": 0.024999999999999994,
+     "pass@10": 0.25
+    }
+   },
+   "scenario": {
+    "overall": {
+     "pass@1": 0.2863636363636364,
+     "pass@10": 0.5909090909090909
+    },
+    "easy": {
+     "n_tasks": 7,
+     "pass@1": 0.6,
+     "pass@10": 1.0
+    },
+    "medium": {
+     "n_tasks": 11,
+     "pass@1": 0.15454545454545454,
+     "pass@10": 0.45454545454545453
+    },
+    "hard": {
+     "n_tasks": 4,
+     "pass@1": 0.1,
+     "pass@10": 0.25
+    }
+   },
+   "per_task_matrix": [
+    {
+     "task_id": "E01_motor_interlock",
+     "tier": "easy",
+     "c_verified": 1,
+     "c_taskvalid": 1,
+     "c_compile": 1,
+     "c_scenario": 4
+    },
+    {
+     "task_id": "E02_tank_overflow",
+     "tier": "easy",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 1
+    },
+    {
+     "task_id": "E03_airlock_interlock",
+     "tier": "easy",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 4
+    },
+    {
+     "task_id": "E04_conveyor_permissive",
+     "tier": "easy",
+     "c_verified": 1,
+     "c_taskvalid": 1,
+     "c_compile": 1,
+     "c_scenario": 6
+    },
+    {
+     "task_id": "E05_alarm_latch",
+     "tier": "easy",
+     "c_verified": 1,
+     "c_taskvalid": 1,
+     "c_compile": 1,
+     "c_scenario": 7
+    },
+    {
+     "task_id": "E06_heater_overtemp",
+     "tier": "easy",
+     "c_verified": 6,
+     "c_taskvalid": 6,
+     "c_compile": 6,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "E07_pump_dryrun_protection",
+     "tier": "easy",
+     "c_verified": 2,
+     "c_taskvalid": 2,
+     "c_compile": 2,
+     "c_scenario": 10
+    },
+    {
+     "task_id": "H01_intersection_signals",
+     "tier": "hard",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "H02_elevator_door_interlock",
+     "tier": "hard",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "H03_batch_reactor_sequence",
+     "tier": "hard",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "H04_parking_garage_counter",
+     "tier": "hard",
+     "c_verified": 1,
+     "c_taskvalid": 1,
+     "c_compile": 1,
+     "c_scenario": 4
+    },
+    {
+     "task_id": "M01_motor_startup_delay",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 1
+    },
+    {
+     "task_id": "M02_star_delta_starter",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 3,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M03_pedestrian_crossing",
+     "tier": "medium",
+     "c_verified": 1,
+     "c_taskvalid": 0,
+     "c_compile": 1,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M04_tank_fill_drain_cycle",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M05_conveyor_sequence",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 3,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M06_burner_purge_sequence",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 1,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M07_two_hand_control",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 2
+    },
+    {
+     "task_id": "M08_pump_alternation",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 5
+    },
+    {
+     "task_id": "M09_gate_limits_obstruction",
+     "tier": "medium",
+     "c_verified": 0,
+     "c_taskvalid": 0,
+     "c_compile": 0,
+     "c_scenario": 0
+    },
+    {
+     "task_id": "M10_three_conveyor_start",
+     "tier": "medium",
+     "c_verified": 3,
+     "c_taskvalid": 1,
+     "c_compile": 3,
+     "c_scenario": 1
+    },
+    {
+     "task_id": "M11_dosing_counter",
+     "tier": "medium",
+     "c_verified": 8,
+     "c_taskvalid": 8,
+     "c_compile": 8,
+     "c_scenario": 8
+    }
+   ],
+   "rq3_ci_pass1_by_tier": {
+    "easy": 0.1571428571428571,
+    "medium": 0.10909090909090911,
+    "hard": 0.024999999999999994
+   },
+   "failure_taxonomy": {
+    "total_samples": 220,
+    "categories": {
+     "compile_error": 54,
+     "parse_error": 135,
+     "verified": 24,
+     "unsafe": 7
+    },
+    "unsafe_count": 7,
+    "unsafe_detail": [
+     {
+      "task_id": "M02_star_delta_starter",
+      "tier": "medium",
+      "i": 0,
+      "n_props": 4,
+      "n_fail": 2,
+      "n_pass": 2
+     },
+     {
+      "task_id": "M02_star_delta_starter",
+      "tier": "medium",
+      "i": 3,
+      "n_props": 4,
+      "n_fail": 2,
+      "n_pass": 2
+     },
+     {
+      "task_id": "M02_star_delta_starter",
+      "tier": "medium",
+      "i": 4,
+      "n_props": 4,
+      "n_fail": 2,
+      "n_pass": 2
+     },
+     {
+      "task_id": "M05_conveyor_sequence",
+      "tier": "medium",
+      "i": 2,
+      "n_props": 3,
+      "n_fail": 2,
+      "n_pass": 1
+     },
+     {
+      "task_id": "M05_conveyor_sequence",
+      "tier": "medium",
+      "i": 6,
+      "n_props": 3,
+      "n_fail": 2,
+      "n_pass": 1
+     },
+     {
+      "task_id": "M05_conveyor_sequence",
+      "tier": "medium",
+      "i": 9,
+      "n_props": 3,
+      "n_fail": 2,
+      "n_pass": 1
+     },
+     {
+      "task_id": "M06_burner_purge_sequence",
+      "tier": "medium",
+      "i": 7,
+      "n_props": 4,
+      "n_fail": 2,
+      "n_pass": 2
+     }
+    ],
+    "recomputed_verified": 24,
+    "stored_c_verified": 24,
+    "verified_matches_stored": true
+   }
+  }
+ },
+ "cross_checks": {
+  "grok": {
+   "compile_and_invariant_pass1": {
+    "computed": 0.6773,
+    "paper": 0.677,
+    "delta": 0.0003,
+    "match": true
+   },
+   "all_checks_pass_pass1": {
+    "computed": 0.5909,
+    "paper": 0.591,
+    "delta": -0.0001,
+    "match": true
+   },
+   "all_checks_pass_pass10": {
+    "computed": 0.9091,
+    "paper": 0.909,
+    "delta": 0.0001,
+    "match": true
+   },
+   "matiec_accepted_pass1": {
+    "computed": 0.8955,
+    "paper": 0.895,
+    "delta": 0.0005,
+    "match": true
+   },
+   "scenario_pass1": {
+    "computed": 0.6727,
+    "paper": 0.673,
+    "delta": -0.0003,
+    "match": true
+   }
+  },
+  "claude": {
+   "compile_and_invariant_pass1": {
+    "computed": 0.5545,
+    "paper": 0.555,
+    "delta": -0.0005,
+    "match": true
+   },
+   "all_checks_pass_pass1": {
+    "computed": 0.4591,
+    "paper": 0.459,
+    "delta": 0.0001,
+    "match": true
+   },
+   "all_checks_pass_pass10": {
+    "computed": 0.5,
+    "paper": 0.5,
+    "delta": 0.0,
+    "match": true
+   },
+   "matiec_accepted_pass1": {
+    "computed": 0.9227,
+    "paper": 0.923,
+    "delta": -0.0003,
+    "match": true
+   },
+   "scenario_pass1": {
+    "computed": 0.4727,
+    "paper": 0.473,
+    "delta": -0.0003,
+    "match": true
+   }
+  },
+  "gemini": {
+   "compile_and_invariant_pass1": {
+    "computed": 0.1,
+    "paper": 0.1,
+    "delta": 0.0,
+    "match": true
+   },
+   "all_checks_pass_pass1": {
+    "computed": 0.1,
+    "paper": 0.1,
+    "delta": 0.0,
+    "match": true
+   },
+   "all_checks_pass_pass10": {
+    "computed": 0.2727,
+    "paper": 0.273,
+    "delta": -0.0003,
+    "match": true
+   },
+   "matiec_accepted_pass1": {
+    "computed": 0.1273,
+    "paper": 0.127,
+    "delta": 0.0003,
+    "match": true
+   },
+   "scenario_pass1": {
+    "computed": 0.2,
+    "paper": 0.2,
+    "delta": 0.0,
+    "match": true
+   }
+  },
+  "gpt-4o": {
+   "compile_and_invariant_pass1": {
+    "computed": 0.1091,
+    "paper": 0.109,
+    "delta": 0.0001,
+    "match": true
+   },
+   "all_checks_pass_pass1": {
+    "computed": 0.0955,
+    "paper": 0.095,
+    "delta": 0.0005,
+    "match": true
+   },
+   "all_checks_pass_pass10": {
+    "computed": 0.3636,
+    "paper": 0.364,
+    "delta": -0.0004,
+    "match": true
+   },
+   "matiec_accepted_pass1": {
+    "computed": 0.1409,
+    "paper": 0.141,
+    "delta": -0.0001,
+    "match": true
+   },
+   "scenario_pass1": {
+    "computed": 0.2864,
+    "paper": 0.286,
+    "delta": 0.0004,
+    "match": true
+   }
+  }
+ },
+ "comparison_june_vs_july": {
+  "leader_order_pass1": {
+   "june": [
+    "grok",
+    "claude",
+    "gemini",
+    "gpt-4o"
+   ],
+   "july": [
+    "grok",
+    "claude",
+    "gpt-4o",
+    "gemini"
+   ],
+   "changed": true
+  },
+  "per_model": {
+   "grok": {
+    "overall_pass1": {
+     "june": 0.645,
+     "july": 0.6773
+    },
+    "overall_pass10": {
+     "june": 0.955,
+     "july": 0.9091
+    },
+    "easy_pass1": {
+     "june": 0.857,
+     "july": 0.8857
+    },
+    "medium_pass1": {
+     "june": 0.536,
+     "july": 0.5636
+    },
+    "hard_pass1": {
+     "june": 0.575,
+     "july": 0.625
+    }
+   },
+   "claude": {
+    "overall_pass1": {
+     "june": 0.564,
+     "july": 0.5545
+    },
+    "overall_pass10": {
+     "june": 0.682,
+     "july": 0.6364
+    },
+    "easy_pass1": {
+     "june": 1.0,
+     "july": 0.9857
+    },
+    "medium_pass1": {
+     "june": 0.318,
+     "july": 0.3091
+    },
+    "hard_pass1": {
+     "june": 0.475,
+     "july": 0.475
+    }
+   },
+   "gemini": {
+    "overall_pass1": {
+     "june": 0.095,
+     "july": 0.1
+    },
+    "overall_pass10": {
+     "june": 0.273,
+     "july": 0.2727
+    },
+    "easy_pass1": {
+     "june": 0.2,
+     "july": 0.2429
+    },
+    "medium_pass1": {
+     "june": 0.0,
+     "july": 0.0182
+    },
+    "hard_pass1": {
+     "june": 0.175,
+     "july": 0.075
+    }
+   },
+   "gpt-4o": {
+    "overall_pass1": {
+     "june": 0.091,
+     "july": 0.1091
+    },
+    "overall_pass10": {
+     "june": 0.227,
+     "july": 0.4091
+    },
+    "easy_pass1": {
+     "june": 0.157,
+     "july": 0.1571
+    },
+    "medium_pass1": {
+     "june": 0.082,
+     "july": 0.1091
+    },
+    "hard_pass1": {
+     "june": 0.0,
+     "july": 0.025
+    }
+   }
+  },
+  "tier_walls": {
+   "gpt4o_hard_zero": {
+    "june_pass1": 0.0,
+    "july_pass1": 0.025,
+    "july_pass10": 0.25,
+    "holds": false
+   },
+   "gemini_medium_zero": {
+    "june_pass1": 0.0,
+    "july_pass1": 0.0182,
+    "july_pass10": 0.0909,
+    "holds": false
+   }
+  },
+  "flat_vs_climbing": {
+   "grok": {
+    "june": [
+     0.645,
+     0.955
+    ],
+    "july": [
+     0.6773,
+     0.9091
+    ],
+    "july_gain": 0.2318,
+    "june_gain": 0.31
+   },
+   "claude": {
+    "june": [
+     0.564,
+     0.682
+    ],
+    "july": [
+     0.5545,
+     0.6364
+    ],
+    "july_gain": 0.0818,
+    "june_gain": 0.118
+   },
+   "contrast_holds": true
+  },
+  "rq3": {
+   "claude_easy_pass1": {
+    "june": 1.0,
+    "july": 0.9857
+   },
+   "claude_medium_pass1": {
+    "june": 0.318,
+    "july": 0.3091
+   },
+   "easy_gt_medium_all_models": {
+    "grok": {
+     "easy": 0.8857,
+     "medium": 0.5636,
+     "hard": 0.625
+    },
+    "claude": {
+     "easy": 0.9857,
+     "medium": 0.3091,
+     "hard": 0.475
+    },
+    "gemini": {
+     "easy": 0.2429,
+     "medium": 0.0182,
+     "hard": 0.075
+    },
+    "gpt-4o": {
+     "easy": 0.1571,
+     "medium": 0.1091,
+     "hard": 0.025
+    }
+   }
+  }
+ },
+ "runtime_sec": 216.5
+}

@@ -1,0 +1,44 @@
+{
+  "id": "H04_parking_garage_counter",
+  "title": "Parking garage occupancy counter with full interlock",
+  "difficulty": "hard",
+  "domain": "access control",
+  "nl_spec": "A parking garage tracks occupancy with an up/down counter. A rising edge of EntrySensor means a car entered (increment occupancy); a rising edge of ExitSensor means a car left (decrement). Capacity is CAP = 3. Occupancy must stay within 0..CAP (never over-count or go negative). Assert FullSign when occupancy is at capacity. The entry barrier (EntryBarrierOpen) opens on EntryReq ONLY when the garage is not full. Use an internal INT Count (0..CAP) and internal BOOLs PrevEntry, PrevExit for edge detection. Write an IEC 61131-3 Structured Text PROGRAM named garage with inputs EntrySensor, ExitSensor, EntryReq and outputs FullSign, EntryBarrierOpen.",
+  "interface": [
+    {"name": "EntrySensor", "type": "BOOL", "direction": "input", "description": "Car-entered sensor"},
+    {"name": "ExitSensor", "type": "BOOL", "direction": "input", "description": "Car-left sensor"},
+    {"name": "EntryReq", "type": "BOOL", "direction": "input", "description": "Car requesting entry at the barrier"},
+    {"name": "FullSign", "type": "BOOL", "direction": "output", "description": "Garage full indicator"},
+    {"name": "EntryBarrierOpen", "type": "BOOL", "direction": "output", "description": "Entry barrier open"},
+    {"name": "Count", "type": "INT", "direction": "internal", "description": "Current occupancy", "range": [0, 3]},
+    {"name": "PrevEntry", "type": "BOOL", "direction": "internal", "description": "EntrySensor last scan"},
+    {"name": "PrevExit", "type": "BOOL", "direction": "internal", "description": "ExitSensor last scan"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "Occupancy never exceeds capacity (no over-admission count).", "ltl": "G(Count <= 3)"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "The entry barrier never opens while the garage is full.", "ltl": "G(FullSign -> !EntryBarrierOpen)"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "The full sign is shown exactly when occupancy is at capacity.", "ltl": "G(FullSign -> Count >= 3)"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "The barrier only opens for a requesting car.", "ltl": "G(EntryBarrierOpen -> EntryReq)"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Fill to capacity, then full interlock blocks entry",
+     "steps": [
+       {"inputs": {"EntrySensor": true, "ExitSensor": false, "EntryReq": true}, "expect": {"FullSign": false, "EntryBarrierOpen": true}},
+       {"inputs": {"EntrySensor": false, "ExitSensor": false, "EntryReq": false}, "expect": {"FullSign": false}},
+       {"inputs": {"EntrySensor": true, "ExitSensor": false, "EntryReq": true}, "expect": {"FullSign": false}},
+       {"inputs": {"EntrySensor": false, "ExitSensor": false, "EntryReq": false}, "expect": {"FullSign": false}},
+       {"inputs": {"EntrySensor": true, "ExitSensor": false, "EntryReq": true}, "expect": {"FullSign": true, "EntryBarrierOpen": false}}
+     ]},
+    {"id": "S2", "description": "Fill to full (edge-triggered), then a car leaves",
+     "steps": [
+       {"inputs": {"EntrySensor": true, "ExitSensor": false, "EntryReq": false}, "expect": {"FullSign": false}},
+       {"inputs": {"EntrySensor": false, "ExitSensor": false, "EntryReq": false}, "expect": {"FullSign": false}},
+       {"inputs": {"EntrySensor": true, "ExitSensor": false, "EntryReq": false}, "expect": {"FullSign": false}},
+       {"inputs": {"EntrySensor": false, "ExitSensor": false, "EntryReq": false}, "expect": {"FullSign": false}},
+       {"inputs": {"EntrySensor": true, "ExitSensor": false, "EntryReq": false}, "expect": {"FullSign": true}},
+       {"inputs": {"EntrySensor": false, "ExitSensor": true, "EntryReq": false}, "expect": {"FullSign": false}}
+     ]}
+  ],
+  "tags": ["counter", "up-down", "edge-detection", "bounded-int", "interlock", "access-control"],
+  "notes": "Up/down counter with guarded increment/decrement (tests both bounds in the verifier) + full interlock on the barrier."
+}

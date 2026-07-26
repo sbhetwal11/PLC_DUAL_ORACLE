@@ -1,0 +1,40 @@
+{
+  "id": "M05_conveyor_sequence",
+  "title": "Two-conveyor sequenced start (anti-pileup)",
+  "difficulty": "medium",
+  "domain": "material handling",
+  "nl_spec": "Two conveyors feed one another: C1 (upstream) drops material onto C2 (downstream). To avoid material pile-up, the downstream conveyor C2 must always be running before the upstream conveyor C1. Implement as a state machine: 0 = Off, 1 = Starting (C2 running, C1 still stopped), 2 = Running (both). On StartPB enter Starting; after PT_SEQ = 2 ticks move to Running. StopPB or an activated emergency stop (EStop normally-closed: TRUE = healthy, FALSE = activated) stops both immediately. SAFETY-CRITICAL: C1 must never run unless C2 is running. Use an internal INT State (0..2) and a TON timer. Write an IEC 61131-3 Structured Text PROGRAM named conveyor_seq with inputs StartPB, StopPB, EStop and outputs C1, C2.",
+  "interface": [
+    {"name": "StartPB", "type": "BOOL", "direction": "input", "description": "Start pushbutton"},
+    {"name": "StopPB", "type": "BOOL", "direction": "input", "description": "Stop pushbutton"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "C1", "type": "BOOL", "direction": "output", "description": "Upstream conveyor"},
+    {"name": "C2", "type": "BOOL", "direction": "output", "description": "Downstream conveyor"},
+    {"name": "State", "type": "INT", "direction": "internal", "description": "0=Off,1=Starting,2=Running", "range": [0, 2]}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "The upstream conveyor never runs unless the downstream conveyor is running.", "ltl": "G(C1 -> C2)"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "On emergency stop, both conveyors are stopped.", "ltl": "G(!EStop -> (!C1 & !C2))"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "Whenever stop is pressed, both conveyors are stopped.", "ltl": "G(StopPB -> (!C1 & !C2))"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Downstream starts first, upstream after the delay",
+     "steps": [
+       {"inputs": {"StartPB": true, "StopPB": false, "EStop": true}, "expect": {"C1": false, "C2": true}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": true}, "expect": {"C1": false, "C2": true}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": true}, "expect": {"C1": true, "C2": true}}
+     ]},
+    {"id": "S2", "description": "Stop halts both",
+     "steps": [
+       {"inputs": {"StartPB": true, "StopPB": false, "EStop": true}, "expect": {"C2": true}},
+       {"inputs": {"StartPB": false, "StopPB": true, "EStop": true}, "expect": {"C1": false, "C2": false}}
+     ]},
+    {"id": "S3", "description": "Emergency stop halts both",
+     "steps": [
+       {"inputs": {"StartPB": true, "StopPB": false, "EStop": true}, "expect": {"C2": true}},
+       {"inputs": {"StartPB": false, "StopPB": false, "EStop": false}, "expect": {"C1": false, "C2": false}}
+     ]}
+  ],
+  "tags": ["state-machine", "CASE", "timer", "TON", "sequencing", "interlock"],
+  "notes": "Sequenced start enforces downstream-before-upstream ordering; the ordering invariant G(C1 -> C2) is the safety-critical property."
+}

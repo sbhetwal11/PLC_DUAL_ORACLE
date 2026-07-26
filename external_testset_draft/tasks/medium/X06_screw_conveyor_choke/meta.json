@@ -1,0 +1,47 @@
+{
+  "id": "X06_screw_conveyor_choke",
+  "title": "Screw-conveyor choke protection with downstream permissive",
+  "difficulty": "medium",
+  "domain": "bulk material handling",
+  "nl_spec": "A screw conveyor feeds material onto a downstream conveyor. To avoid burying the downstream equipment, the screw motor may run only while the downstream conveyor is confirmed running (DownstreamRun = TRUE) - a downstream-first permissive. A choke/plug switch ChokeSwitch = TRUE indicates the trough is blocked. If a choke persists while the screw is permitted to run for CHOKE_TIME = 2 seconds, latch a ChokeTrip that stops the screw and locks it out until Reset (allowed only when healthy and the choke has cleared). ScrewMotor runs when healthy, StartCmd is TRUE, the downstream permissive is satisfied and no trip is latched. EStop is normally-closed (TRUE = healthy, FALSE = activated); when activated the screw stops. Use one TON. Write an IEC 61131-3 Structured Text PROGRAM named screw_conveyor with inputs StartCmd, DownstreamRun, ChokeSwitch, Reset, EStop and outputs ScrewMotor, ChokeTrip.",
+  "interface": [
+    {"name": "StartCmd", "type": "BOOL", "direction": "input", "description": "Maintained run command"},
+    {"name": "DownstreamRun", "type": "BOOL", "direction": "input", "description": "Downstream conveyor running feedback"},
+    {"name": "ChokeSwitch", "type": "BOOL", "direction": "input", "description": "Plug/choke switch: TRUE = blocked"},
+    {"name": "Reset", "type": "BOOL", "direction": "input", "description": "Trip reset"},
+    {"name": "EStop", "type": "BOOL", "direction": "input", "description": "Emergency stop, normally-closed: TRUE = healthy, FALSE = activated"},
+    {"name": "ScrewMotor", "type": "BOOL", "direction": "output", "description": "Screw-conveyor motor"},
+    {"name": "ChokeTrip", "type": "BOOL", "direction": "output", "description": "Latched choke/plug trip"}
+  ],
+  "safety_properties": [
+    {"id": "P1", "kind": "safety", "severity": "critical", "nl": "On emergency stop, the screw motor is off.", "ltl": "G(!EStop -> !ScrewMotor)"},
+    {"id": "P2", "kind": "safety", "severity": "critical", "nl": "While a choke trip is latched, the screw motor is off.", "ltl": "G(ChokeTrip -> !ScrewMotor)"},
+    {"id": "P3", "kind": "safety", "severity": "high", "nl": "Downstream-first: the screw never runs unless the downstream conveyor is running.", "ltl": "G(ScrewMotor -> DownstreamRun)"},
+    {"id": "P4", "kind": "safety", "severity": "high", "nl": "The screw runs only on a healthy start command with no trip.", "ltl": "G(ScrewMotor -> (StartCmd & EStop & !ChokeTrip))"}
+  ],
+  "scenarios": [
+    {"id": "S1", "description": "Normal run with downstream ready and no choke",
+     "steps": [
+       {"inputs": {"StartCmd": true, "DownstreamRun": true, "ChokeSwitch": false, "Reset": false, "EStop": true}, "expect": {"ScrewMotor": true, "ChokeTrip": false}}
+     ]},
+    {"id": "S2", "description": "Downstream not running blocks the screw start",
+     "steps": [
+       {"inputs": {"StartCmd": true, "DownstreamRun": false, "ChokeSwitch": false, "Reset": false, "EStop": true}, "expect": {"ScrewMotor": false, "ChokeTrip": false}}
+     ]},
+    {"id": "S3", "description": "Sustained choke for 2 s trips and locks out the screw",
+     "steps": [
+       {"inputs": {"StartCmd": true, "DownstreamRun": true, "ChokeSwitch": true, "Reset": false, "EStop": true}, "expect": {"ChokeTrip": false, "ScrewMotor": true}},
+       {"inputs": {"StartCmd": true, "DownstreamRun": true, "ChokeSwitch": true, "Reset": false, "EStop": true}, "expect": {"ChokeTrip": true, "ScrewMotor": false}},
+       {"inputs": {"StartCmd": true, "DownstreamRun": true, "ChokeSwitch": false, "Reset": false, "EStop": true}, "expect": {"ChokeTrip": true, "ScrewMotor": false}}
+     ]},
+    {"id": "S4", "description": "Reset with StartCmd held leaves the trip latched; cycling StartCmd off then Reset clears it",
+     "steps": [
+       {"inputs": {"StartCmd": true, "DownstreamRun": true, "ChokeSwitch": true, "Reset": false, "EStop": true}, "expect": {"ChokeTrip": false, "ScrewMotor": true}},
+       {"inputs": {"StartCmd": true, "DownstreamRun": true, "ChokeSwitch": true, "Reset": false, "EStop": true}, "expect": {"ChokeTrip": true, "ScrewMotor": false}},
+       {"inputs": {"StartCmd": true, "DownstreamRun": true, "ChokeSwitch": false, "Reset": true, "EStop": true}, "expect": {"ChokeTrip": true, "ScrewMotor": false}},
+       {"inputs": {"StartCmd": false, "DownstreamRun": true, "ChokeSwitch": false, "Reset": true, "EStop": true}, "expect": {"ChokeTrip": false, "ScrewMotor": false}}
+     ]}
+  ],
+  "tags": ["draft", "choke-protection", "downstream-permissive", "TON", "latched-trip"],
+  "notes": "DRAFT - pending expert PLC review. NEW FAMILY: choke/plug protection - a TON confirms a sustained blockage and latches a lockout trip. The downstream-first permissive is a single running-feedback INPUT gate (NOT a timed ordered-start SEQUENCE of two outputs), so it is disjoint from the existing ordered-start / three-conveyor families. Primary structure is the sustained-fault trip-and-lockout, not motor sequencing."
+}
