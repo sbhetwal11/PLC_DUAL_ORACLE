@@ -1,0 +1,50 @@
+cff-version: 1.2.0
+message: "If you use this benchmark, harness, or the released adapters, please cite the paper below."
+title: "PLC Dual-Oracle: benchmark, harness, and verifier-grounded training for IEC 61131-3 Structured Text"
+abstract: >-
+  A 22-task IEC 61131-3 Structured Text benchmark with 71 formal safety properties
+  and 48 execution scenarios, scored by a dual oracle (MATIEC compilation plus nuXmv
+  model checking over a scan-indexed ST-to-SMV translation) and a scan-cycle
+  scenario interpreter. Includes the evaluation harness, the verifier-grounded SFT
+  and GRPO training code, the released LoRA adapters, and the raw results behind
+  every number in the accompanying paper.
+type: software
+license: MIT
+version: v1.0
+date-released: "2026-07-26"
+doi: 10.5281/zenodo.21612130
+repository-code: "https://github.com/sbhetwal11/PLC_DUAL_ORACLE"
+keywords:
+  - IEC 61131-3
+  - structured text
+  - programmable logic controller
+  - formal verification
+  - model checking
+  - large language models
+  - code generation
+  - reinforcement learning
+authors:
+  - family-names: Bhetwal
+    given-names: Sagar
+    affiliation: "University of the Cumberlands, Williamsburg, KY, USA"
+    email: sbhetwal41349@ucumberlands.edu
+  - family-names: Bastakoti
+    given-names: Rajan
+    affiliation: "DePaul University, Chicago, IL, USA"
+    email: r.bastakoti@depaul.edu
+  - family-names: Gupta
+    given-names: Gaurav Kumar
+    affiliation: "Youngstown State University, Youngstown, OH, USA"
+    email: guptagauravk1@gmail.com
+preferred-citation:
+  type: article
+  title: "Evaluating and Training IEC 61131-3 Structured Text Generators with Compiler, Invariant, and Scenario Feedback"
+  year: 2026
+  notes: "Preprint; submitted for publication."
+  authors:
+    - family-names: Bhetwal
+      given-names: Sagar
+    - family-names: Bastakoti
+      given-names: Rajan
+    - family-names: Gupta
+      given-names: Gaurav Kumar

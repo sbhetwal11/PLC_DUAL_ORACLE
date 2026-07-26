@@ -107,5 +107,6 @@ inherit its license terms.
 
 ## Citation
 
-Citation entry will be added on publication. Until then, please cite the repository
-URL and the paper title above.
+Archived release: Zenodo DOI [10.5281/zenodo.21612130](https://doi.org/10.5281/zenodo.21612130)
+(concept DOI, always resolves to the newest release). Machine-readable metadata is in
+; the journal citation will replace it on publication.
