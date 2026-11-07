@@ -28,18 +28,22 @@ authors:
     given-names: Sagar
     affiliation: "University of the Cumberlands, Williamsburg, KY, USA"
     email: sbhetwal41349@ucumberlands.edu
+    orcid: "https://orcid.org/0009-0006-0444-1577"
   - family-names: Bastakoti
     given-names: Rajan
     affiliation: "DePaul University, Chicago, IL, USA"
     email: r.bastakoti@depaul.edu
+    orcid: "https://orcid.org/0009-0006-6284-7006"
   - family-names: Acharya
     given-names: Nirajan
-    affiliation: "Youngstown State University, Youngstown, OH, USA"
-    email: nirajanach3@gmail.com
+    affiliation: "University of the Cumberlands, Williamsburg, KY, USA"
+    email: nacharya39400@ucumberlands.edu
+    orcid: "https://orcid.org/0009-0008-8124-6155"
   - family-names: Gupta
     given-names: Gaurav Kumar
-    affiliation: "Youngstown State University, Youngstown, OH, USA"
+    affiliation: "Independent researcher"
     email: guptagauravk1@gmail.com
+    orcid: "https://orcid.org/0009-0002-7608-7256"
 preferred-citation:
   type: article
   title: "Evaluating and Training IEC 61131-3 Structured Text Generators with Compiler, Invariant, and Scenario Feedback"

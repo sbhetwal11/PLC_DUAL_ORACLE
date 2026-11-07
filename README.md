@@ -7,6 +7,10 @@ harness (compiler + model checker + scenario interpreter), the training and rewa
 code, the released LoRA adapters, and the raw results behind every number in the
 paper.
 
+The paper's supplementary material (all S-numbered tables and figures: task list,
+property catalogue, differential-validation details, per-seed training results) is
+[`supplement.pdf`](supplement.pdf) in this repository.
+
 A generated program counts as **all-checks-pass** ("task-valid") only if it
 
 1. compiles under a real IEC 61131-3 front end (MATIEC `iec2c`),
